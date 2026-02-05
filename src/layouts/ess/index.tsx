@@ -2,7 +2,7 @@ import { CalendarDays, FileText, Home, LogOut, Menu, User, X } from "lucide-reac
 import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import Logo from "@/components/logo";
-import { useSignOut } from "@/store/authStore";
+import { useAuthActions } from "@/store/authStore";
 import { Avatar, AvatarFallback } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
@@ -28,12 +28,12 @@ const navItems = [
 export default function ESSLayout() {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const signOut = useSignOut();
+	const { logout } = useAuthActions();
 	const [mobileOpen, setMobileOpen] = useState(false);
 
 	const handleSignOut = () => {
-		signOut();
-		navigate("/login");
+		logout();
+		navigate("/auth/login");
 	};
 
 	const isActive = (path: string) => {

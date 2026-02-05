@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { CalendarDays, CalendarPlus, CheckCircle, Clock, XCircle } from "lucide-react";
+import { CalendarDays, CalendarPlus } from "lucide-react";
 import { useNavigate } from "react-router";
 import type { ESSLeaveBalance, ESSLeaveRequest } from "@/types/ess";
 import { Badge } from "@/ui/badge";
@@ -29,19 +29,6 @@ export default function ESSLeavePage() {
 	});
 
 	const isLoading = loadingBalances || loadingRequests;
-
-	const getStatusIcon = (status: string) => {
-		switch (status) {
-			case "approved":
-				return <CheckCircle className="h-4 w-4 text-green-600" />;
-			case "rejected":
-				return <XCircle className="h-4 w-4 text-red-600" />;
-			case "pending":
-				return <Clock className="h-4 w-4 text-amber-600" />;
-			default:
-				return null;
-		}
-	};
 
 	const getStatusBadge = (status: string) => {
 		switch (status) {

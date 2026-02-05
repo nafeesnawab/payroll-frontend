@@ -11,6 +11,7 @@ import Logo from "@/components/logo";
 import { GLOBAL_CONFIG } from "@/global-config";
 import { useAuthActions, useIsAuthenticated } from "@/store/authStore";
 import type { SignUpRequest } from "@/types/auth";
+import { CompanyRole } from "@/types/auth";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/ui/form";
@@ -63,8 +64,8 @@ export default function SignUpPage() {
 				const { user, company, token } = response.data;
 				setUser(user);
 				setToken(token);
-				setCompanies([{ id: company.id, companyId: company.id, userId: user.id, role: "owner", company }]);
-				setActiveCompany(company, "owner");
+				setCompanies([{ id: company.id, companyId: company.id, userId: user.id, role: CompanyRole.OWNER, company }]);
+				setActiveCompany(company, CompanyRole.OWNER);
 				setOnboardingComplete(false);
 				toast.success("Account created successfully!");
 				navigate("/settings/employer", { replace: true });

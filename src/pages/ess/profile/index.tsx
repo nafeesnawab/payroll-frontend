@@ -108,16 +108,6 @@ export default function ESSProfilePage() {
 		}
 	};
 
-	const editableFields = [
-		{ key: "email", label: "Email Address", value: profile?.email },
-		{ key: "phone", label: "Phone Number", value: profile?.phone },
-		{ key: "address", label: "Address", value: profile?.address },
-		{ key: "bankName", label: "Bank Name", value: profile?.bankName },
-		{ key: "accountNumber", label: "Account Number", value: profile?.accountNumber },
-		{ key: "branchCode", label: "Branch Code", value: profile?.branchCode },
-		{ key: "accountType", label: "Account Type", value: profile?.accountType },
-	];
-
 	return (
 		<div className="space-y-6">
 			<div>

@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { delay, http, HttpResponse } from "msw";
+import { delay, HttpResponse, http } from "msw";
 import type {
 	EMP201,
 	EMP201Detail,
@@ -18,7 +18,8 @@ const generateEMP201List = (): EMP201[] => {
 	const currentDate = new Date();
 	for (let i = 0; i < 12; i++) {
 		const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
-		const status = i === 0 ? "draft" : i < 3 ? faker.helpers.arrayElement(["ready", "submitted"]) : "accepted";
+		const status: FilingStatus =
+			i === 0 ? "draft" : i < 3 ? faker.helpers.arrayElement(["ready", "submitted"] as const) : "accepted";
 		items.push({
 			id: faker.string.uuid(),
 			period: `${date.toLocaleString("default", { month: "long" })} ${date.getFullYear()}`,
