@@ -72,11 +72,7 @@ export type AutomationTrigger =
 	| "schedule"
 	| "payslip_released";
 
-export type AutomationAction =
-	| "send_notification"
-	| "generate_document"
-	| "change_status"
-	| "send_reminder";
+export type AutomationAction = "send_notification" | "generate_document" | "change_status" | "send_reminder";
 
 export type AutomationStatus = "active" | "paused" | "draft";
 

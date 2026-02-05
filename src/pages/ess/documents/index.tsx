@@ -73,30 +73,21 @@ export default function ESSDocumentsPage() {
 									</div>
 									<div className="flex-1 min-w-0">
 										<p className="font-medium truncate">{doc.name}</p>
-										<p className="text-sm text-muted-foreground">
-											{documentTypeLabels[doc.type]}
-										</p>
+										<p className="text-sm text-muted-foreground">{documentTypeLabels[doc.type]}</p>
 										{doc.taxYear && (
 											<Badge variant="outline" className="mt-1">
 												Tax Year: {doc.taxYear}
 											</Badge>
 										)}
 										{doc.description && (
-											<p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-												{doc.description}
-											</p>
+											<p className="text-xs text-muted-foreground mt-1 line-clamp-2">{doc.description}</p>
 										)}
 										<p className="text-xs text-muted-foreground mt-2">
 											Released: {new Date(doc.releasedAt).toLocaleDateString()}
 										</p>
 									</div>
 								</div>
-								<Button
-									variant="outline"
-									size="sm"
-									className="w-full mt-4"
-									onClick={() => handleDownload(doc)}
-								>
+								<Button variant="outline" size="sm" className="w-full mt-4" onClick={() => handleDownload(doc)}>
 									<Download className="h-4 w-4 mr-2" />
 									Download
 								</Button>
@@ -150,9 +141,7 @@ export default function ESSDocumentsPage() {
 					<Card>
 						<CardHeader>
 							<CardTitle>Tax Certificates</CardTitle>
-							<CardDescription>
-								IRP5 and IT3(a) certificates for tax filing purposes
-							</CardDescription>
+							<CardDescription>IRP5 and IT3(a) certificates for tax filing purposes</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<DocumentList docs={taxDocuments} />
@@ -164,9 +153,7 @@ export default function ESSDocumentsPage() {
 					<Card>
 						<CardHeader>
 							<CardTitle>Employment Letters</CardTitle>
-							<CardDescription>
-								Official employment confirmation and reference letters
-							</CardDescription>
+							<CardDescription>Official employment confirmation and reference letters</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<DocumentList docs={employmentDocuments} />
@@ -178,9 +165,7 @@ export default function ESSDocumentsPage() {
 					<Card>
 						<CardHeader>
 							<CardTitle>Other Documents</CardTitle>
-							<CardDescription>
-								Additional documents shared with you
-							</CardDescription>
+							<CardDescription>Additional documents shared with you</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<DocumentList docs={otherDocuments} />

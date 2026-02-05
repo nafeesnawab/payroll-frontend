@@ -4,8 +4,24 @@ import type { Payrun, PayrunListItem, PayrunEmployee, EmployeePayslip, PayrunSum
 
 const generatePayslipEarnings = (baseSalary: number) => [
 	{ id: "e-1", name: "Basic Salary", code: "BASIC", amount: baseSalary, taxable: true, isRequired: true },
-	{ id: "e-2", name: "Overtime", code: "OT", amount: Math.random() > 0.7 ? faker.number.int({ min: 500, max: 3000 }) : 0, hours: 8, rate: baseSalary / 160 * 1.5, taxable: true, isRequired: false },
-	{ id: "e-3", name: "Travel Allowance", code: "TRAVEL", amount: Math.random() > 0.5 ? 2500 : 0, taxable: true, isRequired: false },
+	{
+		id: "e-2",
+		name: "Overtime",
+		code: "OT",
+		amount: Math.random() > 0.7 ? faker.number.int({ min: 500, max: 3000 }) : 0,
+		hours: 8,
+		rate: (baseSalary / 160) * 1.5,
+		taxable: true,
+		isRequired: false,
+	},
+	{
+		id: "e-3",
+		name: "Travel Allowance",
+		code: "TRAVEL",
+		amount: Math.random() > 0.5 ? 2500 : 0,
+		taxable: true,
+		isRequired: false,
+	},
 	{ id: "e-4", name: "Bonus", code: "BONUS", amount: 0, taxable: true, isRequired: false },
 ];
 
@@ -15,8 +31,22 @@ const generatePayslipDeductions = (grossPay: number) => {
 	return [
 		{ id: "d-1", name: "PAYE", code: "PAYE", amount: paye, isSkipped: false, isRequired: true },
 		{ id: "d-2", name: "UIF", code: "UIF", amount: uif, isSkipped: false, isRequired: true },
-		{ id: "d-3", name: "Medical Aid", code: "MED", amount: Math.random() > 0.5 ? 2500 : 0, isSkipped: false, isRequired: false },
-		{ id: "d-4", name: "Pension Fund", code: "PENSION", amount: Math.round(grossPay * 0.075), isSkipped: false, isRequired: false },
+		{
+			id: "d-3",
+			name: "Medical Aid",
+			code: "MED",
+			amount: Math.random() > 0.5 ? 2500 : 0,
+			isSkipped: false,
+			isRequired: false,
+		},
+		{
+			id: "d-4",
+			name: "Pension Fund",
+			code: "PENSION",
+			amount: Math.round(grossPay * 0.075),
+			isSkipped: false,
+			isRequired: false,
+		},
 	];
 };
 
@@ -97,7 +127,7 @@ const generateEmployeePayslip = (payrunId: string, employeeId: string): Employee
 	const earnings = generatePayslipEarnings(baseSalary);
 	const grossPay = earnings.reduce((sum, e) => sum + e.amount, 0);
 	const deductions = generatePayslipDeductions(grossPay);
-	const totalDeductions = deductions.filter(d => !d.isSkipped).reduce((sum, d) => sum + d.amount, 0);
+	const totalDeductions = deductions.filter((d) => !d.isSkipped).reduce((sum, d) => sum + d.amount, 0);
 
 	return {
 		id: `${payrunId}-${employeeId}`,
@@ -155,7 +185,7 @@ export const payrollHandlers = [
 
 	http.post("/api/payruns", async ({ request }) => {
 		await delay(500);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newPayrun: Payrun = {
 			id: `pr-${mockPayruns.length + 1}`,
 			payPeriod: "February 2026",
@@ -230,7 +260,7 @@ export const payrollHandlers = [
 
 	http.put("/api/payruns/:id/payslip/:employeeId", async ({ params, request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const payslip = generateEmployeePayslip(params.id as string, params.employeeId as string);
 		return HttpResponse.json({ status: "success", data: { ...payslip, ...body } });
 	}),

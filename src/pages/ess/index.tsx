@@ -59,15 +59,11 @@ export default function ESSDashboard() {
 						{overview?.latestPayslip ? (
 							<div className="space-y-3">
 								<div>
-									<p className="text-2xl font-bold text-primary">
-										{formatCurrency(overview.latestPayslip.netPay)}
-									</p>
+									<p className="text-2xl font-bold text-primary">{formatCurrency(overview.latestPayslip.netPay)}</p>
 									<p className="text-sm text-muted-foreground">Net Pay</p>
 								</div>
 								<div className="flex items-center justify-between text-sm">
-									<span className="text-muted-foreground">
-										{overview.latestPayslip.payPeriod}
-									</span>
+									<span className="text-muted-foreground">{overview.latestPayslip.payPeriod}</span>
 									<Badge variant="outline">{overview.latestPayslip.payDate}</Badge>
 								</div>
 								<Button
@@ -104,11 +100,7 @@ export default function ESSDashboard() {
 										</Badge>
 									</div>
 								))}
-								<Button
-									variant="outline"
-									className="w-full"
-									onClick={() => navigate("/ess/leave")}
-								>
+								<Button variant="outline" className="w-full" onClick={() => navigate("/ess/leave")}>
 									View All Leave
 									<ChevronRight className="h-4 w-4 ml-2" />
 								</Button>
@@ -151,11 +143,7 @@ export default function ESSDashboard() {
 										</p>
 									</div>
 								))}
-								<Button
-									variant="outline"
-									className="w-full"
-									onClick={() => navigate("/ess/leave")}
-								>
+								<Button variant="outline" className="w-full" onClick={() => navigate("/ess/leave")}>
 									View Leave
 									<ChevronRight className="h-4 w-4 ml-2" />
 								</Button>
@@ -163,11 +151,7 @@ export default function ESSDashboard() {
 						) : (
 							<div className="space-y-3">
 								<p className="text-muted-foreground py-2">No upcoming leave</p>
-								<Button
-									variant="outline"
-									className="w-full"
-									onClick={() => navigate("/ess/leave/new")}
-								>
+								<Button variant="outline" className="w-full" onClick={() => navigate("/ess/leave/new")}>
 									Apply for Leave
 									<ChevronRight className="h-4 w-4 ml-2" />
 								</Button>

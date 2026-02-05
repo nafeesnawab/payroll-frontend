@@ -71,9 +71,7 @@ export default function AdminAuditLogsPage() {
 						<FileText className="h-6 w-6" />
 						Admin Audit Logs
 					</h1>
-					<p className="text-muted-foreground">
-						Track all sensitive platform actions
-					</p>
+					<p className="text-muted-foreground">Track all sensitive platform actions</p>
 				</div>
 				<Button variant="outline">
 					<Download className="h-4 w-4 mr-2" />
@@ -98,10 +96,7 @@ export default function AdminAuditLogsPage() {
 						</div>
 						<div className="flex items-center gap-2">
 							<Filter className="h-4 w-4 text-muted-foreground" />
-							<Select
-								value={categoryFilter}
-								onValueChange={(v) => setCategoryFilter(v === "all" ? "" : v)}
-							>
+							<Select value={categoryFilter} onValueChange={(v) => setCategoryFilter(v === "all" ? "" : v)}>
 								<SelectTrigger className="w-48">
 									<SelectValue placeholder="All Categories" />
 								</SelectTrigger>
@@ -123,9 +118,7 @@ export default function AdminAuditLogsPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Audit Trail</CardTitle>
-					<CardDescription>
-						{logs?.length || 0} events found
-					</CardDescription>
+					<CardDescription>{logs?.length || 0} events found</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{logs && logs.length > 0 ? (
@@ -143,26 +136,18 @@ export default function AdminAuditLogsPage() {
 							<TableBody>
 								{logs.map((log) => (
 									<TableRow key={log.id}>
-										<TableCell className="text-muted-foreground">
-											{new Date(log.timestamp).toLocaleString()}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{new Date(log.timestamp).toLocaleString()}</TableCell>
 										<TableCell className="font-medium">{log.userName}</TableCell>
 										<TableCell>{getCategoryBadge(log.category)}</TableCell>
 										<TableCell>{log.action}</TableCell>
-										<TableCell className="text-muted-foreground">
-											{log.targetName || "-"}
-										</TableCell>
-										<TableCell className="text-muted-foreground font-mono text-xs">
-											{log.ipAddress}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{log.targetName || "-"}</TableCell>
+										<TableCell className="text-muted-foreground font-mono text-xs">{log.ipAddress}</TableCell>
 									</TableRow>
 								))}
 							</TableBody>
 						</Table>
 					) : (
-						<p className="text-muted-foreground text-center py-8">
-							No audit logs found
-						</p>
+						<p className="text-muted-foreground text-center py-8">No audit logs found</p>
 					)}
 				</CardContent>
 			</Card>

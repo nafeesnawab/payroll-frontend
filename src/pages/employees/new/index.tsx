@@ -143,11 +143,7 @@ export default function AddEmployeePage() {
 				<div className="flex gap-2 mt-4">
 					{steps.map((step) => (
 						<div key={step.id} className="flex-1">
-							<div
-								className={`h-2 rounded-full ${
-									step.id <= currentStep ? "bg-primary" : "bg-muted"
-								}`}
-							/>
+							<div className={`h-2 rounded-full ${step.id <= currentStep ? "bg-primary" : "bg-muted"}`} />
 							<p className={`text-xs mt-1 ${step.id === currentStep ? "font-medium" : "text-muted-foreground"}`}>
 								{step.title}
 							</p>
@@ -166,91 +162,149 @@ export default function AddEmployeePage() {
 							</CardHeader>
 							<CardContent className="space-y-4">
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="firstName" render={({ field }) => (
-										<FormItem>
-											<FormLabel>First Name *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="lastName" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Last Name *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="firstName"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>First Name *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="lastName"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Last Name *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="idType" render={({ field }) => (
-										<FormItem>
-											<FormLabel>ID Type *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="sa_id">SA ID</SelectItem>
-													<SelectItem value="passport">Passport</SelectItem>
-													<SelectItem value="asylum">Asylum Seeker</SelectItem>
-													<SelectItem value="refugee">Refugee</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="idNumber" render={({ field }) => (
-										<FormItem>
-											<FormLabel>ID Number *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="idType"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>ID Type *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="sa_id">SA ID</SelectItem>
+														<SelectItem value="passport">Passport</SelectItem>
+														<SelectItem value="asylum">Asylum Seeker</SelectItem>
+														<SelectItem value="refugee">Refugee</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="idNumber"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>ID Number *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="dateOfBirth" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Date of Birth *</FormLabel>
-											<FormControl><Input type="date" {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="gender" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Gender *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="male">Male</SelectItem>
-													<SelectItem value="female">Female</SelectItem>
-													<SelectItem value="other">Other</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="dateOfBirth"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Date of Birth *</FormLabel>
+												<FormControl>
+													<Input type="date" {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="gender"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Gender *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="male">Male</SelectItem>
+														<SelectItem value="female">Female</SelectItem>
+														<SelectItem value="other">Other</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="email" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Email *</FormLabel>
-											<FormControl><Input type="email" {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="phone" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Phone *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email *</FormLabel>
+												<FormControl>
+													<Input type="email" {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="phone"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Phone *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
-								<FormField control={form.control} name="physicalAddress" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Physical Address *</FormLabel>
-										<FormControl><Input {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="physicalAddress"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Physical Address *</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 							</CardContent>
 						</Card>
 					)}
@@ -263,93 +317,149 @@ export default function AddEmployeePage() {
 							</CardHeader>
 							<CardContent className="space-y-4">
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="employeeNumber" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Employee Number</FormLabel>
-											<FormControl><Input placeholder="Auto-generated if empty" {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="employmentType" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Employment Type *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="full_time">Full-time</SelectItem>
-													<SelectItem value="part_time">Part-time (&lt;22 hrs)</SelectItem>
-													<SelectItem value="director">Director</SelectItem>
-													<SelectItem value="contractor">Contractor</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="employeeNumber"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Employee Number</FormLabel>
+												<FormControl>
+													<Input placeholder="Auto-generated if empty" {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="employmentType"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Employment Type *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="full_time">Full-time</SelectItem>
+														<SelectItem value="part_time">Part-time (&lt;22 hrs)</SelectItem>
+														<SelectItem value="director">Director</SelectItem>
+														<SelectItem value="contractor">Contractor</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
-								<FormField control={form.control} name="startDate" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Start Date *</FormLabel>
-										<FormControl><Input type="date" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="startDate"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Start Date *</FormLabel>
+											<FormControl>
+												<Input type="date" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="grid grid-cols-3 gap-4">
-									<FormField control={form.control} name="payFrequencyId" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Pay Frequency *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="freq-1">Monthly</SelectItem>
-													<SelectItem value="freq-2">Weekly</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="payPointId" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Pay Point *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="pp-1">Head Office</SelectItem>
-													<SelectItem value="pp-2">Cape Town</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="jobGradeId" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Job Grade *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="jg-1">Junior</SelectItem>
-													<SelectItem value="jg-2">Intermediate</SelectItem>
-													<SelectItem value="jg-3">Senior</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="payFrequencyId"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Pay Frequency *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="freq-1">Monthly</SelectItem>
+														<SelectItem value="freq-2">Weekly</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="payPointId"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Pay Point *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="pp-1">Head Office</SelectItem>
+														<SelectItem value="pp-2">Cape Town</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="jobGradeId"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Job Grade *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="jg-1">Junior</SelectItem>
+														<SelectItem value="jg-2">Intermediate</SelectItem>
+														<SelectItem value="jg-3">Senior</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="workingDaysPerWeek" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Working Days/Week *</FormLabel>
-											<FormControl><Input type="number" min={1} max={7} {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="workingHoursPerDay" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Working Hours/Day *</FormLabel>
-											<FormControl><Input type="number" min={1} max={24} {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="workingDaysPerWeek"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Working Days/Week *</FormLabel>
+												<FormControl>
+													<Input type="number" min={1} max={7} {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="workingHoursPerDay"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Working Hours/Day *</FormLabel>
+												<FormControl>
+													<Input type="number" min={1} max={24} {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 							</CardContent>
 						</Card>
@@ -363,89 +473,143 @@ export default function AddEmployeePage() {
 							</CardHeader>
 							<CardContent className="space-y-4">
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="salaryType" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Salary Type *</FormLabel>
-											<Select onValueChange={field.onChange} value={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="fixed">Fixed Monthly</SelectItem>
-													<SelectItem value="hourly">Hourly</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="salaryAmount" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Salary Amount (ZAR) *</FormLabel>
-											<FormControl><Input type="number" {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="salaryType"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Salary Type *</FormLabel>
+												<Select onValueChange={field.onChange} value={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="fixed">Fixed Monthly</SelectItem>
+														<SelectItem value="hourly">Hourly</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="salaryAmount"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Salary Amount (ZAR) *</FormLabel>
+												<FormControl>
+													<Input type="number" {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="costToCompany" render={({ field }) => (
-										<FormItem className="flex items-center justify-between rounded-lg border p-3">
-											<FormLabel>Cost to Company</FormLabel>
-											<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="overtimeEligible" render={({ field }) => (
-										<FormItem className="flex items-center justify-between rounded-lg border p-3">
-											<FormLabel>Overtime Eligible</FormLabel>
-											<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="costToCompany"
+										render={({ field }) => (
+											<FormItem className="flex items-center justify-between rounded-lg border p-3">
+												<FormLabel>Cost to Company</FormLabel>
+												<FormControl>
+													<Switch checked={field.value} onCheckedChange={field.onChange} />
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="overtimeEligible"
+										render={({ field }) => (
+											<FormItem className="flex items-center justify-between rounded-lg border p-3">
+												<FormLabel>Overtime Eligible</FormLabel>
+												<FormControl>
+													<Switch checked={field.value} onCheckedChange={field.onChange} />
+												</FormControl>
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="border-t pt-4">
 									<h4 className="font-medium mb-4">Bank Details</h4>
 									<div className="grid grid-cols-2 gap-4">
-										<FormField control={form.control} name="bankName" render={({ field }) => (
-											<FormItem>
-												<FormLabel>Bank Name *</FormLabel>
-												<Select onValueChange={field.onChange} value={field.value}>
-													<FormControl><SelectTrigger><SelectValue placeholder="Select bank" /></SelectTrigger></FormControl>
-													<SelectContent>
-														<SelectItem value="Standard Bank">Standard Bank</SelectItem>
-														<SelectItem value="FNB">FNB</SelectItem>
-														<SelectItem value="ABSA">ABSA</SelectItem>
-														<SelectItem value="Nedbank">Nedbank</SelectItem>
-														<SelectItem value="Capitec">Capitec</SelectItem>
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)} />
-										<FormField control={form.control} name="bankAccountType" render={({ field }) => (
-											<FormItem>
-												<FormLabel>Account Type *</FormLabel>
-												<Select onValueChange={field.onChange} value={field.value}>
-													<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-													<SelectContent>
-														<SelectItem value="current">Current</SelectItem>
-														<SelectItem value="savings">Savings</SelectItem>
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)} />
+										<FormField
+											control={form.control}
+											name="bankName"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Bank Name *</FormLabel>
+													<Select onValueChange={field.onChange} value={field.value}>
+														<FormControl>
+															<SelectTrigger>
+																<SelectValue placeholder="Select bank" />
+															</SelectTrigger>
+														</FormControl>
+														<SelectContent>
+															<SelectItem value="Standard Bank">Standard Bank</SelectItem>
+															<SelectItem value="FNB">FNB</SelectItem>
+															<SelectItem value="ABSA">ABSA</SelectItem>
+															<SelectItem value="Nedbank">Nedbank</SelectItem>
+															<SelectItem value="Capitec">Capitec</SelectItem>
+														</SelectContent>
+													</Select>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="bankAccountType"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Account Type *</FormLabel>
+													<Select onValueChange={field.onChange} value={field.value}>
+														<FormControl>
+															<SelectTrigger>
+																<SelectValue />
+															</SelectTrigger>
+														</FormControl>
+														<SelectContent>
+															<SelectItem value="current">Current</SelectItem>
+															<SelectItem value="savings">Savings</SelectItem>
+														</SelectContent>
+													</Select>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
 									</div>
 									<div className="grid grid-cols-2 gap-4 mt-4">
-										<FormField control={form.control} name="bankAccountNumber" render={({ field }) => (
-											<FormItem>
-												<FormLabel>Account Number *</FormLabel>
-												<FormControl><Input {...field} /></FormControl>
-												<FormMessage />
-											</FormItem>
-										)} />
-										<FormField control={form.control} name="bankBranchCode" render={({ field }) => (
-											<FormItem>
-												<FormLabel>Branch Code *</FormLabel>
-												<FormControl><Input {...field} /></FormControl>
-												<FormMessage />
-											</FormItem>
-										)} />
+										<FormField
+											control={form.control}
+											name="bankAccountNumber"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Account Number *</FormLabel>
+													<FormControl>
+														<Input {...field} />
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="bankBranchCode"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Branch Code *</FormLabel>
+													<FormControl>
+														<Input {...field} />
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
 									</div>
 								</div>
 							</CardContent>
@@ -459,32 +623,56 @@ export default function AddEmployeePage() {
 								<CardDescription>Compliance and tax information</CardDescription>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								<FormField control={form.control} name="taxNumber" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Tax Number</FormLabel>
-										<FormControl><Input placeholder="Optional" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="taxNumber"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Tax Number</FormLabel>
+											<FormControl>
+												<Input placeholder="Optional" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="grid grid-cols-3 gap-4">
-									<FormField control={form.control} name="uifIncluded" render={({ field }) => (
-										<FormItem className="flex items-center justify-between rounded-lg border p-3">
-											<FormLabel>UIF Included</FormLabel>
-											<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="sdlIncluded" render={({ field }) => (
-										<FormItem className="flex items-center justify-between rounded-lg border p-3">
-											<FormLabel>SDL Included</FormLabel>
-											<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="etiEligible" render={({ field }) => (
-										<FormItem className="flex items-center justify-between rounded-lg border p-3">
-											<FormLabel>ETI Eligible</FormLabel>
-											<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="uifIncluded"
+										render={({ field }) => (
+											<FormItem className="flex items-center justify-between rounded-lg border p-3">
+												<FormLabel>UIF Included</FormLabel>
+												<FormControl>
+													<Switch checked={field.value} onCheckedChange={field.onChange} />
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="sdlIncluded"
+										render={({ field }) => (
+											<FormItem className="flex items-center justify-between rounded-lg border p-3">
+												<FormLabel>SDL Included</FormLabel>
+												<FormControl>
+													<Switch checked={field.value} onCheckedChange={field.onChange} />
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="etiEligible"
+										render={({ field }) => (
+											<FormItem className="flex items-center justify-between rounded-lg border p-3">
+												<FormLabel>ETI Eligible</FormLabel>
+												<FormControl>
+													<Switch checked={field.value} onCheckedChange={field.onChange} />
+												</FormControl>
+											</FormItem>
+										)}
+									/>
 								</div>
 							</CardContent>
 						</Card>
@@ -501,33 +689,73 @@ export default function AddEmployeePage() {
 									<div>
 										<h4 className="font-medium mb-2">Personal</h4>
 										<dl className="text-sm space-y-1">
-											<div className="flex justify-between"><dt className="text-muted-foreground">Name</dt><dd>{form.watch("firstName")} {form.watch("lastName")}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">ID</dt><dd>{form.watch("idNumber")}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">Email</dt><dd>{form.watch("email")}</dd></div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Name</dt>
+												<dd>
+													{form.watch("firstName")} {form.watch("lastName")}
+												</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">ID</dt>
+												<dd>{form.watch("idNumber")}</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Email</dt>
+												<dd>{form.watch("email")}</dd>
+											</div>
 										</dl>
 									</div>
 									<div>
 										<h4 className="font-medium mb-2">Employment</h4>
 										<dl className="text-sm space-y-1">
-											<div className="flex justify-between"><dt className="text-muted-foreground">Type</dt><dd><Badge variant="outline">{form.watch("employmentType")}</Badge></dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">Start</dt><dd>{form.watch("startDate")}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">Hours</dt><dd>{form.watch("workingHoursPerDay")}h/day</dd></div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Type</dt>
+												<dd>
+													<Badge variant="outline">{form.watch("employmentType")}</Badge>
+												</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Start</dt>
+												<dd>{form.watch("startDate")}</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Hours</dt>
+												<dd>{form.watch("workingHoursPerDay")}h/day</dd>
+											</div>
 										</dl>
 									</div>
 									<div>
 										<h4 className="font-medium mb-2">Pay</h4>
 										<dl className="text-sm space-y-1">
-											<div className="flex justify-between"><dt className="text-muted-foreground">Salary</dt><dd className="font-medium">{formatCurrency(form.watch("salaryAmount"))}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">Type</dt><dd>{form.watch("salaryType")}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">Bank</dt><dd>{form.watch("bankName")}</dd></div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Salary</dt>
+												<dd className="font-medium">{formatCurrency(form.watch("salaryAmount"))}</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Type</dt>
+												<dd>{form.watch("salaryType")}</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">Bank</dt>
+												<dd>{form.watch("bankName")}</dd>
+											</div>
 										</dl>
 									</div>
 									<div>
 										<h4 className="font-medium mb-2">Statutory</h4>
 										<dl className="text-sm space-y-1">
-											<div className="flex justify-between"><dt className="text-muted-foreground">UIF</dt><dd>{form.watch("uifIncluded") ? "Yes" : "No"}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">SDL</dt><dd>{form.watch("sdlIncluded") ? "Yes" : "No"}</dd></div>
-											<div className="flex justify-between"><dt className="text-muted-foreground">ETI</dt><dd>{form.watch("etiEligible") ? "Eligible" : "No"}</dd></div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">UIF</dt>
+												<dd>{form.watch("uifIncluded") ? "Yes" : "No"}</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">SDL</dt>
+												<dd>{form.watch("sdlIncluded") ? "Yes" : "No"}</dd>
+											</div>
+											<div className="flex justify-between">
+												<dt className="text-muted-foreground">ETI</dt>
+												<dd>{form.watch("etiEligible") ? "Eligible" : "No"}</dd>
+											</div>
 										</dl>
 									</div>
 								</div>
@@ -547,7 +775,11 @@ export default function AddEmployeePage() {
 							</Button>
 						) : (
 							<Button type="submit" disabled={createMutation.isPending}>
-								{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+								{createMutation.isPending ? (
+									<Loader2 className="h-4 w-4 animate-spin mr-2" />
+								) : (
+									<CheckCircle2 className="h-4 w-4 mr-2" />
+								)}
 								Create Employee
 							</Button>
 						)}

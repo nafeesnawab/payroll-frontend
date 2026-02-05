@@ -59,7 +59,9 @@ export default function EMP201DetailPage() {
 			<div className="p-6 space-y-6">
 				<Skeleton className="h-10 w-64" />
 				<div className="grid gap-4 md:grid-cols-3">
-					{[1, 2, 3].map((i) => <Skeleton key={i} className="h-32" />)}
+					{[1, 2, 3].map((i) => (
+						<Skeleton key={i} className="h-32" />
+					))}
 				</div>
 				<Skeleton className="h-64" />
 			</div>
@@ -92,7 +94,9 @@ export default function EMP201DetailPage() {
 					</div>
 				</div>
 				<div className="flex items-center gap-3">
-					<Badge variant={status.variant} className="text-sm px-3 py-1">{status.label}</Badge>
+					<Badge variant={status.variant} className="text-sm px-3 py-1">
+						{status.label}
+					</Badge>
 					{isLocked && (
 						<Button variant="outline">
 							<Download className="h-4 w-4 mr-2" />
@@ -115,7 +119,9 @@ export default function EMP201DetailPage() {
 									</DialogDescription>
 								</DialogHeader>
 								<div className="flex justify-end gap-2 mt-4">
-									<Button variant="outline" onClick={() => setSubmitDialogOpen(false)}>Cancel</Button>
+									<Button variant="outline" onClick={() => setSubmitDialogOpen(false)}>
+										Cancel
+									</Button>
 									<Button onClick={() => submitMutation.mutate()} disabled={submitMutation.isPending}>
 										{submitMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
 										Confirm Submission
@@ -197,7 +203,9 @@ export default function EMP201DetailPage() {
 							{detail.payruns.map((pr) => (
 								<TableRow key={pr.id}>
 									<TableCell className="font-medium">{pr.name}</TableCell>
-									<TableCell>{pr.periodStart} to {pr.periodEnd}</TableCell>
+									<TableCell>
+										{pr.periodStart} to {pr.periodEnd}
+									</TableCell>
 									<TableCell className="text-right font-mono">{formatCurrency(pr.paye)}</TableCell>
 									<TableCell className="text-right font-mono">{formatCurrency(pr.uif)}</TableCell>
 									<TableCell className="text-right font-mono">{formatCurrency(pr.sdl)}</TableCell>

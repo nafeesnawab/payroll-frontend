@@ -73,7 +73,9 @@ export default function UsersPage() {
 			<div className="p-6 space-y-6">
 				<Skeleton className="h-8 w-48" />
 				<div className="space-y-4">
-					{[1, 2].map((i) => <Skeleton key={i} className="h-20" />)}
+					{[1, 2].map((i) => (
+						<Skeleton key={i} className="h-20" />
+					))}
 				</div>
 			</div>
 		);
@@ -91,7 +93,10 @@ export default function UsersPage() {
 				</div>
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button><Plus className="h-4 w-4 mr-2" />Invite User</Button>
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							Invite User
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -99,37 +104,63 @@ export default function UsersPage() {
 						</DialogHeader>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit((data) => createMutation.mutate(data))} className="space-y-4">
-								<FormField control={form.control} name="name" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name *</FormLabel>
-										<FormControl><Input {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="email" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Email *</FormLabel>
-										<FormControl><Input type="email" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="role" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Role *</FormLabel>
-										<Select onValueChange={field.onChange} defaultValue={field.value}>
-											<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-											<SelectContent>
-												<SelectItem value="admin">Admin - Full access</SelectItem>
-												<SelectItem value="viewer">Viewer - Read only</SelectItem>
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name *</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Email *</FormLabel>
+											<FormControl>
+												<Input type="email" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="role"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Role *</FormLabel>
+											<Select onValueChange={field.onChange} defaultValue={field.value}>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													<SelectItem value="admin">Admin - Full access</SelectItem>
+													<SelectItem value="viewer">Viewer - Read only</SelectItem>
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="flex justify-end gap-2 pt-4">
-									<Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+									<Button type="button" variant="outline" onClick={() => setOpen(false)}>
+										Cancel
+									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Send Invite
 									</Button>
 								</div>

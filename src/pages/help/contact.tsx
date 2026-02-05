@@ -67,9 +67,7 @@ export default function ContactSupportPage() {
 						<MessageSquare className="h-6 w-6" />
 						Contact Support
 					</h1>
-					<p className="text-muted-foreground">
-						Submit a ticket or reach out to our team
-					</p>
+					<p className="text-muted-foreground">Submit a ticket or reach out to our team</p>
 				</div>
 			</div>
 
@@ -83,13 +81,8 @@ export default function ContactSupportPage() {
 						</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<p className="text-sm text-muted-foreground mb-2">
-							Send us an email directly
-						</p>
-						<a
-							href="mailto:support@paypilot.co.za"
-							className="text-primary hover:underline"
-						>
+						<p className="text-sm text-muted-foreground mb-2">Send us an email directly</p>
+						<a href="mailto:support@paypilot.co.za" className="text-primary hover:underline">
 							support@paypilot.co.za
 						</a>
 					</CardContent>
@@ -114,19 +107,14 @@ export default function ContactSupportPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Submit a Support Ticket</CardTitle>
-					<CardDescription>
-						Describe your issue and we'll get back to you as soon as possible
-					</CardDescription>
+					<CardDescription>Describe your issue and we'll get back to you as soon as possible</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<form onSubmit={handleSubmit} className="space-y-4">
 						<div className="grid gap-4 md:grid-cols-2">
 							<div className="space-y-2">
 								<Label htmlFor="category">Issue Category *</Label>
-								<Select
-									value={formData.category}
-									onValueChange={(v) => setFormData({ ...formData, category: v })}
-								>
+								<Select value={formData.category} onValueChange={(v) => setFormData({ ...formData, category: v })}>
 									<SelectTrigger>
 										<SelectValue placeholder="Select category" />
 									</SelectTrigger>
@@ -144,9 +132,7 @@ export default function ContactSupportPage() {
 								<Label htmlFor="priority">Priority</Label>
 								<Select
 									value={formData.priority}
-									onValueChange={(v) =>
-										setFormData({ ...formData, priority: v as TicketPriority })
-									}
+									onValueChange={(v) => setFormData({ ...formData, priority: v as TicketPriority })}
 								>
 									<SelectTrigger>
 										<SelectValue />

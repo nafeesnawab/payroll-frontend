@@ -104,14 +104,9 @@ export default function SystemMonitoringPage() {
 						<Activity className="h-6 w-6" />
 						System Monitoring
 					</h1>
-					<p className="text-muted-foreground">
-						Background jobs and system health
-					</p>
+					<p className="text-muted-foreground">Background jobs and system health</p>
 				</div>
-				<Button
-					variant="outline"
-					onClick={() => queryClient.invalidateQueries({ queryKey: ["admin-jobs"] })}
-				>
+				<Button variant="outline" onClick={() => queryClient.invalidateQueries({ queryKey: ["admin-jobs"] })}>
 					<RefreshCw className="h-4 w-4 mr-2" />
 					Refresh
 				</Button>
@@ -155,9 +150,7 @@ export default function SystemMonitoringPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Background Jobs</CardTitle>
-					<CardDescription>
-						All background processing tasks
-					</CardDescription>
+					<CardDescription>All background processing tasks</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{jobs && jobs.length > 0 ? (
@@ -176,19 +169,13 @@ export default function SystemMonitoringPage() {
 							<TableBody>
 								{jobs.map((job) => (
 									<TableRow key={job.id}>
-										<TableCell className="font-medium">
-											{JOB_TYPE_LABELS[job.type]}
-										</TableCell>
-										<TableCell className="text-muted-foreground">
-											{job.companyName}
-										</TableCell>
+										<TableCell className="font-medium">{JOB_TYPE_LABELS[job.type]}</TableCell>
+										<TableCell className="text-muted-foreground">{job.companyName}</TableCell>
 										<TableCell className="w-32">
 											{job.status === "running" ? (
 												<div className="space-y-1">
 													<Progress value={job.progress} className="h-2" />
-													<p className="text-xs text-muted-foreground">
-														{job.progress}%
-													</p>
+													<p className="text-xs text-muted-foreground">{job.progress}%</p>
 												</div>
 											) : job.status === "completed" ? (
 												<span className="text-green-600">100%</span>
@@ -199,33 +186,21 @@ export default function SystemMonitoringPage() {
 										<TableCell>
 											{getStatusBadge(job.status)}
 											{job.errorMessage && (
-												<p className="text-xs text-destructive mt-1 max-w-xs truncate">
-													{job.errorMessage}
-												</p>
+												<p className="text-xs text-destructive mt-1 max-w-xs truncate">{job.errorMessage}</p>
 											)}
 										</TableCell>
-										<TableCell className="text-muted-foreground">
-											{new Date(job.startedAt).toLocaleString()}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{new Date(job.startedAt).toLocaleString()}</TableCell>
 										<TableCell className="text-center">{job.retryCount}</TableCell>
 										<TableCell className="text-right">
 											<div className="flex justify-end gap-2">
 												{job.status === "failed" && (
-													<Button
-														variant="outline"
-														size="sm"
-														onClick={() => retryJob.mutate(job.id)}
-													>
+													<Button variant="outline" size="sm" onClick={() => retryJob.mutate(job.id)}>
 														<RefreshCw className="h-3 w-3 mr-1" />
 														Retry
 													</Button>
 												)}
 												{(job.status === "running" || job.status === "pending") && (
-													<Button
-														variant="ghost"
-														size="sm"
-														onClick={() => cancelJob.mutate(job.id)}
-													>
+													<Button variant="ghost" size="sm" onClick={() => cancelJob.mutate(job.id)}>
 														Cancel
 													</Button>
 												)}

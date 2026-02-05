@@ -49,9 +49,7 @@ const navGroups: { title: string; items: NavItem[] }[] = [
 	},
 	{
 		title: "Leave & Time",
-		items: [
-			{ label: "Leave Types", path: "/settings/leave", icon: Calendar, required: true },
-		],
+		items: [{ label: "Leave Types", path: "/settings/leave", icon: Calendar, required: true }],
 	},
 	{
 		title: "Documents",
@@ -131,19 +129,13 @@ export default function SettingsLayout() {
 										to={item.path}
 										className={cn(
 											"flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
-											isActive
-												? "bg-primary text-primary-foreground"
-												: "hover:bg-muted text-foreground"
+											isActive ? "bg-primary text-primary-foreground" : "hover:bg-muted text-foreground",
 										)}
 									>
 										<Icon className="h-4 w-4 flex-shrink-0" />
 										<span className="flex-1 truncate">{item.label}</span>
-										{item.required && complete === false && (
-											<Circle className="h-3 w-3 text-orange-500" />
-										)}
-										{item.required && complete === true && (
-											<CheckCircle2 className="h-3 w-3 text-green-500" />
-										)}
+										{item.required && complete === false && <Circle className="h-3 w-3 text-orange-500" />}
+										{item.required && complete === true && <CheckCircle2 className="h-3 w-3 text-green-500" />}
 									</NavLink>
 								);
 							})}

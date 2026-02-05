@@ -72,18 +72,13 @@ export default function DataDashboardPage() {
 						<Database className="h-6 w-6" />
 						Data Operations
 					</h1>
-					<p className="text-muted-foreground">
-						Import, export, and migrate payroll data
-					</p>
+					<p className="text-muted-foreground">Import, export, and migrate payroll data</p>
 				</div>
 			</div>
 
 			{/* Summary Cards */}
 			<div className="grid gap-4 md:grid-cols-4">
-				<Card
-					className="cursor-pointer hover:shadow-md transition-shadow"
-					onClick={() => navigate("/data/imports")}
-				>
+				<Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate("/data/imports")}>
 					<CardHeader className="pb-2">
 						<CardDescription className="flex items-center gap-2">
 							<ArrowUpFromLine className="h-4 w-4" />
@@ -112,10 +107,7 @@ export default function DataDashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card
-					className="cursor-pointer hover:shadow-md transition-shadow"
-					onClick={() => navigate("/data/migration")}
-				>
+				<Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate("/data/migration")}>
 					<CardHeader className="pb-2">
 						<CardDescription className="flex items-center gap-2">
 							<RefreshCw className="h-4 w-4" />
@@ -136,9 +128,7 @@ export default function DataDashboardPage() {
 							<AlertTriangle className="h-4 w-4 text-destructive" />
 							Failed Jobs
 						</CardDescription>
-						<CardTitle className="text-3xl text-destructive">
-							{overview?.failedJobs ?? 0}
-						</CardTitle>
+						<CardTitle className="text-3xl text-destructive">{overview?.failedJobs ?? 0}</CardTitle>
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm text-muted-foreground">require attention</p>
@@ -148,33 +138,21 @@ export default function DataDashboardPage() {
 
 			{/* Quick Actions */}
 			<div className="grid gap-4 md:grid-cols-3">
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/data/imports")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/data/imports")}>
 					<ArrowUpFromLine className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Import Data</p>
 						<p className="text-xs text-muted-foreground">Upload employees, balances, inputs</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/data/exports")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/data/exports")}>
 					<ArrowDownToLine className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Export Data</p>
 						<p className="text-xs text-muted-foreground">Download reports and backups</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/data/migration")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/data/migration")}>
 					<RefreshCw className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Migration Tools</p>

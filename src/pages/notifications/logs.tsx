@@ -59,7 +59,7 @@ export default function NotificationLogsPage() {
 					log.channel,
 					log.status,
 					`"${log.subject}"`,
-				].join(",")
+				].join(","),
 			),
 		].join("\n");
 
@@ -114,9 +114,7 @@ export default function NotificationLogsPage() {
 						<Bell className="h-6 w-6" />
 						Notification Logs
 					</h1>
-					<p className="text-muted-foreground">
-						Complete history of all notifications sent
-					</p>
+					<p className="text-muted-foreground">Complete history of all notifications sent</p>
 				</div>
 				<Button variant="outline" onClick={handleExport}>
 					<Download className="h-4 w-4 mr-2" />
@@ -249,9 +247,7 @@ export default function NotificationLogsPage() {
 										<TableCell className="max-w-xs truncate">{log.subject}</TableCell>
 										<TableCell>
 											{getStatusBadge(log.status)}
-											{log.errorMessage && (
-												<p className="text-xs text-destructive mt-1">{log.errorMessage}</p>
-											)}
+											{log.errorMessage && <p className="text-xs text-destructive mt-1">{log.errorMessage}</p>}
 										</TableCell>
 									</TableRow>
 								))}

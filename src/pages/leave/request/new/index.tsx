@@ -61,7 +61,7 @@ export default function NewLeaveRequestPage() {
 		watchedValues.startDate || "",
 		watchedValues.endDate || "",
 		watchedValues.isPartialDay || false,
-		watchedValues.partialHours
+		watchedValues.partialHours,
 	);
 
 	const { data: leaveTypes } = useQuery({
@@ -96,7 +96,8 @@ export default function NewLeaveRequestPage() {
 		},
 	});
 
-	const insufficientBalance = selectedBalance && calculatedDays > selectedBalance.available && !selectedType?.allowNegativeBalance;
+	const insufficientBalance =
+		selectedBalance && calculatedDays > selectedBalance.available && !selectedType?.allowNegativeBalance;
 
 	return (
 		<div className="p-6 max-w-2xl mx-auto">
@@ -131,9 +132,13 @@ export default function NewLeaveRequestPage() {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												{leaveTypes?.filter((t) => t.isActive).map((lt) => (
-													<SelectItem key={lt.id} value={lt.id}>{lt.name}</SelectItem>
-												))}
+												{leaveTypes
+													?.filter((t) => t.isActive)
+													.map((lt) => (
+														<SelectItem key={lt.id} value={lt.id}>
+															{lt.name}
+														</SelectItem>
+													))}
 											</SelectContent>
 										</Select>
 										<FormMessage />
@@ -207,7 +212,13 @@ export default function NewLeaveRequestPage() {
 										<FormItem>
 											<FormLabel>Hours</FormLabel>
 											<FormControl>
-												<Input type="number" min={1} max={7} {...field} onChange={(e) => field.onChange(Number(e.target.value))} />
+												<Input
+													type="number"
+													min={1}
+													max={7}
+													{...field}
+													onChange={(e) => field.onChange(Number(e.target.value))}
+												/>
 											</FormControl>
 											<FormDescription>Number of hours (1-7)</FormDescription>
 											<FormMessage />
@@ -234,7 +245,8 @@ export default function NewLeaveRequestPage() {
 								<Card className="border-amber-500 bg-amber-50 dark:bg-amber-950/20">
 									<CardContent className="py-4">
 										<p className="text-sm text-amber-700 dark:text-amber-400">
-											This leave type requires an attachment (e.g., medical certificate). Please upload after submission.
+											This leave type requires an attachment (e.g., medical certificate). Please upload after
+											submission.
 										</p>
 									</CardContent>
 								</Card>

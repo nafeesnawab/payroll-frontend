@@ -96,18 +96,14 @@ export default function ImportDataPage() {
 					<ArrowUpFromLine className="h-6 w-6" />
 					Import Data
 				</h1>
-				<p className="text-muted-foreground">
-					Upload bulk data into the system
-				</p>
+				<p className="text-muted-foreground">Upload bulk data into the system</p>
 			</div>
 
 			{/* Upload Section */}
 			<Card>
 				<CardHeader>
 					<CardTitle>New Import</CardTitle>
-					<CardDescription>
-						Select the type of data you want to import and upload your file
-					</CardDescription>
+					<CardDescription>Select the type of data you want to import and upload your file</CardDescription>
 				</CardHeader>
 				<CardContent className="space-y-6">
 					<div className="grid gap-4 md:grid-cols-2">
@@ -130,11 +126,7 @@ export default function ImportDataPage() {
 						{importType && (
 							<div className="space-y-2">
 								<Label>Download Template</Label>
-								<Button
-									variant="outline"
-									className="w-full"
-									onClick={() => handleDownloadTemplate(importType)}
-								>
+								<Button variant="outline" className="w-full" onClick={() => handleDownloadTemplate(importType)}>
 									<Download className="h-4 w-4 mr-2" />
 									{IMPORT_TYPE_LABELS[importType]} Template
 								</Button>
@@ -164,18 +156,12 @@ export default function ImportDataPage() {
 									<div className="mt-4 p-3 bg-muted rounded-lg inline-flex items-center gap-2">
 										<FileSpreadsheet className="h-4 w-4" />
 										<span className="text-sm font-medium">{selectedFile.name}</span>
-										<span className="text-xs text-muted-foreground">
-											({(selectedFile.size / 1024).toFixed(1)} KB)
-										</span>
+										<span className="text-xs text-muted-foreground">({(selectedFile.size / 1024).toFixed(1)} KB)</span>
 									</div>
 								)}
 							</div>
 
-							<Button
-								onClick={handleUpload}
-								disabled={!selectedFile || validateImport.isPending}
-								className="w-full"
-							>
+							<Button onClick={handleUpload} disabled={!selectedFile || validateImport.isPending} className="w-full">
 								<Upload className="h-4 w-4 mr-2" />
 								{validateImport.isPending ? "Validating..." : "Validate & Preview"}
 							</Button>

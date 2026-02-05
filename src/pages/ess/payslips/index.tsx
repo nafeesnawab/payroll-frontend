@@ -74,12 +74,8 @@ export default function ESSPayslipsPage() {
 										<TableRow key={payslip.id}>
 											<TableCell className="font-medium">{payslip.payPeriod}</TableCell>
 											<TableCell>{payslip.payDate}</TableCell>
-											<TableCell className="text-right">
-												{formatCurrency(payslip.grossPay)}
-											</TableCell>
-											<TableCell className="text-right font-medium">
-												{formatCurrency(payslip.netPay)}
-											</TableCell>
+											<TableCell className="text-right">{formatCurrency(payslip.grossPay)}</TableCell>
+											<TableCell className="text-right font-medium">{formatCurrency(payslip.netPay)}</TableCell>
 											<TableCell>
 												<Badge variant="default">Finalized</Badge>
 											</TableCell>
@@ -112,9 +108,7 @@ export default function ESSPayslipsPage() {
 						<div className="text-center py-12">
 							<FileText className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
 							<h3 className="text-lg font-medium">No Payslips Available</h3>
-							<p className="text-muted-foreground">
-								Your payslips will appear here once they are finalized.
-							</p>
+							<p className="text-muted-foreground">Your payslips will appear here once they are finalized.</p>
 						</div>
 					)}
 				</CardContent>

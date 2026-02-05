@@ -51,7 +51,9 @@ export default function EMP201ListPage() {
 				<CardContent className="pt-6">
 					{isLoading ? (
 						<div className="space-y-3">
-							{[1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full" />)}
+							{[1, 2, 3].map((i) => (
+								<Skeleton key={i} className="h-16 w-full" />
+							))}
 						</div>
 					) : (
 						<Table>

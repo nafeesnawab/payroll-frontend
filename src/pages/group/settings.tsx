@@ -47,9 +47,7 @@ export default function GroupSettingsPage() {
 	});
 
 	const updateInheritance = (id: string, mode: InheritanceMode) => {
-		setSettings((prev) =>
-			prev.map((s) => (s.id === id ? { ...s, inheritanceMode: mode } : s))
-		);
+		setSettings((prev) => prev.map((s) => (s.id === id ? { ...s, inheritanceMode: mode } : s)));
 		setHasChanges(true);
 	};
 
@@ -84,7 +82,7 @@ export default function GroupSettingsPage() {
 			acc[setting.category].push(setting);
 			return acc;
 		},
-		{} as Record<string, GroupSetting[]>
+		{} as Record<string, GroupSetting[]>,
 	);
 
 	if (isLoading) {
@@ -104,9 +102,7 @@ export default function GroupSettingsPage() {
 						<Settings className="h-6 w-6" />
 						Group Settings
 					</h1>
-					<p className="text-muted-foreground">
-						Define shared configuration across all companies
-					</p>
+					<p className="text-muted-foreground">Define shared configuration across all companies</p>
 				</div>
 				<Button onClick={() => saveSettings.mutate(settings)} disabled={!hasChanges || saveSettings.isPending}>
 					<Save className="h-4 w-4 mr-2" />
@@ -120,21 +116,15 @@ export default function GroupSettingsPage() {
 					<div className="flex flex-wrap gap-6">
 						<div className="flex items-center gap-2">
 							{getInheritanceBadge("enforced")}
-							<span className="text-sm text-muted-foreground">
-								Companies must use group value
-							</span>
+							<span className="text-sm text-muted-foreground">Companies must use group value</span>
 						</div>
 						<div className="flex items-center gap-2">
 							{getInheritanceBadge("override_allowed")}
-							<span className="text-sm text-muted-foreground">
-								Companies can override if needed
-							</span>
+							<span className="text-sm text-muted-foreground">Companies can override if needed</span>
 						</div>
 						<div className="flex items-center gap-2">
 							{getInheritanceBadge("company_only")}
-							<span className="text-sm text-muted-foreground">
-								Each company manages independently
-							</span>
+							<span className="text-sm text-muted-foreground">Each company manages independently</span>
 						</div>
 					</div>
 				</CardContent>
@@ -149,9 +139,7 @@ export default function GroupSettingsPage() {
 					<Card key={category}>
 						<CardHeader>
 							<CardTitle className="text-base">{category}</CardTitle>
-							<CardDescription>
-								Configure how {category.toLowerCase()} are inherited across companies
-							</CardDescription>
+							<CardDescription>Configure how {category.toLowerCase()} are inherited across companies</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<Table>
@@ -168,22 +156,16 @@ export default function GroupSettingsPage() {
 											<TableCell>
 												<div>
 													<p className="font-medium">{setting.name}</p>
-													<p className="text-xs text-muted-foreground">
-														{setting.description}
-													</p>
+													<p className="text-xs text-muted-foreground">{setting.description}</p>
 												</div>
 											</TableCell>
 											<TableCell>
-												<code className="text-sm bg-muted px-2 py-1 rounded">
-													{String(setting.groupValue)}
-												</code>
+												<code className="text-sm bg-muted px-2 py-1 rounded">{String(setting.groupValue)}</code>
 											</TableCell>
 											<TableCell>
 												<Select
 													value={setting.inheritanceMode}
-													onValueChange={(v) =>
-														updateInheritance(setting.id, v as InheritanceMode)
-													}
+													onValueChange={(v) => updateInheritance(setting.id, v as InheritanceMode)}
 												>
 													<SelectTrigger className="w-44">
 														<SelectValue />
@@ -201,9 +183,7 @@ export default function GroupSettingsPage() {
 																Override Allowed
 															</div>
 														</SelectItem>
-														<SelectItem value="company_only">
-															Company Only
-														</SelectItem>
+														<SelectItem value="company_only">Company Only</SelectItem>
 													</SelectContent>
 												</Select>
 											</TableCell>

@@ -69,9 +69,7 @@ export default function PlatformAdminDashboardPage() {
 						<Shield className="h-6 w-6" />
 						Platform Admin
 					</h1>
-					<p className="text-muted-foreground">
-						System health and operational overview
-					</p>
+					<p className="text-muted-foreground">System health and operational overview</p>
 				</div>
 				<div className="flex gap-2">
 					<div className="relative">
@@ -95,10 +93,7 @@ export default function PlatformAdminDashboardPage() {
 
 			{/* System Metrics */}
 			<div className="grid gap-4 md:grid-cols-4">
-				<Card
-					className="cursor-pointer hover:shadow-md transition-shadow"
-					onClick={() => navigate("/admin/companies")}
-				>
+				<Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate("/admin/companies")}>
 					<CardHeader className="pb-2">
 						<CardDescription className="flex items-center gap-2">
 							<Building2 className="h-4 w-4" />
@@ -107,9 +102,7 @@ export default function PlatformAdminDashboardPage() {
 						<CardTitle className="text-3xl">{overview?.activeCompanies ?? 0}</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<p className="text-sm text-muted-foreground">
-							+{overview?.newSignupsThisWeek ?? 0} this week
-						</p>
+						<p className="text-sm text-muted-foreground">+{overview?.newSignupsThisWeek ?? 0} this week</p>
 					</CardContent>
 				</Card>
 
@@ -119,9 +112,7 @@ export default function PlatformAdminDashboardPage() {
 							<Users className="h-4 w-4" />
 							Active Employees
 						</CardDescription>
-						<CardTitle className="text-3xl">
-							{overview?.activeEmployees?.toLocaleString() ?? 0}
-						</CardTitle>
+						<CardTitle className="text-3xl">{overview?.activeEmployees?.toLocaleString() ?? 0}</CardTitle>
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm text-muted-foreground">across all companies</p>
@@ -134,9 +125,7 @@ export default function PlatformAdminDashboardPage() {
 							<DollarSign className="h-4 w-4" />
 							Payrolls This Month
 						</CardDescription>
-						<CardTitle className="text-3xl">
-							{overview?.payrollsProcessedThisMonth ?? 0}
-						</CardTitle>
+						<CardTitle className="text-3xl">{overview?.payrollsProcessedThisMonth ?? 0}</CardTitle>
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm text-muted-foreground">processed successfully</p>
@@ -149,58 +138,38 @@ export default function PlatformAdminDashboardPage() {
 							<AlertTriangle className="h-4 w-4 text-destructive" />
 							Error Rate
 						</CardDescription>
-						<CardTitle className="text-3xl">
-							{overview?.errorRate?.toFixed(2) ?? 0}%
-						</CardTitle>
+						<CardTitle className="text-3xl">{overview?.errorRate?.toFixed(2) ?? 0}%</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<p className="text-sm text-muted-foreground">
-							{overview?.failedPayrollRuns ?? 0} failed runs
-						</p>
+						<p className="text-sm text-muted-foreground">{overview?.failedPayrollRuns ?? 0} failed runs</p>
 					</CardContent>
 				</Card>
 			</div>
 
 			{/* Quick Actions */}
 			<div className="grid gap-4 md:grid-cols-4">
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/admin/companies")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/admin/companies")}>
 					<Building2 className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Companies</p>
 						<p className="text-xs text-muted-foreground">Search & manage</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/admin/users")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/admin/users")}>
 					<Users className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Admin Users</p>
 						<p className="text-xs text-muted-foreground">Platform access</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/admin/monitoring")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/admin/monitoring")}>
 					<Settings className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Monitoring</p>
 						<p className="text-xs text-muted-foreground">Jobs & health</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/admin/features")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/admin/features")}>
 					<Shield className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Feature Flags</p>
@@ -219,24 +188,15 @@ export default function PlatformAdminDashboardPage() {
 					{recentActivity && recentActivity.length > 0 ? (
 						<div className="space-y-3">
 							{recentActivity.map((activity) => (
-								<div
-									key={activity.id}
-									className="flex items-center justify-between p-3 border rounded-lg"
-								>
+								<div key={activity.id} className="flex items-center justify-between p-3 border rounded-lg">
 									<div className="flex items-center gap-3">
 										{getSeverityBadge(activity.severity)}
 										<div>
 											<p className="font-medium">{activity.description}</p>
-											{activity.companyName && (
-												<p className="text-xs text-muted-foreground">
-													{activity.companyName}
-												</p>
-											)}
+											{activity.companyName && <p className="text-xs text-muted-foreground">{activity.companyName}</p>}
 										</div>
 									</div>
-									<p className="text-sm text-muted-foreground">
-										{new Date(activity.timestamp).toLocaleString()}
-									</p>
+									<p className="text-sm text-muted-foreground">{new Date(activity.timestamp).toLocaleString()}</p>
 								</div>
 							))}
 						</div>

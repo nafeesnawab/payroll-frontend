@@ -1,6 +1,12 @@
 import { faker } from "@faker-js/faker";
 import { delay, http, HttpResponse } from "msw";
-import type { Termination, TerminationDetail, TerminationPayComponents, TerminationStatus, TerminationReason } from "@/types/termination";
+import type {
+	Termination,
+	TerminationDetail,
+	TerminationPayComponents,
+	TerminationStatus,
+	TerminationReason,
+} from "@/types/termination";
 
 const reasons: TerminationReason[] = ["resignation", "dismissal", "retrenchment", "contract_end", "death"];
 const statuses: TerminationStatus[] = ["draft", "pending_payroll", "completed"];
@@ -76,13 +82,37 @@ export const terminationHandlers = [
 		const detail: TerminationDetail = {
 			...termination,
 			payComponents: generatePayComponents(),
-			documents: termination.status === "completed" ? [
-				{ id: "1", type: "final_payslip", name: "Final Payslip.pdf", generatedAt: new Date().toISOString(), downloadUrl: "#" },
-				{ id: "2", type: "uif_ui27", name: "UI-2.7 Declaration.pdf", generatedAt: new Date().toISOString(), downloadUrl: "#" },
-			] : [],
+			documents:
+				termination.status === "completed"
+					? [
+							{
+								id: "1",
+								type: "final_payslip",
+								name: "Final Payslip.pdf",
+								generatedAt: new Date().toISOString(),
+								downloadUrl: "#",
+							},
+							{
+								id: "2",
+								type: "uif_ui27",
+								name: "UI-2.7 Declaration.pdf",
+								generatedAt: new Date().toISOString(),
+								downloadUrl: "#",
+							},
+						]
+					: [],
 			auditLog: [
 				{ id: "1", action: "Termination initiated", user: "Admin", timestamp: termination.createdAt },
-				...(termination.finalizedAt ? [{ id: "2", action: "Finalized", user: termination.finalizedBy || "Admin", timestamp: termination.finalizedAt }] : []),
+				...(termination.finalizedAt
+					? [
+							{
+								id: "2",
+								action: "Finalized",
+								user: termination.finalizedBy || "Admin",
+								timestamp: termination.finalizedAt,
+							},
+						]
+					: []),
 			],
 		};
 		return HttpResponse.json({ data: detail });
@@ -90,7 +120,7 @@ export const terminationHandlers = [
 
 	http.post("/api/terminations", async ({ request }) => {
 		await delay(500);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newTermination: Termination = {
 			id: faker.string.uuid(),
 			employeeId: body.employeeId as string,

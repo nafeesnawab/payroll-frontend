@@ -1,10 +1,16 @@
-import { useLoginStateContext } from "@/pages/sys/login/providers/login-provider";
-import { useRouter } from "@/routes/hooks";
-import { useUserActions, useUserInfo } from "@/store/userStore";
-import { Button } from "@/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
+import { useRouter } from "@/routes/hooks";
+import { useAuthActions } from "@/store/authStore";
+import { useUserActions, useUserInfo } from "@/store/userStore";
+import { Button } from "@/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/ui/dropdown-menu";
 
 /**
  * Account Dropdown
@@ -13,17 +19,16 @@ export default function AccountDropdown() {
 	const { replace } = useRouter();
 	const { username, email, avatar } = useUserInfo();
 	const { clearUserInfoAndToken } = useUserActions();
-	const { backToLogin } = useLoginStateContext();
+	const { logout: authLogout } = useAuthActions();
 	const { t } = useTranslation();
 	const logout = () => {
 		try {
 			clearUserInfoAndToken();
-			backToLogin();
+			authLogout();
 		} catch (error) {
 			console.log(error);
-		} finally {
-			replace("/auth/login");
 		}
+		replace("/auth/login");
 	};
 
 	return (

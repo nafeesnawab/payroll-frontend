@@ -43,7 +43,15 @@ const mockBankAccounts = [
 ];
 
 const mockPayFrequencies = [
-	{ id: "freq-1", name: "Monthly", type: "monthly", startDate: "2024-01-01", cutOffDay: 25, payDay: 28, isActive: true },
+	{
+		id: "freq-1",
+		name: "Monthly",
+		type: "monthly",
+		startDate: "2024-01-01",
+		cutOffDay: 25,
+		payDay: 28,
+		isActive: true,
+	},
 	{ id: "freq-2", name: "Weekly", type: "weekly", startDate: "2024-01-01", cutOffDay: 5, payDay: 5, isActive: true },
 ];
 
@@ -59,17 +67,89 @@ const mockJobGrades = [
 ];
 
 const mockLeaveTypes = [
-	{ id: "lt-1", name: "Annual Leave", category: "annual", accrualMethod: "monthly", daysPerYear: 15, carryOverDays: 5, allowNegative: false, isActive: true },
-	{ id: "lt-2", name: "Sick Leave", category: "sick", accrualMethod: "upfront", daysPerYear: 30, carryOverDays: 0, allowNegative: false, isActive: true },
-	{ id: "lt-3", name: "Family Responsibility", category: "family", accrualMethod: "upfront", daysPerYear: 3, carryOverDays: 0, allowNegative: false, isActive: true },
-	{ id: "lt-4", name: "Unpaid Leave", category: "unpaid", accrualMethod: "upfront", daysPerYear: 0, carryOverDays: 0, allowNegative: true, isActive: true },
+	{
+		id: "lt-1",
+		name: "Annual Leave",
+		category: "annual",
+		accrualMethod: "monthly",
+		daysPerYear: 15,
+		carryOverDays: 5,
+		allowNegative: false,
+		isActive: true,
+	},
+	{
+		id: "lt-2",
+		name: "Sick Leave",
+		category: "sick",
+		accrualMethod: "upfront",
+		daysPerYear: 30,
+		carryOverDays: 0,
+		allowNegative: false,
+		isActive: true,
+	},
+	{
+		id: "lt-3",
+		name: "Family Responsibility",
+		category: "family",
+		accrualMethod: "upfront",
+		daysPerYear: 3,
+		carryOverDays: 0,
+		allowNegative: false,
+		isActive: true,
+	},
+	{
+		id: "lt-4",
+		name: "Unpaid Leave",
+		category: "unpaid",
+		accrualMethod: "upfront",
+		daysPerYear: 0,
+		carryOverDays: 0,
+		allowNegative: true,
+		isActive: true,
+	},
 ];
 
 const mockPayrollItems = [
-	{ id: "pi-1", name: "Basic Salary", code: "BASIC", type: "earning", taxable: true, uifApplicable: true, isRecurring: true, isActive: true },
-	{ id: "pi-2", name: "Overtime", code: "OT", type: "earning", taxable: true, uifApplicable: true, isRecurring: false, isActive: true },
-	{ id: "pi-3", name: "Medical Aid", code: "MED", type: "deduction", taxable: false, uifApplicable: false, isRecurring: true, isActive: true },
-	{ id: "pi-4", name: "Pension Fund", code: "PEN", type: "deduction", taxable: false, uifApplicable: false, isRecurring: true, isActive: true },
+	{
+		id: "pi-1",
+		name: "Basic Salary",
+		code: "BASIC",
+		type: "earning",
+		taxable: true,
+		uifApplicable: true,
+		isRecurring: true,
+		isActive: true,
+	},
+	{
+		id: "pi-2",
+		name: "Overtime",
+		code: "OT",
+		type: "earning",
+		taxable: true,
+		uifApplicable: true,
+		isRecurring: false,
+		isActive: true,
+	},
+	{
+		id: "pi-3",
+		name: "Medical Aid",
+		code: "MED",
+		type: "deduction",
+		taxable: false,
+		uifApplicable: false,
+		isRecurring: true,
+		isActive: true,
+	},
+	{
+		id: "pi-4",
+		name: "Pension Fund",
+		code: "PEN",
+		type: "deduction",
+		taxable: false,
+		uifApplicable: false,
+		isRecurring: true,
+		isActive: true,
+	},
 ];
 
 const mockSalaryRules = {
@@ -99,11 +179,26 @@ const mockEmployeeNumbering = {
 };
 
 const mockCustomFields = [
-	{ id: "cf-1", name: "Shirt Size", fieldType: "select", options: ["S", "M", "L", "XL"], isRequired: false, isActive: true },
+	{
+		id: "cf-1",
+		name: "Shirt Size",
+		fieldType: "select",
+		options: ["S", "M", "L", "XL"],
+		isRequired: false,
+		isActive: true,
+	},
 ];
 
 const mockBeneficiaries = [
-	{ id: "ben-1", name: "Old Mutual Pension", bankName: "FNB", accountNumber: "62123456789", branchCode: "250655", reference: "PENSION", linkedPayrollItemIds: ["pi-4"] },
+	{
+		id: "ben-1",
+		name: "Old Mutual Pension",
+		bankName: "FNB",
+		accountNumber: "62123456789",
+		branchCode: "250655",
+		reference: "PENSION",
+		linkedPayrollItemIds: ["pi-4"],
+	},
 ];
 
 const mockNotificationSettings = {
@@ -115,8 +210,22 @@ const mockNotificationSettings = {
 };
 
 const mockUsers = [
-	{ id: "u-1", email: "owner@acmepayroll.co.za", name: "John Owner", role: "owner", invitedAt: "2024-01-01", acceptedAt: "2024-01-01" },
-	{ id: "u-2", email: "admin@acmepayroll.co.za", name: "Jane Admin", role: "admin", invitedAt: "2024-01-15", acceptedAt: "2024-01-16" },
+	{
+		id: "u-1",
+		email: "owner@acmepayroll.co.za",
+		name: "John Owner",
+		role: "owner",
+		invitedAt: "2024-01-01",
+		acceptedAt: "2024-01-01",
+	},
+	{
+		id: "u-2",
+		email: "admin@acmepayroll.co.za",
+		name: "Jane Admin",
+		role: "admin",
+		invitedAt: "2024-01-15",
+		acceptedAt: "2024-01-16",
+	},
 ];
 
 const mockSettingsCompletion = {
@@ -151,14 +260,14 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/banking", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newAccount = { ...body, id: faker.string.uuid() };
-		mockBankAccounts.push(newAccount as typeof mockBankAccounts[0]);
+		mockBankAccounts.push(newAccount as (typeof mockBankAccounts)[0]);
 		return HttpResponse.json({ status: "success", data: newAccount });
 	}),
 	http.put("/api/settings/banking/:id", async ({ request, params }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const index = mockBankAccounts.findIndex((a) => a.id === params.id);
 		if (index >= 0) Object.assign(mockBankAccounts[index], body);
 		return HttpResponse.json({ status: "success", data: mockBankAccounts[index] });
@@ -170,9 +279,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/pay-frequencies", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newFreq = { ...body, id: faker.string.uuid() };
-		mockPayFrequencies.push(newFreq as typeof mockPayFrequencies[0]);
+		mockPayFrequencies.push(newFreq as (typeof mockPayFrequencies)[0]);
 		return HttpResponse.json({ status: "success", data: newFreq });
 	}),
 
@@ -182,9 +291,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/pay-points", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newPoint = { ...body, id: faker.string.uuid(), employeeCount: 0 };
-		mockPayPoints.push(newPoint as typeof mockPayPoints[0]);
+		mockPayPoints.push(newPoint as (typeof mockPayPoints)[0]);
 		return HttpResponse.json({ status: "success", data: newPoint });
 	}),
 
@@ -194,9 +303,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/job-grades", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newGrade = { ...body, id: faker.string.uuid() };
-		mockJobGrades.push(newGrade as typeof mockJobGrades[0]);
+		mockJobGrades.push(newGrade as (typeof mockJobGrades)[0]);
 		return HttpResponse.json({ status: "success", data: newGrade });
 	}),
 
@@ -206,9 +315,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/leave-types", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newType = { ...body, id: faker.string.uuid() };
-		mockLeaveTypes.push(newType as typeof mockLeaveTypes[0]);
+		mockLeaveTypes.push(newType as (typeof mockLeaveTypes)[0]);
 		return HttpResponse.json({ status: "success", data: newType });
 	}),
 
@@ -218,9 +327,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/payroll-items", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newItem = { ...body, id: faker.string.uuid() };
-		mockPayrollItems.push(newItem as typeof mockPayrollItems[0]);
+		mockPayrollItems.push(newItem as (typeof mockPayrollItems)[0]);
 		return HttpResponse.json({ status: "success", data: newItem });
 	}),
 
@@ -263,9 +372,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/custom-fields", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newField = { ...body, id: faker.string.uuid() };
-		mockCustomFields.push(newField as typeof mockCustomFields[0]);
+		mockCustomFields.push(newField as (typeof mockCustomFields)[0]);
 		return HttpResponse.json({ status: "success", data: newField });
 	}),
 
@@ -275,9 +384,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/beneficiaries", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newBen = { ...body, id: faker.string.uuid() };
-		mockBeneficiaries.push(newBen as typeof mockBeneficiaries[0]);
+		mockBeneficiaries.push(newBen as (typeof mockBeneficiaries)[0]);
 		return HttpResponse.json({ status: "success", data: newBen });
 	}),
 
@@ -298,9 +407,9 @@ export const settingsHandlers = [
 	}),
 	http.post("/api/settings/users", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
+		const body = (await request.json()) as Record<string, unknown>;
 		const newUser = { ...body, id: faker.string.uuid(), invitedAt: new Date().toISOString() };
-		mockUsers.push(newUser as typeof mockUsers[0]);
+		mockUsers.push(newUser as (typeof mockUsers)[0]);
 		return HttpResponse.json({ status: "success", data: newUser });
 	}),
 ];

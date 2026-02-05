@@ -48,9 +48,7 @@ export default function NotificationSettingsPage() {
 	});
 
 	const toggleEnabled = (id: string) => {
-		setSettings((prev) =>
-			prev.map((s) => (s.id === id && !s.isCritical ? { ...s, enabled: !s.enabled } : s))
-		);
+		setSettings((prev) => prev.map((s) => (s.id === id && !s.isCritical ? { ...s, enabled: !s.enabled } : s)));
 		setHasChanges(true);
 	};
 
@@ -61,11 +59,9 @@ export default function NotificationSettingsPage() {
 				const hasChannel = s.channels.includes(channel);
 				return {
 					...s,
-					channels: hasChannel
-						? s.channels.filter((c) => c !== channel)
-						: [...s.channels, channel],
+					channels: hasChannel ? s.channels.filter((c) => c !== channel) : [...s.channels, channel],
 				};
-			})
+			}),
 		);
 		setHasChanges(true);
 	};
@@ -77,11 +73,9 @@ export default function NotificationSettingsPage() {
 				const hasRecipient = s.recipients.includes(recipient);
 				return {
 					...s,
-					recipients: hasRecipient
-						? s.recipients.filter((r) => r !== recipient)
-						: [...s.recipients, recipient],
+					recipients: hasRecipient ? s.recipients.filter((r) => r !== recipient) : [...s.recipients, recipient],
 				};
-			})
+			}),
 		);
 		setHasChanges(true);
 	};
@@ -98,7 +92,7 @@ export default function NotificationSettingsPage() {
 			acc[setting.category].push(setting);
 			return acc;
 		},
-		{} as Record<string, NotificationSetting[]>
+		{} as Record<string, NotificationSetting[]>,
 	);
 
 	if (isLoading) {
@@ -118,9 +112,7 @@ export default function NotificationSettingsPage() {
 						<Bell className="h-6 w-6" />
 						Notification Settings
 					</h1>
-					<p className="text-muted-foreground">
-						Configure notification triggers, recipients, and channels
-					</p>
+					<p className="text-muted-foreground">Configure notification triggers, recipients, and channels</p>
 				</div>
 				<Button onClick={handleSave} disabled={!hasChanges || updateSettings.isPending}>
 					<Save className="h-4 w-4 mr-2" />
@@ -141,10 +133,7 @@ export default function NotificationSettingsPage() {
 					</CardHeader>
 					<CardContent className="space-y-4">
 						{categorySettings.map((setting) => (
-							<div
-								key={setting.id}
-								className="border rounded-lg p-4 space-y-4"
-							>
+							<div key={setting.id} className="border rounded-lg p-4 space-y-4">
 								<div className="flex items-center justify-between">
 									<div className="flex items-center gap-3">
 										<Switch
@@ -239,8 +228,8 @@ export default function NotificationSettingsPage() {
 						<div>
 							<p className="font-medium text-amber-800">Critical Notifications</p>
 							<p className="text-sm text-amber-700">
-								Notifications marked as "Critical" cannot be disabled. These are essential for
-								compliance and system integrity.
+								Notifications marked as "Critical" cannot be disabled. These are essential for compliance and system
+								integrity.
 							</p>
 						</div>
 					</div>

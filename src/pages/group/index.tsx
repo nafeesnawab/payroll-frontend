@@ -77,9 +77,7 @@ export default function GroupDashboardPage() {
 						<Building2 className="h-6 w-6" />
 						Group Overview
 					</h1>
-					<p className="text-muted-foreground">
-						Manage all companies in your group
-					</p>
+					<p className="text-muted-foreground">Manage all companies in your group</p>
 				</div>
 				<div className="flex gap-2">
 					<Button variant="outline" onClick={() => navigate("/group/transfers")}>
@@ -94,10 +92,7 @@ export default function GroupDashboardPage() {
 
 			{/* Summary Cards */}
 			<div className="grid gap-4 md:grid-cols-4">
-				<Card
-					className="cursor-pointer hover:shadow-md transition-shadow"
-					onClick={() => navigate("/group/companies")}
-				>
+				<Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate("/group/companies")}>
 					<CardHeader className="pb-2">
 						<CardDescription className="flex items-center gap-2">
 							<Building2 className="h-4 w-4" />
@@ -142,9 +137,7 @@ export default function GroupDashboardPage() {
 							<AlertTriangle className="h-4 w-4 text-amber-600" />
 							Compliance Alerts
 						</CardDescription>
-						<CardTitle className="text-3xl text-amber-600">
-							{overview?.complianceAlerts ?? 0}
-						</CardTitle>
+						<CardTitle className="text-3xl text-amber-600">{overview?.complianceAlerts ?? 0}</CardTitle>
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm text-muted-foreground">require attention</p>
@@ -182,22 +175,14 @@ export default function GroupDashboardPage() {
 												<p className="text-xs text-muted-foreground">{company.legalName}</p>
 											</div>
 										</TableCell>
-										<TableCell className="text-muted-foreground">
-											{company.registrationNumber}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{company.registrationNumber}</TableCell>
 										<TableCell className="text-center">{company.employeeCount}</TableCell>
 										<TableCell className="text-muted-foreground">
-											{company.lastPayrollRun
-												? new Date(company.lastPayrollRun).toLocaleDateString()
-												: "Never"}
+											{company.lastPayrollRun ? new Date(company.lastPayrollRun).toLocaleDateString() : "Never"}
 										</TableCell>
 										<TableCell>{getStatusBadge(company.status)}</TableCell>
 										<TableCell className="text-right">
-											<Button
-												variant="ghost"
-												size="sm"
-												onClick={() => navigate(`/group/companies/${company.id}`)}
-											>
+											<Button variant="ghost" size="sm" onClick={() => navigate(`/group/companies/${company.id}`)}>
 												Manage
 											</Button>
 										</TableCell>
@@ -213,33 +198,21 @@ export default function GroupDashboardPage() {
 
 			{/* Quick Actions */}
 			<div className="grid gap-4 md:grid-cols-3">
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/group/companies")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/group/companies")}>
 					<Building2 className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Manage Companies</p>
 						<p className="text-xs text-muted-foreground">Add, edit, or suspend companies</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/group/transfers")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/group/transfers")}>
 					<Users className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Employee Transfers</p>
 						<p className="text-xs text-muted-foreground">Move employees between companies</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/group/settings")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/group/settings")}>
 					<Settings className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">Group Settings</p>

@@ -2,7 +2,7 @@ export type UserStatus = "active" | "invited" | "suspended";
 
 export type PermissionAction = "view" | "create" | "edit" | "delete" | "finalize" | "submit";
 
-export type ModuleName = 
+export type ModuleName =
 	| "dashboard"
 	| "employees"
 	| "payroll"

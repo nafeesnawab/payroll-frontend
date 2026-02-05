@@ -59,9 +59,7 @@ export function SystemStatusBanner() {
 			<AlertDescription className="flex items-center justify-between">
 				<span>{status.message}</span>
 				{status.maintenanceScheduled && (
-					<span className="text-xs">
-						Scheduled: {new Date(status.maintenanceScheduled.startTime).toLocaleString()}
-					</span>
+					<span className="text-xs">Scheduled: {new Date(status.maintenanceScheduled.startTime).toLocaleString()}</span>
 				)}
 			</AlertDescription>
 		</Alert>

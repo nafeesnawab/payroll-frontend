@@ -266,9 +266,7 @@ export default function BankingSettingsPage() {
 							<div className="flex items-center justify-between">
 								<CardTitle className="text-lg flex items-center gap-2">
 									{account.bankName}
-									{account.isPrimary && (
-										<Star className="h-4 w-4 text-amber-500 fill-amber-500" />
-									)}
+									{account.isPrimary && <Star className="h-4 w-4 text-amber-500 fill-amber-500" />}
 								</CardTitle>
 							</div>
 							<CardDescription>

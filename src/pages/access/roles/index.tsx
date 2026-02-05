@@ -8,14 +8,7 @@ import type { Role, CreateRoleInput } from "@/types/access";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -140,9 +133,7 @@ export default function RolesPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Roles</CardTitle>
-					<CardDescription>
-						System roles cannot be deleted. Custom roles can be modified or removed.
-					</CardDescription>
+					<CardDescription>System roles cannot be deleted. Custom roles can be modified or removed.</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<Table>
@@ -164,9 +155,7 @@ export default function RolesPage() {
 											<span className="font-medium">{role.name}</span>
 										</div>
 									</TableCell>
-									<TableCell className="text-muted-foreground max-w-xs truncate">
-										{role.description}
-									</TableCell>
+									<TableCell className="text-muted-foreground max-w-xs truncate">{role.description}</TableCell>
 									<TableCell className="text-center">
 										<Badge variant="secondary" className="gap-1">
 											<Users className="h-3 w-3" />
@@ -174,11 +163,7 @@ export default function RolesPage() {
 										</Badge>
 									</TableCell>
 									<TableCell>
-										{role.isSystemRole ? (
-											<Badge>System</Badge>
-										) : (
-											<Badge variant="outline">Custom</Badge>
-										)}
+										{role.isSystemRole ? <Badge>System</Badge> : <Badge variant="outline">Custom</Badge>}
 									</TableCell>
 									<TableCell className="text-right">
 										<DropdownMenu>
@@ -226,9 +211,7 @@ export default function RolesPage() {
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>Create New Role</DialogTitle>
-						<DialogDescription>
-							Create a custom role with specific permissions
-						</DialogDescription>
+						<DialogDescription>Create a custom role with specific permissions</DialogDescription>
 					</DialogHeader>
 					<div className="space-y-4">
 						<div className="space-y-2">

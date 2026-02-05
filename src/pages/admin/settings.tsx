@@ -7,14 +7,7 @@ import type { SystemSettings } from "@/types/admin";
 import { Alert, AlertDescription } from "@/ui/alert";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
@@ -116,14 +109,9 @@ export default function SystemSettingsPage() {
 						<Settings className="h-6 w-6" />
 						System Settings
 					</h1>
-					<p className="text-muted-foreground">
-						Configure platform-wide defaults and limits
-					</p>
+					<p className="text-muted-foreground">Configure platform-wide defaults and limits</p>
 				</div>
-				<Button
-					onClick={() => setConfirmDialogOpen(true)}
-					disabled={!hasChanges}
-				>
+				<Button onClick={() => setConfirmDialogOpen(true)} disabled={!hasChanges}>
 					<Save className="h-4 w-4 mr-2" />
 					Save Changes
 				</Button>
@@ -139,10 +127,7 @@ export default function SystemSettingsPage() {
 					<CardContent className="space-y-4">
 						<div className="space-y-2">
 							<Label>Default Tax Year</Label>
-							<Select
-								value={settings.payroll.defaultTaxYear}
-								onValueChange={(v) => updatePayroll("defaultTaxYear", v)}
-							>
+							<Select value={settings.payroll.defaultTaxYear} onValueChange={(v) => updatePayroll("defaultTaxYear", v)}>
 								<SelectTrigger>
 									<SelectValue />
 								</SelectTrigger>
@@ -165,10 +150,7 @@ export default function SystemSettingsPage() {
 						</div>
 						<div className="space-y-2">
 							<Label>Rounding Rule</Label>
-							<Select
-								value={settings.payroll.roundingRule}
-								onValueChange={(v) => updatePayroll("roundingRule", v)}
-							>
+							<Select value={settings.payroll.roundingRule} onValueChange={(v) => updatePayroll("roundingRule", v)}>
 								<SelectTrigger>
 									<SelectValue />
 								</SelectTrigger>
@@ -251,9 +233,7 @@ export default function SystemSettingsPage() {
 						<div className="flex items-center justify-between">
 							<div>
 								<Label>Require 2FA</Label>
-								<p className="text-xs text-muted-foreground">
-									Enforce two-factor authentication for all users
-								</p>
+								<p className="text-xs text-muted-foreground">Enforce two-factor authentication for all users</p>
 							</div>
 							<Switch
 								checked={settings.security.require2FA}

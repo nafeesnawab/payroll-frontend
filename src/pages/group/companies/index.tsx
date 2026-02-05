@@ -8,14 +8,7 @@ import type { GroupCompany, CreateCompanyInput } from "@/types/group";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -138,9 +131,7 @@ export default function CompanyManagementPage() {
 						<Building2 className="h-6 w-6" />
 						Company Management
 					</h1>
-					<p className="text-muted-foreground">
-						Create and manage companies in your group
-					</p>
+					<p className="text-muted-foreground">Create and manage companies in your group</p>
 				</div>
 				<Button onClick={() => setAddDialogOpen(true)}>
 					<Plus className="h-4 w-4 mr-2" />
@@ -151,9 +142,7 @@ export default function CompanyManagementPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Companies</CardTitle>
-					<CardDescription>
-						Each company has isolated payroll and filings with shared group settings
-					</CardDescription>
+					<CardDescription>Each company has isolated payroll and filings with shared group settings</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{companies && companies.length > 0 ? (
@@ -174,12 +163,8 @@ export default function CompanyManagementPage() {
 									<TableRow key={company.id}>
 										<TableCell className="font-medium">{company.legalName}</TableCell>
 										<TableCell>{company.tradingName}</TableCell>
-										<TableCell className="text-muted-foreground">
-											{company.registrationNumber}
-										</TableCell>
-										<TableCell className="text-muted-foreground">
-											{company.payeNumber}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{company.registrationNumber}</TableCell>
+										<TableCell className="text-muted-foreground">{company.payeNumber}</TableCell>
 										<TableCell className="text-center">{company.employeeCount}</TableCell>
 										<TableCell>{getStatusBadge(company.status)}</TableCell>
 										<TableCell className="text-right">
@@ -190,15 +175,11 @@ export default function CompanyManagementPage() {
 													</Button>
 												</DropdownMenuTrigger>
 												<DropdownMenuContent align="end">
-													<DropdownMenuItem
-														onClick={() => navigate(`/group/companies/${company.id}`)}
-													>
+													<DropdownMenuItem onClick={() => navigate(`/group/companies/${company.id}`)}>
 														<Edit className="h-4 w-4 mr-2" />
 														Edit Details
 													</DropdownMenuItem>
-													<DropdownMenuItem
-														onClick={() => navigate(`/group/companies/${company.id}/overrides`)}
-													>
+													<DropdownMenuItem onClick={() => navigate(`/group/companies/${company.id}/overrides`)}>
 														View Overrides
 													</DropdownMenuItem>
 													<DropdownMenuSeparator />
@@ -210,9 +191,7 @@ export default function CompanyManagementPage() {
 															Suspend Company
 														</DropdownMenuItem>
 													) : (
-														<DropdownMenuItem
-															onClick={() => activateCompany.mutate(company.id)}
-														>
+														<DropdownMenuItem onClick={() => activateCompany.mutate(company.id)}>
 															Activate Company
 														</DropdownMenuItem>
 													)}
@@ -224,9 +203,7 @@ export default function CompanyManagementPage() {
 							</TableBody>
 						</Table>
 					) : (
-						<p className="text-muted-foreground text-center py-8">
-							No companies in this group yet
-						</p>
+						<p className="text-muted-foreground text-center py-8">No companies in this group yet</p>
 					)}
 				</CardContent>
 			</Card>
@@ -236,9 +213,7 @@ export default function CompanyManagementPage() {
 				<DialogContent className="max-w-lg">
 					<DialogHeader>
 						<DialogTitle>Add New Company</DialogTitle>
-						<DialogDescription>
-							Create a new company under this group
-						</DialogDescription>
+						<DialogDescription>Create a new company under this group</DialogDescription>
 					</DialogHeader>
 					<div className="space-y-4">
 						<div className="grid grid-cols-2 gap-4">

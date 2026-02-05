@@ -88,9 +88,7 @@ export default function HelpCenterPage() {
 					<BookOpen className="h-8 w-8" />
 					Help Center
 				</h1>
-				<p className="text-muted-foreground mt-2">
-					Find answers, guides, and support for PayPilot
-				</p>
+				<p className="text-muted-foreground mt-2">Find answers, guides, and support for PayPilot</p>
 			</div>
 
 			{/* Search */}
@@ -138,9 +136,7 @@ export default function HelpCenterPage() {
 								</div>
 								<div>
 									<CardTitle className="text-base">{category.name}</CardTitle>
-									<CardDescription className="text-xs">
-										{category.articleCount} articles
-									</CardDescription>
+									<CardDescription className="text-xs">{category.articleCount} articles</CardDescription>
 								</div>
 							</div>
 						</CardHeader>
@@ -185,17 +181,11 @@ export default function HelpCenterPage() {
 
 			{/* Quick Actions */}
 			<div className="grid gap-4 md:grid-cols-2">
-				<Button
-					variant="outline"
-					className="h-auto py-6 justify-start"
-					onClick={() => navigate("/help/contact")}
-				>
+				<Button variant="outline" className="h-auto py-6 justify-start" onClick={() => navigate("/help/contact")}>
 					<MessageSquare className="h-6 w-6 mr-4" />
 					<div className="text-left">
 						<p className="font-medium">Contact Support</p>
-						<p className="text-sm text-muted-foreground">
-							Submit a ticket or email our team
-						</p>
+						<p className="text-sm text-muted-foreground">Submit a ticket or email our team</p>
 					</div>
 				</Button>
 				<Button
@@ -206,9 +196,7 @@ export default function HelpCenterPage() {
 					<Rocket className="h-6 w-6 mr-4" />
 					<div className="text-left">
 						<p className="font-medium">Getting Started Guide</p>
-						<p className="text-sm text-muted-foreground">
-							Set up your payroll in minutes
-						</p>
+						<p className="text-sm text-muted-foreground">Set up your payroll in minutes</p>
 					</div>
 				</Button>
 			</div>

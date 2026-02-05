@@ -66,7 +66,9 @@ export default function PayPointsPage() {
 			<div className="p-6 space-y-6">
 				<Skeleton className="h-8 w-48" />
 				<div className="grid gap-4 md:grid-cols-3">
-					{[1, 2, 3].map((i) => <Skeleton key={i} className="h-32" />)}
+					{[1, 2, 3].map((i) => (
+						<Skeleton key={i} className="h-32" />
+					))}
 				</div>
 			</div>
 		);
@@ -84,7 +86,10 @@ export default function PayPointsPage() {
 				</div>
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button><Plus className="h-4 w-4 mr-2" />Add Pay Point</Button>
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							Add Pay Point
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -92,31 +97,55 @@ export default function PayPointsPage() {
 						</DialogHeader>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit((data) => createMutation.mutate(data))} className="space-y-4">
-								<FormField control={form.control} name="name" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name *</FormLabel>
-										<FormControl><Input placeholder="e.g., Head Office" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="code" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Code *</FormLabel>
-										<FormControl><Input placeholder="e.g., HO" maxLength={10} {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="description" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Description</FormLabel>
-										<FormControl><Textarea {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name *</FormLabel>
+											<FormControl>
+												<Input placeholder="e.g., Head Office" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="code"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Code *</FormLabel>
+											<FormControl>
+												<Input placeholder="e.g., HO" maxLength={10} {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="description"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Description</FormLabel>
+											<FormControl>
+												<Textarea {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="flex justify-end gap-2 pt-4">
-									<Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+									<Button type="button" variant="outline" onClick={() => setOpen(false)}>
+										Cancel
+									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Add
 									</Button>
 								</div>
@@ -133,7 +162,10 @@ export default function PayPointsPage() {
 							<div className="flex items-start justify-between">
 								<div>
 									<h3 className="font-semibold">{pp.name}</h3>
-									<Badge variant="outline" className="mt-1"><Hash className="h-3 w-3 mr-1" />{pp.code}</Badge>
+									<Badge variant="outline" className="mt-1">
+										<Hash className="h-3 w-3 mr-1" />
+										{pp.code}
+									</Badge>
 								</div>
 								<div className="flex items-center gap-1 text-muted-foreground">
 									<Users className="h-4 w-4" />

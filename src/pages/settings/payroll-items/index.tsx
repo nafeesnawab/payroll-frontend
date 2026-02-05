@@ -92,7 +92,10 @@ export default function PayrollItemsPage() {
 				</div>
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button><Plus className="h-4 w-4 mr-2" />Add Item</Button>
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							Add Item
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -101,56 +104,100 @@ export default function PayrollItemsPage() {
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit((data) => createMutation.mutate(data))} className="space-y-4">
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="name" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Name *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="code" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Code *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="name"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Name *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="code"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Code *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
-								<FormField control={form.control} name="type" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Type *</FormLabel>
-										<Select onValueChange={field.onChange} defaultValue={field.value}>
-											<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-											<SelectContent>
-												<SelectItem value="earning">Earning</SelectItem>
-												<SelectItem value="deduction">Deduction</SelectItem>
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="taxable" render={({ field }) => (
-									<FormItem className="flex items-center justify-between rounded-lg border p-3">
-										<FormLabel>Taxable</FormLabel>
-										<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="uifApplicable" render={({ field }) => (
-									<FormItem className="flex items-center justify-between rounded-lg border p-3">
-										<FormLabel>UIF Applicable</FormLabel>
-										<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="isRecurring" render={({ field }) => (
-									<FormItem className="flex items-center justify-between rounded-lg border p-3">
-										<FormLabel>Recurring</FormLabel>
-										<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="type"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Type *</FormLabel>
+											<Select onValueChange={field.onChange} defaultValue={field.value}>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													<SelectItem value="earning">Earning</SelectItem>
+													<SelectItem value="deduction">Deduction</SelectItem>
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="taxable"
+									render={({ field }) => (
+										<FormItem className="flex items-center justify-between rounded-lg border p-3">
+											<FormLabel>Taxable</FormLabel>
+											<FormControl>
+												<Switch checked={field.value} onCheckedChange={field.onChange} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="uifApplicable"
+									render={({ field }) => (
+										<FormItem className="flex items-center justify-between rounded-lg border p-3">
+											<FormLabel>UIF Applicable</FormLabel>
+											<FormControl>
+												<Switch checked={field.value} onCheckedChange={field.onChange} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="isRecurring"
+									render={({ field }) => (
+										<FormItem className="flex items-center justify-between rounded-lg border p-3">
+											<FormLabel>Recurring</FormLabel>
+											<FormControl>
+												<Switch checked={field.value} onCheckedChange={field.onChange} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
 								<div className="flex justify-end gap-2 pt-4">
-									<Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+									<Button type="button" variant="outline" onClick={() => setOpen(false)}>
+										Cancel
+									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Add
 									</Button>
 								</div>

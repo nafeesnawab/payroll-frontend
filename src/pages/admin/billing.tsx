@@ -90,9 +90,7 @@ export default function BillingManagementPage() {
 					<CreditCard className="h-6 w-6" />
 					Billing Management
 				</h1>
-				<p className="text-muted-foreground">
-					Manage subscriptions and billing
-				</p>
+				<p className="text-muted-foreground">Manage subscriptions and billing</p>
 			</div>
 
 			{/* Summary Cards */}
@@ -103,9 +101,7 @@ export default function BillingManagementPage() {
 							<DollarSign className="h-4 w-4" />
 							Monthly Revenue
 						</CardDescription>
-						<CardTitle className="text-3xl">
-							R {totalRevenue.toLocaleString()}
-						</CardTitle>
+						<CardTitle className="text-3xl">R {totalRevenue.toLocaleString()}</CardTitle>
 					</CardHeader>
 				</Card>
 				<Card>
@@ -132,9 +128,7 @@ export default function BillingManagementPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Company Subscriptions</CardTitle>
-					<CardDescription>
-						Manage billing and subscription plans
-					</CardDescription>
+					<CardDescription>Manage billing and subscription plans</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{billings && billings.length > 0 ? (
@@ -160,14 +154,10 @@ export default function BillingManagementPage() {
 										<TableCell className="text-right">
 											R {billing.monthlyAmount.toLocaleString()}
 											{billing.discountPercent > 0 && (
-												<span className="text-xs text-green-600 ml-1">
-													(-{billing.discountPercent}%)
-												</span>
+												<span className="text-xs text-green-600 ml-1">(-{billing.discountPercent}%)</span>
 											)}
 										</TableCell>
-										<TableCell className="text-center">
-											{billing.usageMetrics.employees}
-										</TableCell>
+										<TableCell className="text-center">{billing.usageMetrics.employees}</TableCell>
 										<TableCell>{getStatusBadge(billing.status)}</TableCell>
 										<TableCell className="text-muted-foreground">
 											{new Date(billing.nextBillingDate).toLocaleDateString()}

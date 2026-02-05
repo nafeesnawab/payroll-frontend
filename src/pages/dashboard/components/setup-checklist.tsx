@@ -72,17 +72,13 @@ export function SetupChecklistWidget() {
 						<Rocket className="h-5 w-5 text-primary" />
 						Getting Started
 					</CardTitle>
-					<span className="text-sm font-medium text-primary">
-						{data.completionPercentage}% complete
-					</span>
+					<span className="text-sm font-medium text-primary">{data.completionPercentage}% complete</span>
 				</div>
 			</CardHeader>
 			<CardContent className="space-y-4">
 				<div className="space-y-2">
 					<Progress value={data.completionPercentage} className="h-2" />
-					<p className="text-sm text-muted-foreground">
-						Complete these steps to start processing payroll
-					</p>
+					<p className="text-sm text-muted-foreground">Complete these steps to start processing payroll</p>
 				</div>
 
 				<div className="space-y-2">
@@ -92,9 +88,7 @@ export function SetupChecklistWidget() {
 							type="button"
 							onClick={() => navigate(step.route)}
 							className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all ${
-								step.complete
-									? "bg-green-500/10 text-green-700 dark:text-green-400"
-									: "bg-muted/50 hover:bg-muted"
+								step.complete ? "bg-green-500/10 text-green-700 dark:text-green-400" : "bg-muted/50 hover:bg-muted"
 							}`}
 						>
 							{step.complete ? (
@@ -102,9 +96,7 @@ export function SetupChecklistWidget() {
 							) : (
 								<Circle className="h-5 w-5 text-muted-foreground" />
 							)}
-							<span className={step.complete ? "line-through opacity-70" : "font-medium"}>
-								{step.label}
-							</span>
+							<span className={step.complete ? "line-through opacity-70" : "font-medium"}>{step.label}</span>
 						</button>
 					))}
 				</div>

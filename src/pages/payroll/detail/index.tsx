@@ -98,7 +98,7 @@ export default function PayrunDetailPage() {
 	});
 
 	const filteredEmployees = employees?.filter(
-		(e) => e.employeeName.toLowerCase().includes(search.toLowerCase()) || e.employeeNumber.includes(search)
+		(e) => e.employeeName.toLowerCase().includes(search.toLowerCase()) || e.employeeNumber.includes(search),
 	);
 
 	if (isLoading) {
@@ -137,8 +137,16 @@ export default function PayrunDetailPage() {
 				<div className="flex gap-2">
 					{!isFinalized && (
 						<>
-							<Button variant="outline" onClick={() => calculateMutation.mutate()} disabled={calculateMutation.isPending}>
-								{calculateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <RefreshCw className="h-4 w-4 mr-2" />}
+							<Button
+								variant="outline"
+								onClick={() => calculateMutation.mutate()}
+								disabled={calculateMutation.isPending}
+							>
+								{calculateMutation.isPending ? (
+									<Loader2 className="h-4 w-4 animate-spin mr-2" />
+								) : (
+									<RefreshCw className="h-4 w-4 mr-2" />
+								)}
 								Calculate
 							</Button>
 							<Dialog open={finalizeOpen} onOpenChange={setFinalizeOpen}>
@@ -156,7 +164,9 @@ export default function PayrunDetailPage() {
 										</DialogDescription>
 									</DialogHeader>
 									<div className="flex justify-end gap-2 mt-4">
-										<Button variant="outline" onClick={() => setFinalizeOpen(false)}>Cancel</Button>
+										<Button variant="outline" onClick={() => setFinalizeOpen(false)}>
+											Cancel
+										</Button>
 										<Button onClick={() => finalizeMutation.mutate()} disabled={finalizeMutation.isPending}>
 											{finalizeMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
 											Confirm Finalize
@@ -176,8 +186,12 @@ export default function PayrunDetailPage() {
 										<DialogDescription>Are you sure? This cannot be undone.</DialogDescription>
 									</DialogHeader>
 									<div className="flex justify-end gap-2 mt-4">
-										<Button variant="outline" onClick={() => setDeleteOpen(false)}>Cancel</Button>
-										<Button variant="destructive" onClick={() => deleteMutation.mutate()}>Delete</Button>
+										<Button variant="outline" onClick={() => setDeleteOpen(false)}>
+											Cancel
+										</Button>
+										<Button variant="destructive" onClick={() => deleteMutation.mutate()}>
+											Delete
+										</Button>
 									</div>
 								</DialogContent>
 							</Dialog>
@@ -229,9 +243,18 @@ export default function PayrunDetailPage() {
 
 			<Tabs defaultValue="employees">
 				<TabsList>
-					<TabsTrigger value="employees"><Users className="h-4 w-4 mr-2" />Employees</TabsTrigger>
-					<TabsTrigger value="summary"><Calculator className="h-4 w-4 mr-2" />Summary</TabsTrigger>
-					<TabsTrigger value="exports"><Download className="h-4 w-4 mr-2" />Exports</TabsTrigger>
+					<TabsTrigger value="employees">
+						<Users className="h-4 w-4 mr-2" />
+						Employees
+					</TabsTrigger>
+					<TabsTrigger value="summary">
+						<Calculator className="h-4 w-4 mr-2" />
+						Summary
+					</TabsTrigger>
+					<TabsTrigger value="exports">
+						<Download className="h-4 w-4 mr-2" />
+						Exports
+					</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value="employees" className="mt-6">
@@ -240,7 +263,12 @@ export default function PayrunDetailPage() {
 							<div className="flex gap-4 mb-4">
 								<div className="relative flex-1 max-w-sm">
 									<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-									<Input placeholder="Search employees..." className="pl-9" value={search} onChange={(e) => setSearch(e.target.value)} />
+									<Input
+										placeholder="Search employees..."
+										className="pl-9"
+										value={search}
+										onChange={(e) => setSearch(e.target.value)}
+									/>
 								</div>
 							</div>
 							<Table>
@@ -255,7 +283,11 @@ export default function PayrunDetailPage() {
 								</TableHeader>
 								<TableBody>
 									{filteredEmployees?.map((emp) => (
-										<TableRow key={emp.id} className="cursor-pointer hover:bg-muted/50" onClick={() => navigate(`/payroll/${id}/payslip/${emp.employeeId}`)}>
+										<TableRow
+											key={emp.id}
+											className="cursor-pointer hover:bg-muted/50"
+											onClick={() => navigate(`/payroll/${id}/payslip/${emp.employeeId}`)}
+										>
 											<TableCell>
 												<div>
 													<p className="font-medium">{emp.employeeName}</p>
@@ -295,16 +327,31 @@ export default function PayrunDetailPage() {
 									<div className="border-t pt-4">
 										<h4 className="font-medium mb-3">Statutory Deductions</h4>
 										<div className="space-y-2 text-sm">
-											<div className="flex justify-between"><span>PAYE</span><span className="font-mono">{formatCurrency(summary.totalPAYE)}</span></div>
-											<div className="flex justify-between"><span>UIF (Employee)</span><span className="font-mono">{formatCurrency(summary.totalUIF)}</span></div>
-											<div className="flex justify-between"><span>SDL</span><span className="font-mono">{formatCurrency(summary.totalSDL)}</span></div>
+											<div className="flex justify-between">
+												<span>PAYE</span>
+												<span className="font-mono">{formatCurrency(summary.totalPAYE)}</span>
+											</div>
+											<div className="flex justify-between">
+												<span>UIF (Employee)</span>
+												<span className="font-mono">{formatCurrency(summary.totalUIF)}</span>
+											</div>
+											<div className="flex justify-between">
+												<span>SDL</span>
+												<span className="font-mono">{formatCurrency(summary.totalSDL)}</span>
+											</div>
 										</div>
 									</div>
 									<div className="border-t pt-4">
 										<h4 className="font-medium mb-3">Employer Contributions</h4>
 										<div className="space-y-2 text-sm">
-											<div className="flex justify-between"><span>UIF (Employer)</span><span className="font-mono">{formatCurrency(summary.employerUIF)}</span></div>
-											<div className="flex justify-between"><span>SDL (Employer)</span><span className="font-mono">{formatCurrency(summary.employerSDL)}</span></div>
+											<div className="flex justify-between">
+												<span>UIF (Employer)</span>
+												<span className="font-mono">{formatCurrency(summary.employerUIF)}</span>
+											</div>
+											<div className="flex justify-between">
+												<span>SDL (Employer)</span>
+												<span className="font-mono">{formatCurrency(summary.employerSDL)}</span>
+											</div>
 										</div>
 									</div>
 									<div className="border-t pt-4">
@@ -323,7 +370,10 @@ export default function PayrunDetailPage() {
 					<div className="grid gap-4 md:grid-cols-2">
 						<Card>
 							<CardHeader>
-								<CardTitle className="flex items-center gap-2"><FileText className="h-5 w-5" />Payslips</CardTitle>
+								<CardTitle className="flex items-center gap-2">
+									<FileText className="h-5 w-5" />
+									Payslips
+								</CardTitle>
 								<CardDescription>Download all payslips as PDF</CardDescription>
 							</CardHeader>
 							<CardContent>
@@ -335,7 +385,10 @@ export default function PayrunDetailPage() {
 						</Card>
 						<Card>
 							<CardHeader>
-								<CardTitle className="flex items-center gap-2"><Download className="h-5 w-5" />EFT File</CardTitle>
+								<CardTitle className="flex items-center gap-2">
+									<Download className="h-5 w-5" />
+									EFT File
+								</CardTitle>
 								<CardDescription>Bank payment file</CardDescription>
 							</CardHeader>
 							<CardContent>

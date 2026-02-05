@@ -8,14 +8,7 @@ import { ADMIN_ROLE_LABELS } from "@/types/admin";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -140,9 +133,7 @@ export default function AdminUsersPage() {
 						<UserCog className="h-6 w-6" />
 						Admin Users
 					</h1>
-					<p className="text-muted-foreground">
-						Manage platform admin access
-					</p>
+					<p className="text-muted-foreground">Manage platform admin access</p>
 				</div>
 				<Button onClick={() => setAddDialogOpen(true)}>
 					<Plus className="h-4 w-4 mr-2" />
@@ -153,9 +144,7 @@ export default function AdminUsersPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Platform Administrators</CardTitle>
-					<CardDescription>
-						Users with access to the platform admin panel
-					</CardDescription>
+					<CardDescription>Users with access to the platform admin panel</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{users && users.length > 0 ? (
@@ -178,9 +167,7 @@ export default function AdminUsersPage() {
 										<TableCell>{getRoleBadge(user.role)}</TableCell>
 										<TableCell>{getStatusBadge(user.status)}</TableCell>
 										<TableCell className="text-muted-foreground">
-											{user.lastLogin
-												? new Date(user.lastLogin).toLocaleString()
-												: "Never"}
+											{user.lastLogin ? new Date(user.lastLogin).toLocaleString() : "Never"}
 										</TableCell>
 										<TableCell className="text-right">
 											<DropdownMenu>
@@ -190,26 +177,20 @@ export default function AdminUsersPage() {
 													</Button>
 												</DropdownMenuTrigger>
 												<DropdownMenuContent align="end">
-													<DropdownMenuItem
-														onClick={() => resetCredentials.mutate(user.id)}
-													>
+													<DropdownMenuItem onClick={() => resetCredentials.mutate(user.id)}>
 														Reset Password
 													</DropdownMenuItem>
 													<DropdownMenuSeparator />
 													{user.status === "active" ? (
 														<DropdownMenuItem
 															className="text-destructive"
-															onClick={() =>
-																updateUserStatus.mutate({ id: user.id, status: "disabled" })
-															}
+															onClick={() => updateUserStatus.mutate({ id: user.id, status: "disabled" })}
 														>
 															Disable User
 														</DropdownMenuItem>
 													) : (
 														<DropdownMenuItem
-															onClick={() =>
-																updateUserStatus.mutate({ id: user.id, status: "active" })
-															}
+															onClick={() => updateUserStatus.mutate({ id: user.id, status: "active" })}
 														>
 															Enable User
 														</DropdownMenuItem>
@@ -238,25 +219,19 @@ export default function AdminUsersPage() {
 				<CardContent className="space-y-4">
 					<div className="grid gap-4 md:grid-cols-3">
 						<div className="p-4 border rounded-lg">
-							<div className="flex items-center gap-2 mb-2">
-								{getRoleBadge("super_admin")}
-							</div>
+							<div className="flex items-center gap-2 mb-2">{getRoleBadge("super_admin")}</div>
 							<p className="text-sm text-muted-foreground">
 								Full platform access. Can modify settings, manage users, and perform all actions.
 							</p>
 						</div>
 						<div className="p-4 border rounded-lg">
-							<div className="flex items-center gap-2 mb-2">
-								{getRoleBadge("support_agent")}
-							</div>
+							<div className="flex items-center gap-2 mb-2">{getRoleBadge("support_agent")}</div>
 							<p className="text-sm text-muted-foreground">
 								Can search companies, view details, and assist customers. Limited write access.
 							</p>
 						</div>
 						<div className="p-4 border rounded-lg">
-							<div className="flex items-center gap-2 mb-2">
-								{getRoleBadge("auditor")}
-							</div>
+							<div className="flex items-center gap-2 mb-2">{getRoleBadge("auditor")}</div>
 							<p className="text-sm text-muted-foreground">
 								Read-only access to all data and audit logs. Cannot make any changes.
 							</p>
@@ -270,9 +245,7 @@ export default function AdminUsersPage() {
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>Add Admin User</DialogTitle>
-						<DialogDescription>
-							Create a new platform administrator account
-						</DialogDescription>
+						<DialogDescription>Create a new platform administrator account</DialogDescription>
 					</DialogHeader>
 					<div className="space-y-4">
 						<div className="space-y-2">
@@ -296,10 +269,7 @@ export default function AdminUsersPage() {
 						</div>
 						<div className="space-y-2">
 							<Label htmlFor="role">Role</Label>
-							<Select
-								value={newUser.role}
-								onValueChange={(v) => setNewUser({ ...newUser, role: v as AdminRole })}
-							>
+							<Select value={newUser.role} onValueChange={(v) => setNewUser({ ...newUser, role: v as AdminRole })}>
 								<SelectTrigger>
 									<SelectValue placeholder="Select role" />
 								</SelectTrigger>

@@ -72,7 +72,7 @@ export default function LeaveRequestsPage() {
 	});
 
 	const filteredRequests = requests?.filter(
-		(r) => r.employeeName.toLowerCase().includes(search.toLowerCase()) || r.employeeNumber.includes(search)
+		(r) => r.employeeName.toLowerCase().includes(search.toLowerCase()) || r.employeeNumber.includes(search),
 	);
 
 	return (
@@ -95,7 +95,12 @@ export default function LeaveRequestsPage() {
 					<div className="flex flex-wrap gap-4 mb-6">
 						<div className="relative flex-1 min-w-[200px] max-w-sm">
 							<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-							<Input placeholder="Search employee..." className="pl-9" value={search} onChange={(e) => setSearch(e.target.value)} />
+							<Input
+								placeholder="Search employee..."
+								className="pl-9"
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
 						</div>
 						<Select value={statusFilter} onValueChange={setStatusFilter}>
 							<SelectTrigger className="w-40">
@@ -116,7 +121,9 @@ export default function LeaveRequestsPage() {
 							<SelectContent>
 								<SelectItem value="all">All Types</SelectItem>
 								{leaveTypes?.map((lt) => (
-									<SelectItem key={lt.id} value={lt.id}>{lt.name}</SelectItem>
+									<SelectItem key={lt.id} value={lt.id}>
+										{lt.name}
+									</SelectItem>
 								))}
 							</SelectContent>
 						</Select>
@@ -124,7 +131,9 @@ export default function LeaveRequestsPage() {
 
 					{isLoading ? (
 						<div className="space-y-3">
-							{[1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full" />)}
+							{[1, 2, 3].map((i) => (
+								<Skeleton key={i} className="h-16 w-full" />
+							))}
 						</div>
 					) : (
 						<Table>
@@ -155,16 +164,35 @@ export default function LeaveRequestsPage() {
 												<p className="text-sm text-muted-foreground">to {req.endDate}</p>
 											</TableCell>
 											<TableCell className="text-center font-medium">{req.days}</TableCell>
-											<TableCell><Badge variant={status.variant}>{status.label}</Badge></TableCell>
+											<TableCell>
+												<Badge variant={status.variant}>{status.label}</Badge>
+											</TableCell>
 											<TableCell className="text-right">
 												{req.status === "pending" && (
 													<div className="flex justify-end gap-2">
-														<Button size="sm" variant="outline" onClick={() => approveMutation.mutate(req.id)} disabled={approveMutation.isPending}>
-															{approveMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}
+														<Button
+															size="sm"
+															variant="outline"
+															onClick={() => approveMutation.mutate(req.id)}
+															disabled={approveMutation.isPending}
+														>
+															{approveMutation.isPending ? (
+																<Loader2 className="h-4 w-4 animate-spin" />
+															) : (
+																<Check className="h-4 w-4" />
+															)}
 														</Button>
-														<Dialog open={rejectDialogOpen && selectedRequest?.id === req.id} onOpenChange={(open) => { setRejectDialogOpen(open); if (open) setSelectedRequest(req); }}>
+														<Dialog
+															open={rejectDialogOpen && selectedRequest?.id === req.id}
+															onOpenChange={(open) => {
+																setRejectDialogOpen(open);
+																if (open) setSelectedRequest(req);
+															}}
+														>
 															<DialogTrigger asChild>
-																<Button size="sm" variant="destructive"><X className="h-4 w-4" /></Button>
+																<Button size="sm" variant="destructive">
+																	<X className="h-4 w-4" />
+																</Button>
 															</DialogTrigger>
 															<DialogContent>
 																<DialogHeader>
@@ -174,11 +202,23 @@ export default function LeaveRequestsPage() {
 																	<p className="text-sm text-muted-foreground">
 																		Rejecting {req.employeeName}'s {req.leaveTypeName} request for {req.days} day(s)
 																	</p>
-																	<Textarea placeholder="Reason for rejection (required)" value={rejectReason} onChange={(e) => setRejectReason(e.target.value)} />
+																	<Textarea
+																		placeholder="Reason for rejection (required)"
+																		value={rejectReason}
+																		onChange={(e) => setRejectReason(e.target.value)}
+																	/>
 																	<div className="flex justify-end gap-2">
-																		<Button variant="outline" onClick={() => setRejectDialogOpen(false)}>Cancel</Button>
-																		<Button variant="destructive" onClick={() => rejectMutation.mutate({ id: req.id, reason: rejectReason })} disabled={!rejectReason || rejectMutation.isPending}>
-																			{rejectMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+																		<Button variant="outline" onClick={() => setRejectDialogOpen(false)}>
+																			Cancel
+																		</Button>
+																		<Button
+																			variant="destructive"
+																			onClick={() => rejectMutation.mutate({ id: req.id, reason: rejectReason })}
+																			disabled={!rejectReason || rejectMutation.isPending}
+																		>
+																			{rejectMutation.isPending ? (
+																				<Loader2 className="h-4 w-4 animate-spin mr-2" />
+																			) : null}
 																			Reject
 																		</Button>
 																	</div>

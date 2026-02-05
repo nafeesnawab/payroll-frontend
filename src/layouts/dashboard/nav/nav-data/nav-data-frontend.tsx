@@ -30,15 +30,30 @@ export const frontendNavData: NavProps["data"] = [
 				path: "/leave",
 				icon: <Icon icon="mdi:calendar-clock" size="24" />,
 			},
+			{
+				title: "Terminations",
+				path: "/terminations",
+				icon: <Icon icon="mdi:account-off" size="24" />,
+			},
 		],
 	},
 	{
 		name: "Compliance",
 		items: [
 			{
-				title: "Reports & Filings",
+				title: "Filings",
+				path: "/filings",
+				icon: <Icon icon="mdi:file-document-check" size="24" />,
+			},
+			{
+				title: "Reports",
 				path: "/reports",
-				icon: <Icon icon="mdi:file-document-outline" size="24" />,
+				icon: <Icon icon="mdi:chart-box" size="24" />,
+			},
+			{
+				title: "Calendar",
+				path: "/calendar",
+				icon: <Icon icon="mdi:calendar" size="24" />,
 			},
 		],
 	},
@@ -55,14 +70,42 @@ export const frontendNavData: NavProps["data"] = [
 						path: "/settings/employer",
 					},
 					{
-						title: "Bank & EFT",
-						path: "/settings/bank",
+						title: "Banking & EFT",
+						path: "/settings/banking",
 					},
 					{
 						title: "Pay Frequencies",
 						path: "/settings/pay-frequencies",
 					},
+					{
+						title: "Leave Types",
+						path: "/settings/leave",
+					},
+					{
+						title: "Payroll Items",
+						path: "/settings/payroll-items",
+					},
 				],
+			},
+			{
+				title: "Notifications",
+				path: "/notifications",
+				icon: <Icon icon="mdi:bell" size="24" />,
+			},
+			{
+				title: "Data Operations",
+				path: "/data",
+				icon: <Icon icon="mdi:database" size="24" />,
+			},
+		],
+	},
+	{
+		name: "Help",
+		items: [
+			{
+				title: "Help Center",
+				path: "/help",
+				icon: <Icon icon="mdi:help-circle" size="24" />,
 			},
 		],
 	},

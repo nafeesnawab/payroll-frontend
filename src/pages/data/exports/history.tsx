@@ -81,9 +81,7 @@ export default function ExportHistoryPage() {
 						<ArrowDownToLine className="h-6 w-6" />
 						Export History
 					</h1>
-					<p className="text-muted-foreground">
-						Track and download previous exports
-					</p>
+					<p className="text-muted-foreground">Track and download previous exports</p>
 				</div>
 				<Button onClick={() => navigate("/data/exports")}>
 					<FileSpreadsheet className="h-4 w-4 mr-2" />
@@ -94,9 +92,7 @@ export default function ExportHistoryPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Exports</CardTitle>
-					<CardDescription>
-						Download links are available for 7 days after generation
-					</CardDescription>
+					<CardDescription>Download links are available for 7 days after generation</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{exports && exports.length > 0 ? (
@@ -132,11 +128,7 @@ export default function ExportHistoryPage() {
 										<TableCell className="text-right">
 											<div className="flex justify-end gap-2">
 												{job.status === "completed" && job.downloadUrl && (
-													<Button
-														variant="outline"
-														size="sm"
-														onClick={() => handleDownload(job)}
-													>
+													<Button variant="outline" size="sm" onClick={() => handleDownload(job)}>
 														<Download className="h-4 w-4" />
 													</Button>
 												)}

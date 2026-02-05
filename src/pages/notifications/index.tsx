@@ -75,9 +75,7 @@ export default function NotificationsDashboardPage() {
 						<Bell className="h-6 w-6" />
 						Notifications
 					</h1>
-					<p className="text-muted-foreground">
-						Monitor notification activity and delivery status
-					</p>
+					<p className="text-muted-foreground">Monitor notification activity and delivery status</p>
 				</div>
 				<div className="flex gap-2">
 					<Button variant="outline" onClick={() => navigate("/notifications/settings")}>
@@ -115,19 +113,14 @@ export default function NotificationsDashboardPage() {
 							<XCircle className="h-4 w-4 text-destructive" />
 							Failed
 						</CardDescription>
-						<CardTitle className="text-3xl text-destructive">
-							{overview?.failedCount ?? 0}
-						</CardTitle>
+						<CardTitle className="text-3xl text-destructive">{overview?.failedCount ?? 0}</CardTitle>
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm text-muted-foreground">delivery failures</p>
 					</CardContent>
 				</Card>
 
-				<Card
-					className="cursor-pointer hover:shadow-md transition-shadow"
-					onClick={() => navigate("/automation")}
-				>
+				<Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate("/automation")}>
 					<CardHeader className="pb-2">
 						<CardDescription className="flex items-center gap-2">
 							<Zap className="h-4 w-4 text-amber-600" />
@@ -167,11 +160,7 @@ export default function NotificationsDashboardPage() {
 						<p className="text-xs text-muted-foreground">Configure triggers and recipients</p>
 					</div>
 				</Button>
-				<Button
-					variant="outline"
-					className="h-auto py-4 justify-start"
-					onClick={() => navigate("/notifications/logs")}
-				>
+				<Button variant="outline" className="h-auto py-4 justify-start" onClick={() => navigate("/notifications/logs")}>
 					<Bell className="h-5 w-5 mr-3" />
 					<div className="text-left">
 						<p className="font-medium">View All Logs</p>
@@ -228,9 +217,7 @@ export default function NotificationsDashboardPage() {
 											</div>
 										</TableCell>
 										<TableCell>{getStatusBadge(log.status)}</TableCell>
-										<TableCell className="text-muted-foreground">
-											{new Date(log.sentAt).toLocaleString()}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{new Date(log.sentAt).toLocaleString()}</TableCell>
 									</TableRow>
 								))}
 							</TableBody>

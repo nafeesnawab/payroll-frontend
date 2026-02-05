@@ -6,7 +6,18 @@ import { Skeleton } from "@/ui/skeleton";
 import type { FilingOverview } from "@/types/filing";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { AlertCircle, AlertTriangle, ArrowRight, Building2, ExternalLink, FileCheck, FileSpreadsheet, FileText, Info, Users } from "lucide-react";
+import {
+	AlertCircle,
+	AlertTriangle,
+	ArrowRight,
+	Building2,
+	ExternalLink,
+	FileCheck,
+	FileSpreadsheet,
+	FileText,
+	Info,
+	Users,
+} from "lucide-react";
 import { useNavigate } from "react-router";
 
 const statusConfig: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
@@ -40,7 +51,9 @@ export default function FilingsDashboard() {
 			<div className="p-6 space-y-6">
 				<Skeleton className="h-10 w-64" />
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-					{[1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-40" />)}
+					{[1, 2, 3, 4].map((i) => (
+						<Skeleton key={i} className="h-40" />
+					))}
 				</div>
 				<Skeleton className="h-48" />
 			</div>
@@ -72,7 +85,10 @@ export default function FilingsDashboard() {
 			)}
 
 			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-				<Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => navigate("/filings/emp201")}>
+				<Card
+					className="cursor-pointer hover:border-primary transition-colors"
+					onClick={() => navigate("/filings/emp201")}
+				>
 					<CardHeader className="pb-2">
 						<div className="flex items-center justify-between">
 							<FileText className="h-5 w-5 text-blue-600" />
@@ -91,7 +107,10 @@ export default function FilingsDashboard() {
 					</CardContent>
 				</Card>
 
-				<Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => navigate("/filings/emp501")}>
+				<Card
+					className="cursor-pointer hover:border-primary transition-colors"
+					onClick={() => navigate("/filings/emp501")}
+				>
 					<CardHeader className="pb-2">
 						<div className="flex items-center justify-between">
 							<FileSpreadsheet className="h-5 w-5 text-green-600" />
@@ -103,12 +122,17 @@ export default function FilingsDashboard() {
 						<CardDescription>Bi-Annual Reconciliation</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<p className="text-sm font-medium">{overview?.emp501.taxYear} - {overview?.emp501.type === "interim" ? "Interim" : "Final"}</p>
+						<p className="text-sm font-medium">
+							{overview?.emp501.taxYear} - {overview?.emp501.type === "interim" ? "Interim" : "Final"}
+						</p>
 						<p className="text-xs text-muted-foreground mt-2">Due: {overview?.emp501.dueDate}</p>
 					</CardContent>
 				</Card>
 
-				<Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => navigate("/filings/irp5")}>
+				<Card
+					className="cursor-pointer hover:border-primary transition-colors"
+					onClick={() => navigate("/filings/irp5")}
+				>
 					<CardHeader className="pb-2">
 						<div className="flex items-center justify-between">
 							<FileCheck className="h-5 w-5 text-purple-600" />
@@ -121,12 +145,17 @@ export default function FilingsDashboard() {
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm font-medium">{overview?.irp5.taxYear} Tax Year</p>
-						<p className="text-2xl font-bold mt-1">{overview?.irp5.generatedCount}/{overview?.irp5.totalCertificates}</p>
+						<p className="text-2xl font-bold mt-1">
+							{overview?.irp5.generatedCount}/{overview?.irp5.totalCertificates}
+						</p>
 						<p className="text-xs text-muted-foreground">Certificates Generated</p>
 					</CardContent>
 				</Card>
 
-				<Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => navigate("/filings/uif")}>
+				<Card
+					className="cursor-pointer hover:border-primary transition-colors"
+					onClick={() => navigate("/filings/uif")}
+				>
 					<CardHeader className="pb-2">
 						<div className="flex items-center justify-between">
 							<Users className="h-5 w-5 text-orange-600" />

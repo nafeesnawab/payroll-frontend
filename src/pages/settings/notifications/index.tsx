@@ -80,22 +80,34 @@ export default function NotificationSettingsPage() {
 							<CardDescription>Get notified about upcoming statutory filings</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
-							<FormField control={form.control} name="filingReminders" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Enable Filing Reminders</FormLabel>
-										<FormDescription>Receive alerts for EMP201, UIF deadlines</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="filingReminderDays" render={({ field }) => (
-								<FormItem>
-									<FormLabel>Days Before Deadline</FormLabel>
-									<FormControl><Input type="number" className="w-24" {...field} /></FormControl>
-									<FormDescription>How many days before deadline to send reminder</FormDescription>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="filingReminders"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Enable Filing Reminders</FormLabel>
+											<FormDescription>Receive alerts for EMP201, UIF deadlines</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="filingReminderDays"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Days Before Deadline</FormLabel>
+										<FormControl>
+											<Input type="number" className="w-24" {...field} />
+										</FormControl>
+										<FormDescription>How many days before deadline to send reminder</FormDescription>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
@@ -105,28 +117,44 @@ export default function NotificationSettingsPage() {
 							<CardDescription>Get notified about payroll processing</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
-							<FormField control={form.control} name="payrollReminders" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Enable Payroll Reminders</FormLabel>
-										<FormDescription>Receive alerts for upcoming payroll runs</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="payrollReminderDays" render={({ field }) => (
-								<FormItem>
-									<FormLabel>Days Before Payroll</FormLabel>
-									<FormControl><Input type="number" className="w-24" {...field} /></FormControl>
-									<FormDescription>How many days before payroll to send reminder</FormDescription>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="payrollReminders"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Enable Payroll Reminders</FormLabel>
+											<FormDescription>Receive alerts for upcoming payroll runs</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="payrollReminderDays"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Days Before Payroll</FormLabel>
+										<FormControl>
+											<Input type="number" className="w-24" {...field} />
+										</FormControl>
+										<FormDescription>How many days before payroll to send reminder</FormDescription>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
 					<div className="flex justify-end">
 						<Button type="submit" disabled={updateMutation.isPending}>
-							{updateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+							{updateMutation.isPending ? (
+								<Loader2 className="h-4 w-4 animate-spin mr-2" />
+							) : (
+								<CheckCircle2 className="h-4 w-4 mr-2" />
+							)}
 							Save Changes
 						</Button>
 					</div>

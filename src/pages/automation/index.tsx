@@ -9,20 +9,8 @@ import { TRIGGER_LABELS, ACTION_LABELS } from "@/types/notifications";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/ui/dialog";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
@@ -128,9 +116,7 @@ export default function AutomationRulesPage() {
 						<Zap className="h-6 w-6" />
 						Automation Rules
 					</h1>
-					<p className="text-muted-foreground">
-						Automate actions based on system events
-					</p>
+					<p className="text-muted-foreground">Automate actions based on system events</p>
 				</div>
 				<Button onClick={() => setCreateDialogOpen(true)}>
 					<Plus className="h-4 w-4 mr-2" />
@@ -170,9 +156,7 @@ export default function AutomationRulesPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Rules</CardTitle>
-					<CardDescription>
-						Automation rules trigger actions when specific events occur
-					</CardDescription>
+					<CardDescription>Automation rules trigger actions when specific events occur</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<Table>
@@ -223,16 +207,12 @@ export default function AutomationRulesPage() {
 													Edit
 												</DropdownMenuItem>
 												{rule.status === "active" ? (
-													<DropdownMenuItem
-														onClick={() => toggleStatus.mutate({ id: rule.id, status: "paused" })}
-													>
+													<DropdownMenuItem onClick={() => toggleStatus.mutate({ id: rule.id, status: "paused" })}>
 														<Pause className="h-4 w-4 mr-2" />
 														Pause
 													</DropdownMenuItem>
 												) : (
-													<DropdownMenuItem
-														onClick={() => toggleStatus.mutate({ id: rule.id, status: "active" })}
-													>
+													<DropdownMenuItem onClick={() => toggleStatus.mutate({ id: rule.id, status: "active" })}>
 														<Play className="h-4 w-4 mr-2" />
 														Activate
 													</DropdownMenuItem>
@@ -259,9 +239,7 @@ export default function AutomationRulesPage() {
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>Create Automation Rule</DialogTitle>
-						<DialogDescription>
-							Define a new automation that triggers actions based on events
-						</DialogDescription>
+						<DialogDescription>Define a new automation that triggers actions based on events</DialogDescription>
 					</DialogHeader>
 					<div className="space-y-4">
 						<div className="space-y-2">
@@ -284,10 +262,7 @@ export default function AutomationRulesPage() {
 						</div>
 						<div className="space-y-2">
 							<Label htmlFor="trigger">Trigger Event</Label>
-							<Select
-								value={newRule.trigger}
-								onValueChange={(value) => setNewRule({ ...newRule, trigger: value })}
-							>
+							<Select value={newRule.trigger} onValueChange={(value) => setNewRule({ ...newRule, trigger: value })}>
 								<SelectTrigger>
 									<SelectValue placeholder="Select trigger" />
 								</SelectTrigger>
@@ -302,10 +277,7 @@ export default function AutomationRulesPage() {
 						</div>
 						<div className="space-y-2">
 							<Label htmlFor="action">Action</Label>
-							<Select
-								value={newRule.action}
-								onValueChange={(value) => setNewRule({ ...newRule, action: value })}
-							>
+							<Select value={newRule.action} onValueChange={(value) => setNewRule({ ...newRule, action: value })}>
 								<SelectTrigger>
 									<SelectValue placeholder="Select action" />
 								</SelectTrigger>

@@ -100,9 +100,7 @@ export default function AdminCompaniesPage() {
 						<Building2 className="h-6 w-6" />
 						Company Search
 					</h1>
-					<p className="text-muted-foreground">
-						Locate and manage customer companies
-					</p>
+					<p className="text-muted-foreground">Locate and manage customer companies</p>
 				</div>
 			</div>
 
@@ -125,9 +123,7 @@ export default function AdminCompaniesPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Companies</CardTitle>
-					<CardDescription>
-						{companies?.length ?? 0} companies found
-					</CardDescription>
+					<CardDescription>{companies?.length ?? 0} companies found</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{companies && companies.length > 0 ? (
@@ -148,12 +144,8 @@ export default function AdminCompaniesPage() {
 								{companies.map((company) => (
 									<TableRow key={company.id}>
 										<TableCell className="font-medium">{company.name}</TableCell>
-										<TableCell className="text-muted-foreground">
-											{company.registrationNumber}
-										</TableCell>
-										<TableCell className="text-muted-foreground">
-											{company.payeReference}
-										</TableCell>
+										<TableCell className="text-muted-foreground">{company.registrationNumber}</TableCell>
+										<TableCell className="text-muted-foreground">{company.payeReference}</TableCell>
 										<TableCell>
 											<Badge variant="outline">{PLAN_LABELS[company.subscriptionPlan]}</Badge>
 										</TableCell>
@@ -179,9 +171,7 @@ export default function AdminCompaniesPage() {
 															Suspend Company
 														</DropdownMenuItem>
 													) : (
-														<DropdownMenuItem
-															onClick={() => reactivateCompany.mutate(company.id)}
-														>
+														<DropdownMenuItem onClick={() => reactivateCompany.mutate(company.id)}>
 															Reactivate Company
 														</DropdownMenuItem>
 													)}

@@ -84,9 +84,9 @@ export default function CalendarSettingsPage() {
 		}
 	};
 
-	const workingDaysCount = Object.entries(workingDays)
-		.filter(([key, value]) => key !== "hoursPerDay" && key !== "halfDayHours" && value === true)
-		.length;
+	const workingDaysCount = Object.entries(workingDays).filter(
+		([key, value]) => key !== "hoursPerDay" && key !== "halfDayHours" && value === true,
+	).length;
 
 	if (isLoading) {
 		return (
@@ -105,9 +105,7 @@ export default function CalendarSettingsPage() {
 						<Settings className="h-6 w-6" />
 						Calendar Settings
 					</h1>
-					<p className="text-muted-foreground">
-						Configure working days, pay frequency, and holiday rules
-					</p>
+					<p className="text-muted-foreground">Configure working days, pay frequency, and holiday rules</p>
 				</div>
 				<Button onClick={() => saveSettings.mutate()} disabled={!hasChanges || saveSettings.isPending}>
 					<Save className="h-4 w-4 mr-2" />
@@ -123,9 +121,7 @@ export default function CalendarSettingsPage() {
 							<Calendar className="h-5 w-5" />
 							Working Days
 						</CardTitle>
-						<CardDescription>
-							Define standard working patterns for your organization
-						</CardDescription>
+						<CardDescription>Define standard working patterns for your organization</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-6">
 						<div className="grid grid-cols-7 gap-2">
@@ -147,9 +143,7 @@ export default function CalendarSettingsPage() {
 								);
 							})}
 						</div>
-						<p className="text-sm text-muted-foreground">
-							{workingDaysCount} working days per week
-						</p>
+						<p className="text-sm text-muted-foreground">{workingDaysCount} working days per week</p>
 
 						<Separator />
 
@@ -186,9 +180,7 @@ export default function CalendarSettingsPage() {
 
 						<div className="p-3 bg-muted rounded-lg text-sm">
 							<p className="font-medium">Weekly Hours</p>
-							<p className="text-muted-foreground">
-								{workingDaysCount * workingDays.hoursPerDay} hours/week
-							</p>
+							<p className="text-muted-foreground">{workingDaysCount * workingDays.hoursPerDay} hours/week</p>
 						</div>
 					</CardContent>
 				</Card>
@@ -197,9 +189,7 @@ export default function CalendarSettingsPage() {
 				<Card>
 					<CardHeader>
 						<CardTitle>Pay Frequency & Dates</CardTitle>
-						<CardDescription>
-							Configure payroll cutoffs and pay dates
-						</CardDescription>
+						<CardDescription>Configure payroll cutoffs and pay dates</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-6">
 						<div className="space-y-2">
@@ -277,9 +267,7 @@ export default function CalendarSettingsPage() {
 									<SelectItem value="none">No Adjustment</SelectItem>
 								</SelectContent>
 							</Select>
-							<p className="text-xs text-muted-foreground">
-								What happens when pay date falls on a holiday
-							</p>
+							<p className="text-xs text-muted-foreground">What happens when pay date falls on a holiday</p>
 						</div>
 					</CardContent>
 				</Card>
@@ -288,9 +276,7 @@ export default function CalendarSettingsPage() {
 				<Card className="lg:col-span-2">
 					<CardHeader>
 						<CardTitle>Holiday Pay Rules</CardTitle>
-						<CardDescription>
-							Configure how holidays affect employee pay
-						</CardDescription>
+						<CardDescription>Configure how holidays affect employee pay</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

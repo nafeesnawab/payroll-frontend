@@ -1,11 +1,5 @@
 import { http, HttpResponse, delay } from "msw";
-import type {
-	HelpArticle,
-	HelpCategory,
-	OnboardingProgress,
-	SystemStatusInfo,
-	SupportTicket,
-} from "@/types/help";
+import type { HelpArticle, HelpCategory, OnboardingProgress, SystemStatusInfo, SupportTicket } from "@/types/help";
 
 const helpCategories: HelpCategory[] = [
 	{
@@ -231,9 +225,7 @@ export const helpHandlers = [
 
 		if (search) {
 			filtered = filtered.filter(
-				(a) =>
-					a.title.toLowerCase().includes(search) ||
-					a.excerpt.toLowerCase().includes(search)
+				(a) => a.title.toLowerCase().includes(search) || a.excerpt.toLowerCase().includes(search),
 			);
 		}
 

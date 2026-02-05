@@ -53,7 +53,7 @@ export default function IRP5CertificatesPage() {
 	});
 
 	const filteredCertificates = certificates?.filter(
-		(c) => c.employeeName.toLowerCase().includes(search.toLowerCase()) || c.employeeNumber.includes(search)
+		(c) => c.employeeName.toLowerCase().includes(search.toLowerCase()) || c.employeeNumber.includes(search),
 	);
 
 	const draftCount = certificates?.filter((c) => c.status === "draft").length || 0;
@@ -86,12 +86,14 @@ export default function IRP5CertificatesPage() {
 						<DialogHeader>
 							<DialogTitle>Generate Certificates</DialogTitle>
 							<DialogDescription>
-								Generate IRP5/IT3(a) certificates for all {draftCount} employees in draft status.
-								This requires EMP501 reconciliation to be complete.
+								Generate IRP5/IT3(a) certificates for all {draftCount} employees in draft status. This requires EMP501
+								reconciliation to be complete.
 							</DialogDescription>
 						</DialogHeader>
 						<div className="flex justify-end gap-2 mt-4">
-							<Button variant="outline" onClick={() => setGenerateDialogOpen(false)}>Cancel</Button>
+							<Button variant="outline" onClick={() => setGenerateDialogOpen(false)}>
+								Cancel
+							</Button>
 							<Button onClick={() => generateMutation.mutate()} disabled={generateMutation.isPending}>
 								{generateMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
 								Generate
@@ -136,7 +138,12 @@ export default function IRP5CertificatesPage() {
 					<div className="flex flex-wrap gap-4 mb-6">
 						<div className="relative flex-1 min-w-[200px] max-w-sm">
 							<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-							<Input placeholder="Search employee..." className="pl-9" value={search} onChange={(e) => setSearch(e.target.value)} />
+							<Input
+								placeholder="Search employee..."
+								className="pl-9"
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
 						</div>
 						<Select value={taxYear} onValueChange={setTaxYear}>
 							<SelectTrigger className="w-32">
@@ -163,7 +170,9 @@ export default function IRP5CertificatesPage() {
 
 					{isLoading ? (
 						<div className="space-y-3">
-							{[1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full" />)}
+							{[1, 2, 3].map((i) => (
+								<Skeleton key={i} className="h-16 w-full" />
+							))}
 						</div>
 					) : (
 						<Table>

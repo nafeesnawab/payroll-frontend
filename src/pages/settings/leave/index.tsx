@@ -88,7 +88,9 @@ export default function LeaveTypesPage() {
 			<div className="p-6 space-y-6">
 				<Skeleton className="h-8 w-48" />
 				<div className="grid gap-4 md:grid-cols-2">
-					{[1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-32" />)}
+					{[1, 2, 3, 4].map((i) => (
+						<Skeleton key={i} className="h-32" />
+					))}
 				</div>
 			</div>
 		);
@@ -106,7 +108,10 @@ export default function LeaveTypesPage() {
 				</div>
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button><Plus className="h-4 w-4 mr-2" />Add Leave Type</Button>
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							Add Leave Type
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -114,74 +119,120 @@ export default function LeaveTypesPage() {
 						</DialogHeader>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit((data) => createMutation.mutate(data))} className="space-y-4">
-								<FormField control={form.control} name="name" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name *</FormLabel>
-										<FormControl><Input {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name *</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="category" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Category *</FormLabel>
-											<Select onValueChange={field.onChange} defaultValue={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="annual">Annual</SelectItem>
-													<SelectItem value="sick">Sick</SelectItem>
-													<SelectItem value="family">Family Responsibility</SelectItem>
-													<SelectItem value="unpaid">Unpaid</SelectItem>
-													<SelectItem value="custom">Custom</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="accrualMethod" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Accrual Method *</FormLabel>
-											<Select onValueChange={field.onChange} defaultValue={field.value}>
-												<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-												<SelectContent>
-													<SelectItem value="monthly">Monthly</SelectItem>
-													<SelectItem value="per_hour">Per Hour Worked</SelectItem>
-													<SelectItem value="upfront">Upfront</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="category"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Category *</FormLabel>
+												<Select onValueChange={field.onChange} defaultValue={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="annual">Annual</SelectItem>
+														<SelectItem value="sick">Sick</SelectItem>
+														<SelectItem value="family">Family Responsibility</SelectItem>
+														<SelectItem value="unpaid">Unpaid</SelectItem>
+														<SelectItem value="custom">Custom</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="accrualMethod"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Accrual Method *</FormLabel>
+												<Select onValueChange={field.onChange} defaultValue={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value="monthly">Monthly</SelectItem>
+														<SelectItem value="per_hour">Per Hour Worked</SelectItem>
+														<SelectItem value="upfront">Upfront</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="daysPerYear" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Days Per Year *</FormLabel>
-											<FormControl><Input type="number" {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="carryOverDays" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Carry-over Days</FormLabel>
-											<FormControl><Input type="number" {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="daysPerYear"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Days Per Year *</FormLabel>
+												<FormControl>
+													<Input type="number" {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="carryOverDays"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Carry-over Days</FormLabel>
+												<FormControl>
+													<Input type="number" {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
-								<FormField control={form.control} name="allowNegative" render={({ field }) => (
-									<FormItem className="flex items-center justify-between rounded-lg border p-3">
-										<div>
-											<FormLabel>Allow Negative Balance</FormLabel>
-											<p className="text-sm text-muted-foreground">Employees can take leave before accrual</p>
-										</div>
-										<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="allowNegative"
+									render={({ field }) => (
+										<FormItem className="flex items-center justify-between rounded-lg border p-3">
+											<div>
+												<FormLabel>Allow Negative Balance</FormLabel>
+												<p className="text-sm text-muted-foreground">Employees can take leave before accrual</p>
+											</div>
+											<FormControl>
+												<Switch checked={field.value} onCheckedChange={field.onChange} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
 								<div className="flex justify-end gap-2 pt-4">
-									<Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+									<Button type="button" variant="outline" onClick={() => setOpen(false)}>
+										Cancel
+									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Add
 									</Button>
 								</div>

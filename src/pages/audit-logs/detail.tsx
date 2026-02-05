@@ -66,9 +66,7 @@ export default function AuditLogDetailPage() {
 							<Shield className="h-6 w-6" />
 							Audit Log Detail
 						</h1>
-						<p className="text-muted-foreground">
-							{new Date(log.timestamp).toLocaleString()}
-						</p>
+						<p className="text-muted-foreground">{new Date(log.timestamp).toLocaleString()}</p>
 					</div>
 					{log.isHighRisk && (
 						<Badge variant="destructive" className="gap-1">
@@ -108,9 +106,7 @@ export default function AuditLogDetailPage() {
 							<div>
 								<p className="text-sm text-muted-foreground">Entity</p>
 								<p className="font-medium">{log.entityName}</p>
-								{log.entityId && (
-									<p className="text-xs text-muted-foreground">ID: {log.entityId}</p>
-								)}
+								{log.entityId && <p className="text-xs text-muted-foreground">ID: {log.entityId}</p>}
 							</div>
 						)}
 						<Separator />

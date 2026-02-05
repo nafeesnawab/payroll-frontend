@@ -83,49 +83,83 @@ export default function EmployeeNumbersPage() {
 							<CardDescription>Define how employee numbers are created</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
-							<FormField control={form.control} name="autoGenerate" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Auto-generate Employee Numbers</FormLabel>
-										<FormDescription>Automatically assign numbers to new employees</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="autoGenerate"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Auto-generate Employee Numbers</FormLabel>
+											<FormDescription>Automatically assign numbers to new employees</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
 							<div className="grid gap-4 md:grid-cols-2">
-								<FormField control={form.control} name="prefix" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Prefix</FormLabel>
-										<FormControl><Input {...field} /></FormControl>
-										<FormDescription>Text before the number</FormDescription>
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="startingNumber" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Starting Number</FormLabel>
-										<FormControl><Input type="number" {...field} /></FormControl>
-										<FormDescription>First number to use</FormDescription>
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="prefix"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Prefix</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+											<FormDescription>Text before the number</FormDescription>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="startingNumber"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Starting Number</FormLabel>
+											<FormControl>
+												<Input type="number" {...field} />
+											</FormControl>
+											<FormDescription>First number to use</FormDescription>
+										</FormItem>
+									)}
+								/>
 							</div>
 							<div className="p-4 bg-muted rounded-lg">
-								<p className="text-sm text-muted-foreground">Preview: <span className="font-mono font-bold">{prefix}{startingNumber}</span></p>
+								<p className="text-sm text-muted-foreground">
+									Preview:{" "}
+									<span className="font-mono font-bold">
+										{prefix}
+										{startingNumber}
+									</span>
+								</p>
 							</div>
-							<FormField control={form.control} name="allowManualOverride" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Allow Manual Override</FormLabel>
-										<FormDescription>Let admins set custom employee numbers</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="allowManualOverride"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Allow Manual Override</FormLabel>
+											<FormDescription>Let admins set custom employee numbers</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
 					<div className="flex justify-end">
 						<Button type="submit" disabled={updateMutation.isPending}>
-							{updateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+							{updateMutation.isPending ? (
+								<Loader2 className="h-4 w-4 animate-spin mr-2" />
+							) : (
+								<CheckCircle2 className="h-4 w-4 mr-2" />
+							)}
 							Save Changes
 						</Button>
 					</div>

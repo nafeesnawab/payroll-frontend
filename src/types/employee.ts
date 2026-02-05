@@ -126,7 +126,11 @@ export interface CreateEmployeeStep4 {
 	etiEligible: boolean;
 }
 
-export interface CreateEmployeeRequest extends CreateEmployeeStep1, CreateEmployeeStep2, CreateEmployeeStep3, CreateEmployeeStep4 {}
+export interface CreateEmployeeRequest
+	extends CreateEmployeeStep1,
+		CreateEmployeeStep2,
+		CreateEmployeeStep3,
+		CreateEmployeeStep4 {}
 
 export interface TerminateEmployeeRequest {
 	terminationDate: string;

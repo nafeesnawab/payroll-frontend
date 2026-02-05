@@ -73,9 +73,7 @@ export default function UserDetailPage() {
 
 	const toggleRole = (roleId: string) => {
 		setHasChanges(true);
-		setSelectedRoles((prev) =>
-			prev.includes(roleId) ? prev.filter((r) => r !== roleId) : [...prev, roleId]
-		);
+		setSelectedRoles((prev) => (prev.includes(roleId) ? prev.filter((r) => r !== roleId) : [...prev, roleId]));
 	};
 
 	const handleSave = () => {
@@ -169,18 +167,14 @@ export default function UserDetailPage() {
 									<Clock className="h-3 w-3" /> Last Login
 								</p>
 								<p className="font-medium">
-									{user.lastLoginAt
-										? new Date(user.lastLoginAt).toLocaleString()
-										: "Never"}
+									{user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleString() : "Never"}
 								</p>
 							</div>
 							<div>
 								<p className="text-sm text-muted-foreground flex items-center gap-1">
 									<Calendar className="h-3 w-3" /> Created
 								</p>
-								<p className="font-medium">
-									{new Date(user.createdAt).toLocaleDateString()}
-								</p>
+								<p className="font-medium">{new Date(user.createdAt).toLocaleDateString()}</p>
 							</div>
 						</div>
 					</CardContent>
@@ -193,9 +187,7 @@ export default function UserDetailPage() {
 							<Building2 className="h-4 w-4" />
 							Company Access
 						</CardTitle>
-						<CardDescription>
-							Control which companies this user can access
-						</CardDescription>
+						<CardDescription>Control which companies this user can access</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<RadioGroup
@@ -229,9 +221,7 @@ export default function UserDetailPage() {
 							<Shield className="h-4 w-4" />
 							Assigned Roles
 						</CardTitle>
-						<CardDescription>
-							Select the roles for this user
-						</CardDescription>
+						<CardDescription>Select the roles for this user</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<div className="space-y-3">
@@ -269,21 +259,14 @@ export default function UserDetailPage() {
 						{recentActions && recentActions.length > 0 ? (
 							<div className="space-y-3">
 								{recentActions.map((action: any) => (
-									<div
-										key={action.id}
-										className="flex items-center justify-between text-sm"
-									>
+									<div key={action.id} className="flex items-center justify-between text-sm">
 										<span>{action.actionLabel}</span>
-										<span className="text-muted-foreground">
-											{new Date(action.timestamp).toLocaleDateString()}
-										</span>
+										<span className="text-muted-foreground">{new Date(action.timestamp).toLocaleDateString()}</span>
 									</div>
 								))}
 							</div>
 						) : (
-							<p className="text-muted-foreground text-center py-4">
-								No recent actions
-							</p>
+							<p className="text-muted-foreground text-center py-4">No recent actions</p>
 						)}
 					</CardContent>
 				</Card>

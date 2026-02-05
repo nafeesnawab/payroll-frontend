@@ -46,8 +46,7 @@ export const useAuthStore = create<AuthStore>()(
 				setToken: (token) => set({ token }),
 				setCompanies: (companies) => set({ companies }),
 				setActiveCompany: (company, role) => set({ activeCompany: company, activeRole: role }),
-				setRequiresTwoFactor: (requires, userId) =>
-					set({ requiresTwoFactor: requires, pendingUserId: userId || null }),
+				setRequiresTwoFactor: (requires, userId) => set({ requiresTwoFactor: requires, pendingUserId: userId || null }),
 				setOnboardingComplete: (complete) => set({ hasCompletedOnboarding: complete }),
 				logout: () => set(initialState),
 				reset: () => set(initialState),

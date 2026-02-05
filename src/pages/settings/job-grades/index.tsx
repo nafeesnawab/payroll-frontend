@@ -30,7 +30,9 @@ interface JobGrade {
 
 const formatCurrency = (amount?: number) => {
 	if (!amount) return "—";
-	return new Intl.NumberFormat("en-ZA", { style: "currency", currency: "ZAR", minimumFractionDigits: 0 }).format(amount);
+	return new Intl.NumberFormat("en-ZA", { style: "currency", currency: "ZAR", minimumFractionDigits: 0 }).format(
+		amount,
+	);
 };
 
 export default function JobGradesPage() {
@@ -68,7 +70,9 @@ export default function JobGradesPage() {
 			<div className="p-6 space-y-6">
 				<Skeleton className="h-8 w-48" />
 				<div className="grid gap-4 md:grid-cols-3">
-					{[1, 2, 3].map((i) => <Skeleton key={i} className="h-24" />)}
+					{[1, 2, 3].map((i) => (
+						<Skeleton key={i} className="h-24" />
+					))}
 				</div>
 			</div>
 		);
@@ -86,7 +90,10 @@ export default function JobGradesPage() {
 				</div>
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button><Plus className="h-4 w-4 mr-2" />Add Job Grade</Button>
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							Add Job Grade
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -94,31 +101,55 @@ export default function JobGradesPage() {
 						</DialogHeader>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit((data) => createMutation.mutate(data))} className="space-y-4">
-								<FormField control={form.control} name="name" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name *</FormLabel>
-										<FormControl><Input placeholder="e.g., Senior" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="code" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Code *</FormLabel>
-										<FormControl><Input placeholder="e.g., SNR" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="minimumWage" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Minimum Wage (ZAR)</FormLabel>
-										<FormControl><Input type="number" placeholder="0" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name *</FormLabel>
+											<FormControl>
+												<Input placeholder="e.g., Senior" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="code"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Code *</FormLabel>
+											<FormControl>
+												<Input placeholder="e.g., SNR" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="minimumWage"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Minimum Wage (ZAR)</FormLabel>
+											<FormControl>
+												<Input type="number" placeholder="0" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="flex justify-end gap-2 pt-4">
-									<Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+									<Button type="button" variant="outline" onClick={() => setOpen(false)}>
+										Cancel
+									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Add
 									</Button>
 								</div>

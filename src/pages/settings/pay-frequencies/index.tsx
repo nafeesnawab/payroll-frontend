@@ -185,7 +185,11 @@ export default function PayFrequenciesPage() {
 										Cancel
 									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Add
 									</Button>
 								</div>
@@ -201,13 +205,9 @@ export default function PayFrequenciesPage() {
 						<CardHeader className="pb-3">
 							<div className="flex items-center justify-between">
 								<CardTitle className="text-lg">{freq.name}</CardTitle>
-								<Badge variant={freq.isActive ? "default" : "secondary"}>
-									{freq.type}
-								</Badge>
+								<Badge variant={freq.isActive ? "default" : "secondary"}>{freq.type}</Badge>
 							</div>
-							<CardDescription>
-								Started {new Date(freq.startDate).toLocaleDateString("en-ZA")}
-							</CardDescription>
+							<CardDescription>Started {new Date(freq.startDate).toLocaleDateString("en-ZA")}</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<div className="grid grid-cols-2 gap-4 text-sm">

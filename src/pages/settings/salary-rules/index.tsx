@@ -94,15 +94,21 @@ export default function SalaryRulesPage() {
 							<CardDescription>Enable CTC-based salary calculations</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<FormField control={form.control} name="costToCompanyEnabled" render={({ field }) => (
-								<FormItem className="flex items-center justify-between">
-									<div>
-										<FormLabel>Enable Cost to Company</FormLabel>
-										<FormDescription>Calculate salaries based on total cost to company</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="costToCompanyEnabled"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between">
+										<div>
+											<FormLabel>Enable Cost to Company</FormLabel>
+											<FormDescription>Calculate salaries based on total cost to company</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
@@ -111,30 +117,46 @@ export default function SalaryRulesPage() {
 							<CardTitle>Pro-rata & Termination</CardTitle>
 						</CardHeader>
 						<CardContent className="space-y-4">
-							<FormField control={form.control} name="proRataMethod" render={({ field }) => (
-								<FormItem>
-									<FormLabel>Pro-rata Calculation Method</FormLabel>
-									<Select onValueChange={field.onChange} value={field.value}>
-										<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-										<SelectContent>
-											<SelectItem value="calendar">Calendar Days</SelectItem>
-											<SelectItem value="working_days">Working Days</SelectItem>
-										</SelectContent>
-									</Select>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="terminationPayMethod" render={({ field }) => (
-								<FormItem>
-									<FormLabel>Termination Pay Processing</FormLabel>
-									<Select onValueChange={field.onChange} value={field.value}>
-										<FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-										<SelectContent>
-											<SelectItem value="immediate">Immediate Payment</SelectItem>
-											<SelectItem value="next_payrun">Next Payrun</SelectItem>
-										</SelectContent>
-									</Select>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="proRataMethod"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Pro-rata Calculation Method</FormLabel>
+										<Select onValueChange={field.onChange} value={field.value}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												<SelectItem value="calendar">Calendar Days</SelectItem>
+												<SelectItem value="working_days">Working Days</SelectItem>
+											</SelectContent>
+										</Select>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="terminationPayMethod"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Termination Pay Processing</FormLabel>
+										<Select onValueChange={field.onChange} value={field.value}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												<SelectItem value="immediate">Immediate Payment</SelectItem>
+												<SelectItem value="next_payrun">Next Payrun</SelectItem>
+											</SelectContent>
+										</Select>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
@@ -143,21 +165,33 @@ export default function SalaryRulesPage() {
 							<CardTitle>ETI (Employment Tax Incentive)</CardTitle>
 						</CardHeader>
 						<CardContent className="space-y-4">
-							<FormField control={form.control} name="etiEnabled" render={({ field }) => (
-								<FormItem className="flex items-center justify-between">
-									<div>
-										<FormLabel>Enable ETI</FormLabel>
-										<FormDescription>Claim tax incentives for qualifying employees</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="etiMaxAge" render={({ field }) => (
-								<FormItem>
-									<FormLabel>Maximum Age for ETI</FormLabel>
-									<FormControl><Input type="number" {...field} className="w-24" /></FormControl>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="etiEnabled"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between">
+										<div>
+											<FormLabel>Enable ETI</FormLabel>
+											<FormDescription>Claim tax incentives for qualifying employees</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="etiMaxAge"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Maximum Age for ETI</FormLabel>
+										<FormControl>
+											<Input type="number" {...field} className="w-24" />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
@@ -167,34 +201,56 @@ export default function SalaryRulesPage() {
 						</CardHeader>
 						<CardContent>
 							<div className="grid gap-4 md:grid-cols-3">
-								<FormField control={form.control} name="overtimeRate" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Overtime Rate</FormLabel>
-										<FormControl><Input type="number" step="0.1" {...field} /></FormControl>
-										<FormDescription>× normal rate</FormDescription>
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="sundayRate" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Sunday Rate</FormLabel>
-										<FormControl><Input type="number" step="0.1" {...field} /></FormControl>
-										<FormDescription>× normal rate</FormDescription>
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="publicHolidayRate" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Public Holiday Rate</FormLabel>
-										<FormControl><Input type="number" step="0.1" {...field} /></FormControl>
-										<FormDescription>× normal rate</FormDescription>
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="overtimeRate"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Overtime Rate</FormLabel>
+											<FormControl>
+												<Input type="number" step="0.1" {...field} />
+											</FormControl>
+											<FormDescription>× normal rate</FormDescription>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="sundayRate"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Sunday Rate</FormLabel>
+											<FormControl>
+												<Input type="number" step="0.1" {...field} />
+											</FormControl>
+											<FormDescription>× normal rate</FormDescription>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="publicHolidayRate"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Public Holiday Rate</FormLabel>
+											<FormControl>
+												<Input type="number" step="0.1" {...field} />
+											</FormControl>
+											<FormDescription>× normal rate</FormDescription>
+										</FormItem>
+									)}
+								/>
 							</div>
 						</CardContent>
 					</Card>
 
 					<div className="flex justify-end">
 						<Button type="submit" disabled={updateMutation.isPending}>
-							{updateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+							{updateMutation.isPending ? (
+								<Loader2 className="h-4 w-4 animate-spin mr-2" />
+							) : (
+								<CheckCircle2 className="h-4 w-4 mr-2" />
+							)}
 							Save Changes
 						</Button>
 					</div>

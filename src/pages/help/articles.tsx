@@ -52,9 +52,7 @@ export default function HelpArticlesPage() {
 						<BookOpen className="h-6 w-6" />
 						Help Articles
 					</h1>
-					<p className="text-muted-foreground">
-						Browse all help documentation
-					</p>
+					<p className="text-muted-foreground">Browse all help documentation</p>
 				</div>
 			</div>
 
@@ -74,10 +72,7 @@ export default function HelpArticlesPage() {
 							</div>
 						</div>
 						<div className="w-48">
-							<Select
-								value={categoryFilter}
-								onValueChange={(v) => setCategoryFilter(v === "all" ? "" : v)}
-							>
+							<Select value={categoryFilter} onValueChange={(v) => setCategoryFilter(v === "all" ? "" : v)}>
 								<SelectTrigger>
 									<SelectValue placeholder="All Categories" />
 								</SelectTrigger>
@@ -114,27 +109,21 @@ export default function HelpArticlesPage() {
 									<div className="flex items-start justify-between gap-4">
 										<div className="flex-1">
 											<p className="font-medium">{article.title}</p>
-											<p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-												{article.excerpt}
-											</p>
+											<p className="text-sm text-muted-foreground mt-1 line-clamp-2">{article.excerpt}</p>
 											<p className="text-xs text-muted-foreground mt-2">
 												Updated {new Date(article.updatedAt).toLocaleDateString()}
 											</p>
 										</div>
 										<div className="flex flex-col items-end gap-2">
 											<Badge variant="outline">{article.categoryLabel}</Badge>
-											{article.isPopular && (
-												<Badge className="bg-amber-100 text-amber-800">Popular</Badge>
-											)}
+											{article.isPopular && <Badge className="bg-amber-100 text-amber-800">Popular</Badge>}
 										</div>
 									</div>
 								</button>
 							))}
 						</div>
 					) : (
-						<p className="text-muted-foreground text-center py-8">
-							No articles found matching your criteria
-						</p>
+						<p className="text-muted-foreground text-center py-8">No articles found matching your criteria</p>
 					)}
 				</CardContent>
 			</Card>

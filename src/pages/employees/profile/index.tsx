@@ -145,12 +145,18 @@ export default function EmployeeProfilePage() {
 							</Badge>
 						)}
 					</div>
-					<p className="text-muted-foreground">{employee.employeeNumber} • {employee.jobGradeName}</p>
+					<p className="text-muted-foreground">
+						{employee.employeeNumber} • {employee.jobGradeName}
+					</p>
 				</div>
 				<div className="flex gap-2">
 					{employee.status === "terminated" ? (
 						<Button variant="outline" onClick={() => reinstateMutation.mutate()} disabled={reinstateMutation.isPending}>
-							{reinstateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <RefreshCw className="h-4 w-4 mr-2" />}
+							{reinstateMutation.isPending ? (
+								<Loader2 className="h-4 w-4 animate-spin mr-2" />
+							) : (
+								<RefreshCw className="h-4 w-4 mr-2" />
+							)}
 							Reinstate
 						</Button>
 					) : (
@@ -166,35 +172,58 @@ export default function EmployeeProfilePage() {
 									<DialogTitle>Terminate Employee</DialogTitle>
 								</DialogHeader>
 								<Form {...terminateForm}>
-									<form onSubmit={terminateForm.handleSubmit((data) => terminateMutation.mutate(data))} className="space-y-4">
-										<FormField control={terminateForm.control} name="terminationDate" render={({ field }) => (
-											<FormItem>
-												<FormLabel>Termination Date *</FormLabel>
-												<FormControl><Input type="date" {...field} /></FormControl>
-												<FormMessage />
-											</FormItem>
-										)} />
-										<FormField control={terminateForm.control} name="reason" render={({ field }) => (
-											<FormItem>
-												<FormLabel>Reason *</FormLabel>
-												<Select onValueChange={field.onChange} value={field.value}>
-													<FormControl><SelectTrigger><SelectValue placeholder="Select reason" /></SelectTrigger></FormControl>
-													<SelectContent>
-														<SelectItem value="resignation">Resignation</SelectItem>
-														<SelectItem value="dismissal">Dismissal</SelectItem>
-														<SelectItem value="retrenchment">Retrenchment</SelectItem>
-														<SelectItem value="contract_end">Contract End</SelectItem>
-														<SelectItem value="retirement">Retirement</SelectItem>
-														<SelectItem value="death">Death</SelectItem>
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)} />
+									<form
+										onSubmit={terminateForm.handleSubmit((data) => terminateMutation.mutate(data))}
+										className="space-y-4"
+									>
+										<FormField
+											control={terminateForm.control}
+											name="terminationDate"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Termination Date *</FormLabel>
+													<FormControl>
+														<Input type="date" {...field} />
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={terminateForm.control}
+											name="reason"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Reason *</FormLabel>
+													<Select onValueChange={field.onChange} value={field.value}>
+														<FormControl>
+															<SelectTrigger>
+																<SelectValue placeholder="Select reason" />
+															</SelectTrigger>
+														</FormControl>
+														<SelectContent>
+															<SelectItem value="resignation">Resignation</SelectItem>
+															<SelectItem value="dismissal">Dismissal</SelectItem>
+															<SelectItem value="retrenchment">Retrenchment</SelectItem>
+															<SelectItem value="contract_end">Contract End</SelectItem>
+															<SelectItem value="retirement">Retirement</SelectItem>
+															<SelectItem value="death">Death</SelectItem>
+														</SelectContent>
+													</Select>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
 										<div className="flex justify-end gap-2">
-											<Button type="button" variant="outline" onClick={() => setTerminateOpen(false)}>Cancel</Button>
+											<Button type="button" variant="outline" onClick={() => setTerminateOpen(false)}>
+												Cancel
+											</Button>
 											<Button type="submit" variant="destructive" disabled={terminateMutation.isPending}>
-												{terminateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+												{terminateMutation.isPending ? (
+													<Loader2 className="h-4 w-4 animate-spin mr-2" />
+												) : (
+													<CheckCircle2 className="h-4 w-4 mr-2" />
+												)}
 												Confirm
 											</Button>
 										</div>
@@ -214,7 +243,9 @@ export default function EmployeeProfilePage() {
 							<span className="font-medium">This employee has errors that need attention:</span>
 						</div>
 						<ul className="mt-2 ml-7 list-disc text-sm text-destructive">
-							{employee.errors.map((error, i) => <li key={i}>{error}</li>)}
+							{employee.errors.map((error, i) => (
+								<li key={i}>{error}</li>
+							))}
 						</ul>
 					</CardContent>
 				</Card>
@@ -222,12 +253,30 @@ export default function EmployeeProfilePage() {
 
 			<Tabs defaultValue="overview">
 				<TabsList>
-					<TabsTrigger value="overview"><User className="h-4 w-4 mr-2" />Overview</TabsTrigger>
-					<TabsTrigger value="employment"><Briefcase className="h-4 w-4 mr-2" />Employment</TabsTrigger>
-					<TabsTrigger value="pay"><Wallet className="h-4 w-4 mr-2" />Pay</TabsTrigger>
-					<TabsTrigger value="leave"><Calendar className="h-4 w-4 mr-2" />Leave</TabsTrigger>
-					<TabsTrigger value="payroll"><Banknote className="h-4 w-4 mr-2" />Payroll</TabsTrigger>
-					<TabsTrigger value="history"><History className="h-4 w-4 mr-2" />History</TabsTrigger>
+					<TabsTrigger value="overview">
+						<User className="h-4 w-4 mr-2" />
+						Overview
+					</TabsTrigger>
+					<TabsTrigger value="employment">
+						<Briefcase className="h-4 w-4 mr-2" />
+						Employment
+					</TabsTrigger>
+					<TabsTrigger value="pay">
+						<Wallet className="h-4 w-4 mr-2" />
+						Pay
+					</TabsTrigger>
+					<TabsTrigger value="leave">
+						<Calendar className="h-4 w-4 mr-2" />
+						Leave
+					</TabsTrigger>
+					<TabsTrigger value="payroll">
+						<Banknote className="h-4 w-4 mr-2" />
+						Payroll
+					</TabsTrigger>
+					<TabsTrigger value="history">
+						<History className="h-4 w-4 mr-2" />
+						History
+					</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value="overview" className="mt-6">
@@ -237,11 +286,26 @@ export default function EmployeeProfilePage() {
 								<CardTitle className="text-lg">Personal Information</CardTitle>
 							</CardHeader>
 							<CardContent className="space-y-3 text-sm">
-								<div className="flex justify-between"><span className="text-muted-foreground">Email</span><span>{employee.email}</span></div>
-								<div className="flex justify-between"><span className="text-muted-foreground">Phone</span><span>{employee.phone}</span></div>
-								<div className="flex justify-between"><span className="text-muted-foreground">ID Type</span><span className="uppercase">{employee.idType.replace("_", " ")}</span></div>
-								<div className="flex justify-between"><span className="text-muted-foreground">ID Number</span><span>{employee.idNumber}</span></div>
-								<div className="flex justify-between"><span className="text-muted-foreground">Date of Birth</span><span>{employee.dateOfBirth}</span></div>
+								<div className="flex justify-between">
+									<span className="text-muted-foreground">Email</span>
+									<span>{employee.email}</span>
+								</div>
+								<div className="flex justify-between">
+									<span className="text-muted-foreground">Phone</span>
+									<span>{employee.phone}</span>
+								</div>
+								<div className="flex justify-between">
+									<span className="text-muted-foreground">ID Type</span>
+									<span className="uppercase">{employee.idType.replace("_", " ")}</span>
+								</div>
+								<div className="flex justify-between">
+									<span className="text-muted-foreground">ID Number</span>
+									<span>{employee.idNumber}</span>
+								</div>
+								<div className="flex justify-between">
+									<span className="text-muted-foreground">Date of Birth</span>
+									<span>{employee.dateOfBirth}</span>
+								</div>
 							</CardContent>
 						</Card>
 						<Card>
@@ -251,7 +315,11 @@ export default function EmployeeProfilePage() {
 							<CardContent>
 								<p className="text-3xl font-bold">{formatCurrency(employee.salaryAmount)}</p>
 								<p className="text-muted-foreground">{employee.salaryType === "fixed" ? "per month" : "per hour"}</p>
-								{employee.costToCompany && <Badge variant="secondary" className="mt-2">Cost to Company</Badge>}
+								{employee.costToCompany && (
+									<Badge variant="secondary" className="mt-2">
+										Cost to Company
+									</Badge>
+								)}
 							</CardContent>
 						</Card>
 						<Card>
@@ -293,14 +361,34 @@ export default function EmployeeProfilePage() {
 						</CardHeader>
 						<CardContent className="grid gap-6 md:grid-cols-2">
 							<div className="space-y-4">
-								<div><p className="text-sm text-muted-foreground">Employment Type</p><p className="font-medium capitalize">{employee.employmentType.replace("_", " ")}</p></div>
-								<div><p className="text-sm text-muted-foreground">Start Date</p><p className="font-medium">{employee.startDate}</p></div>
-								<div><p className="text-sm text-muted-foreground">Job Grade</p><p className="font-medium">{employee.jobGradeName}</p></div>
+								<div>
+									<p className="text-sm text-muted-foreground">Employment Type</p>
+									<p className="font-medium capitalize">{employee.employmentType.replace("_", " ")}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Start Date</p>
+									<p className="font-medium">{employee.startDate}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Job Grade</p>
+									<p className="font-medium">{employee.jobGradeName}</p>
+								</div>
 							</div>
 							<div className="space-y-4">
-								<div><p className="text-sm text-muted-foreground">Pay Frequency</p><p className="font-medium">{employee.payFrequencyName}</p></div>
-								<div><p className="text-sm text-muted-foreground">Pay Point</p><p className="font-medium">{employee.payPointName}</p></div>
-								<div><p className="text-sm text-muted-foreground">Working Schedule</p><p className="font-medium">{employee.workingDaysPerWeek} days/week, {employee.workingHoursPerDay} hrs/day</p></div>
+								<div>
+									<p className="text-sm text-muted-foreground">Pay Frequency</p>
+									<p className="font-medium">{employee.payFrequencyName}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Pay Point</p>
+									<p className="font-medium">{employee.payPointName}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Working Schedule</p>
+									<p className="font-medium">
+										{employee.workingDaysPerWeek} days/week, {employee.workingHoursPerDay} hrs/day
+									</p>
+								</div>
 							</div>
 						</CardContent>
 					</Card>
@@ -313,8 +401,14 @@ export default function EmployeeProfilePage() {
 								<CardTitle>Salary Configuration</CardTitle>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								<div><p className="text-sm text-muted-foreground">Salary Type</p><p className="font-medium capitalize">{employee.salaryType}</p></div>
-								<div><p className="text-sm text-muted-foreground">Amount</p><p className="text-2xl font-bold">{formatCurrency(employee.salaryAmount)}</p></div>
+								<div>
+									<p className="text-sm text-muted-foreground">Salary Type</p>
+									<p className="font-medium capitalize">{employee.salaryType}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Amount</p>
+									<p className="text-2xl font-bold">{formatCurrency(employee.salaryAmount)}</p>
+								</div>
 								<div className="flex gap-2">
 									{employee.costToCompany && <Badge>CTC</Badge>}
 									{employee.overtimeEligible && <Badge variant="outline">Overtime Eligible</Badge>}
@@ -326,9 +420,18 @@ export default function EmployeeProfilePage() {
 								<CardTitle>Bank Details</CardTitle>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								<div><p className="text-sm text-muted-foreground">Bank</p><p className="font-medium">{employee.bankName}</p></div>
-								<div><p className="text-sm text-muted-foreground">Account Number</p><p className="font-medium font-mono">****{employee.bankAccountNumber.slice(-4)}</p></div>
-								<div><p className="text-sm text-muted-foreground">Branch Code</p><p className="font-medium">{employee.bankBranchCode}</p></div>
+								<div>
+									<p className="text-sm text-muted-foreground">Bank</p>
+									<p className="font-medium">{employee.bankName}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Account Number</p>
+									<p className="font-medium font-mono">****{employee.bankAccountNumber.slice(-4)}</p>
+								</div>
+								<div>
+									<p className="text-sm text-muted-foreground">Branch Code</p>
+									<p className="font-medium">{employee.bankBranchCode}</p>
+								</div>
 							</CardContent>
 						</Card>
 					</div>
@@ -349,9 +452,18 @@ export default function EmployeeProfilePage() {
 											<p className="text-3xl font-bold mt-2">{lb.balance}</p>
 											<p className="text-sm text-muted-foreground">days available</p>
 											<div className="mt-4 text-xs text-muted-foreground space-y-1">
-												<div className="flex justify-between"><span>Entitled</span><span>{lb.entitled}</span></div>
-												<div className="flex justify-between"><span>Taken</span><span>{lb.taken}</span></div>
-												<div className="flex justify-between"><span>Pending</span><span>{lb.pending}</span></div>
+												<div className="flex justify-between">
+													<span>Entitled</span>
+													<span>{lb.entitled}</span>
+												</div>
+												<div className="flex justify-between">
+													<span>Taken</span>
+													<span>{lb.taken}</span>
+												</div>
+												<div className="flex justify-between">
+													<span>Pending</span>
+													<span>{lb.pending}</span>
+												</div>
 											</div>
 										</CardContent>
 									</Card>
@@ -403,7 +515,9 @@ export default function EmployeeProfilePage() {
 										<div>
 											<p className="font-medium">{h.action}</p>
 											<p className="text-sm text-muted-foreground">{h.description}</p>
-											<p className="text-xs text-muted-foreground mt-1">By {h.performedBy} • {h.performedAt}</p>
+											<p className="text-xs text-muted-foreground mt-1">
+												By {h.performedBy} • {h.performedAt}
+											</p>
 										</div>
 									</div>
 								))}

@@ -69,9 +69,7 @@ export default function ExportDataPage() {
 						<ArrowDownToLine className="h-6 w-6" />
 						Export Data
 					</h1>
-					<p className="text-muted-foreground">
-						Download system data for analysis, backup, or integration
-					</p>
+					<p className="text-muted-foreground">Download system data for analysis, backup, or integration</p>
 				</div>
 				<Button variant="outline" onClick={() => navigate("/data/exports/history")}>
 					View Export History
@@ -81,9 +79,7 @@ export default function ExportDataPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>Create Export</CardTitle>
-					<CardDescription>
-						Select the data type and format for your export
-					</CardDescription>
+					<CardDescription>Select the data type and format for your export</CardDescription>
 				</CardHeader>
 				<CardContent className="space-y-6">
 					{/* Export Type */}
@@ -170,11 +166,7 @@ export default function ExportDataPage() {
 						</div>
 					</div>
 
-					<Button
-						onClick={handleExport}
-						disabled={!exportType || createExport.isPending}
-						className="w-full"
-					>
+					<Button onClick={handleExport} disabled={!exportType || createExport.isPending} className="w-full">
 						{getFormatIcon(format)}
 						<span className="ml-2">
 							{createExport.isPending ? "Creating Export..." : `Export as ${format.toUpperCase()}`}
@@ -192,39 +184,27 @@ export default function ExportDataPage() {
 					<div className="grid gap-4 md:grid-cols-2">
 						<div className="space-y-1">
 							<p className="font-medium">Employees</p>
-							<p className="text-sm text-muted-foreground">
-								All employee records with personal and employment details
-							</p>
+							<p className="text-sm text-muted-foreground">All employee records with personal and employment details</p>
 						</div>
 						<div className="space-y-1">
 							<p className="font-medium">Payroll History</p>
-							<p className="text-sm text-muted-foreground">
-								Historical payroll runs with totals and status
-							</p>
+							<p className="text-sm text-muted-foreground">Historical payroll runs with totals and status</p>
 						</div>
 						<div className="space-y-1">
 							<p className="font-medium">Payslips</p>
-							<p className="text-sm text-muted-foreground">
-								Individual payslip details with earnings and deductions
-							</p>
+							<p className="text-sm text-muted-foreground">Individual payslip details with earnings and deductions</p>
 						</div>
 						<div className="space-y-1">
 							<p className="font-medium">Leave Balances</p>
-							<p className="text-sm text-muted-foreground">
-								Current leave balances for all employees
-							</p>
+							<p className="text-sm text-muted-foreground">Current leave balances for all employees</p>
 						</div>
 						<div className="space-y-1">
 							<p className="font-medium">Filings</p>
-							<p className="text-sm text-muted-foreground">
-								EMP201, UIF, and other statutory filing records
-							</p>
+							<p className="text-sm text-muted-foreground">EMP201, UIF, and other statutory filing records</p>
 						</div>
 						<div className="space-y-1">
 							<p className="font-medium">Audit Logs</p>
-							<p className="text-sm text-muted-foreground">
-								System activity and change history
-							</p>
+							<p className="text-sm text-muted-foreground">System activity and change history</p>
 						</div>
 					</div>
 				</CardContent>

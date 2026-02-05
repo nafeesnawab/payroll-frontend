@@ -19,7 +19,10 @@ interface Notification {
 	read: boolean;
 }
 
-const severityConfig: Record<AlertSeverity, { icon: typeof Info; bgColor: string; textColor: string; borderColor: string }> = {
+const severityConfig: Record<
+	AlertSeverity,
+	{ icon: typeof Info; bgColor: string; textColor: string; borderColor: string }
+> = {
 	info: {
 		icon: Info,
 		bgColor: "bg-blue-500/10",
@@ -55,12 +58,7 @@ function NotificationItem({ notification }: { notification: Notification }) {
 					<p className="font-medium text-sm">{notification.title}</p>
 					<p className="text-sm text-muted-foreground mt-0.5">{notification.message}</p>
 				</div>
-				<Button
-					variant="ghost"
-					size="sm"
-					className="flex-shrink-0"
-					onClick={() => navigate(notification.action)}
-				>
+				<Button variant="ghost" size="sm" className="flex-shrink-0" onClick={() => navigate(notification.action)}>
 					<ArrowRight className="h-4 w-4" />
 				</Button>
 			</div>
@@ -121,11 +119,7 @@ export function NotificationsWidget() {
 					<CardTitle className="flex items-center gap-2">
 						<Bell className={`h-5 w-5 ${criticalCount > 0 ? "text-red-500" : ""}`} />
 						Notifications
-						{unreadCount > 0 && (
-							<Badge variant={criticalCount > 0 ? "destructive" : "secondary"}>
-								{unreadCount}
-							</Badge>
-						)}
+						{unreadCount > 0 && <Badge variant={criticalCount > 0 ? "destructive" : "secondary"}>{unreadCount}</Badge>}
 					</CardTitle>
 				</div>
 			</CardHeader>

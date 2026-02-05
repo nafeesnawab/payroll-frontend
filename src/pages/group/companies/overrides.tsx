@@ -65,18 +65,14 @@ export default function CompanyOverridesPage() {
 						<Settings className="h-6 w-6" />
 						Company Overrides
 					</h1>
-					<p className="text-muted-foreground">
-						{company?.tradingName} - Settings that differ from group defaults
-					</p>
+					<p className="text-muted-foreground">{company?.tradingName} - Settings that differ from group defaults</p>
 				</div>
 			</div>
 
 			<Card>
 				<CardHeader>
 					<CardTitle>Active Overrides</CardTitle>
-					<CardDescription>
-						These settings have been customized for this company
-					</CardDescription>
+					<CardDescription>These settings have been customized for this company</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{overrides && overrides.length > 0 ? (
@@ -95,14 +91,10 @@ export default function CompanyOverridesPage() {
 									<TableRow key={override.settingId}>
 										<TableCell className="font-medium">{override.settingName}</TableCell>
 										<TableCell>
-											<code className="text-sm bg-muted px-2 py-1 rounded">
-												{String(override.inheritedValue)}
-											</code>
+											<code className="text-sm bg-muted px-2 py-1 rounded">{String(override.inheritedValue)}</code>
 										</TableCell>
 										<TableCell>
-											<Badge className="bg-amber-100 text-amber-800">
-												{String(override.overriddenValue)}
-											</Badge>
+											<Badge className="bg-amber-100 text-amber-800">{String(override.overriddenValue)}</Badge>
 										</TableCell>
 										<TableCell className="text-muted-foreground text-sm">
 											<div>
@@ -111,11 +103,7 @@ export default function CompanyOverridesPage() {
 											</div>
 										</TableCell>
 										<TableCell className="text-right">
-											<Button
-												variant="ghost"
-												size="sm"
-												onClick={() => resetOverride.mutate(override.settingId)}
-											>
+											<Button variant="ghost" size="sm" onClick={() => resetOverride.mutate(override.settingId)}>
 												<RotateCcw className="h-4 w-4 mr-1" />
 												Reset
 											</Button>

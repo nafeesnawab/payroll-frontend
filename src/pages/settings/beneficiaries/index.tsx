@@ -84,7 +84,10 @@ export default function BeneficiariesPage() {
 				</div>
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button><Plus className="h-4 w-4 mr-2" />Add Beneficiary</Button>
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							Add Beneficiary
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -92,47 +95,83 @@ export default function BeneficiariesPage() {
 						</DialogHeader>
 						<Form {...form}>
 							<form onSubmit={form.handleSubmit((data) => createMutation.mutate(data))} className="space-y-4">
-								<FormField control={form.control} name="name" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name *</FormLabel>
-										<FormControl><Input placeholder="e.g., Old Mutual Pension" {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
-								<FormField control={form.control} name="bankName" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Bank *</FormLabel>
-										<FormControl><Input {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name *</FormLabel>
+											<FormControl>
+												<Input placeholder="e.g., Old Mutual Pension" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="bankName"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Bank *</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="grid grid-cols-2 gap-4">
-									<FormField control={form.control} name="accountNumber" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Account Number *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
-									<FormField control={form.control} name="branchCode" render={({ field }) => (
-										<FormItem>
-											<FormLabel>Branch Code *</FormLabel>
-											<FormControl><Input {...field} /></FormControl>
-											<FormMessage />
-										</FormItem>
-									)} />
+									<FormField
+										control={form.control}
+										name="accountNumber"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Account Number *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="branchCode"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Branch Code *</FormLabel>
+												<FormControl>
+													<Input {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
-								<FormField control={form.control} name="reference" render={({ field }) => (
-									<FormItem>
-										<FormLabel>Payment Reference *</FormLabel>
-										<FormControl><Input {...field} /></FormControl>
-										<FormMessage />
-									</FormItem>
-								)} />
+								<FormField
+									control={form.control}
+									name="reference"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Payment Reference *</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<div className="flex justify-end gap-2 pt-4">
-									<Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+									<Button type="button" variant="outline" onClick={() => setOpen(false)}>
+										Cancel
+									</Button>
 									<Button type="submit" disabled={createMutation.isPending}>
-										{createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+										{createMutation.isPending ? (
+											<Loader2 className="h-4 w-4 animate-spin mr-2" />
+										) : (
+											<CheckCircle2 className="h-4 w-4 mr-2" />
+										)}
 										Add
 									</Button>
 								</div>

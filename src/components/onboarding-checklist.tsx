@@ -41,23 +41,18 @@ export function OnboardingChecklist() {
 						<Rocket className="h-5 w-5 text-primary" />
 						<CardTitle className="text-base">Getting Started</CardTitle>
 					</div>
-					<Button
-						variant="ghost"
-						size="icon"
-						className="h-6 w-6"
-						onClick={() => dismissChecklist.mutate()}
-					>
+					<Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => dismissChecklist.mutate()}>
 						<X className="h-4 w-4" />
 					</Button>
 				</div>
-				<CardDescription>
-					Complete these steps to set up your payroll
-				</CardDescription>
+				<CardDescription>Complete these steps to set up your payroll</CardDescription>
 			</CardHeader>
 			<CardContent className="space-y-4">
 				<div className="space-y-1">
 					<div className="flex justify-between text-sm">
-						<span>{progress.completedSteps} of {progress.totalSteps} completed</span>
+						<span>
+							{progress.completedSteps} of {progress.totalSteps} completed
+						</span>
 						<span className="font-medium">{progress.percentComplete}%</span>
 					</div>
 					<Progress value={progress.percentComplete} className="h-2" />
@@ -69,9 +64,7 @@ export function OnboardingChecklist() {
 							key={step.id}
 							type="button"
 							className={`w-full flex items-center gap-3 p-2 rounded-lg text-left transition-colors ${
-								step.isCompleted
-									? "text-muted-foreground"
-									: "hover:bg-primary/10"
+								step.isCompleted ? "text-muted-foreground" : "hover:bg-primary/10"
 							}`}
 							onClick={() => step.route && !step.isCompleted && navigate(step.route)}
 							disabled={step.isCompleted}
@@ -82,9 +75,7 @@ export function OnboardingChecklist() {
 								<Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
 							)}
 							<div>
-								<p className={`text-sm font-medium ${step.isCompleted ? "line-through" : ""}`}>
-									{step.title}
-								</p>
+								<p className={`text-sm font-medium ${step.isCompleted ? "line-through" : ""}`}>{step.title}</p>
 								<p className="text-xs text-muted-foreground">{step.description}</p>
 							</div>
 						</button>

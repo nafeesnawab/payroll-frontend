@@ -105,12 +105,7 @@ export function ESSNotificationBell() {
 				<div className="flex items-center justify-between border-b p-3">
 					<h4 className="font-semibold">Notifications</h4>
 					{unreadCount > 0 && (
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={() => markAllAsRead.mutate()}
-							disabled={markAllAsRead.isPending}
-						>
+						<Button variant="ghost" size="sm" onClick={() => markAllAsRead.mutate()} disabled={markAllAsRead.isPending}>
 							<Check className="h-4 w-4 mr-1" />
 							Mark all read
 						</Button>
@@ -133,7 +128,7 @@ export function ESSNotificationBell() {
 										onClick={() => handleNotificationClick(notification)}
 										className={cn(
 											"w-full flex items-start gap-3 p-3 text-left hover:bg-muted transition-colors",
-											!notification.isRead && "bg-primary/5"
+											!notification.isRead && "bg-primary/5",
 										)}
 									>
 										<div
@@ -143,30 +138,19 @@ export function ESSNotificationBell() {
 													? "bg-green-100 text-green-600"
 													: notification.type.includes("rejected")
 														? "bg-red-100 text-red-600"
-														: "bg-blue-100 text-blue-600"
+														: "bg-blue-100 text-blue-600",
 											)}
 										>
 											<Icon className="h-4 w-4" />
 										</div>
 										<div className="flex-1 min-w-0">
-											<p
-												className={cn(
-													"text-sm truncate",
-													!notification.isRead && "font-medium"
-												)}
-											>
+											<p className={cn("text-sm truncate", !notification.isRead && "font-medium")}>
 												{notification.title}
 											</p>
-											<p className="text-xs text-muted-foreground line-clamp-2">
-												{notification.message}
-											</p>
-											<p className="text-xs text-muted-foreground mt-1">
-												{formatDate(notification.createdAt)}
-											</p>
+											<p className="text-xs text-muted-foreground line-clamp-2">{notification.message}</p>
+											<p className="text-xs text-muted-foreground mt-1">{formatDate(notification.createdAt)}</p>
 										</div>
-										{!notification.isRead && (
-											<div className="w-2 h-2 rounded-full bg-primary mt-2" />
-										)}
+										{!notification.isRead && <div className="w-2 h-2 rounded-full bg-primary mt-2" />}
 									</button>
 								);
 							})}

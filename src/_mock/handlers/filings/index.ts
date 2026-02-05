@@ -154,7 +154,8 @@ export const filingHandlers = [
 				},
 			],
 			validation: {
-				errors: emp201.status === "draft" ? [{ code: "E001", message: "Payroll not finalized", severity: "error" }] : [],
+				errors:
+					emp201.status === "draft" ? [{ code: "E001", message: "Payroll not finalized", severity: "error" }] : [],
 				warnings: [{ code: "W001", message: "Some employees missing tax numbers", severity: "warning" }],
 			},
 			auditLog: [
@@ -301,7 +302,10 @@ export const filingHandlers = [
 				c.generatedAt = new Date().toISOString();
 			}
 		});
-		return HttpResponse.json({ success: true, generated: irp5Certificates.filter((c) => c.status === "generated").length });
+		return HttpResponse.json({
+			success: true,
+			generated: irp5Certificates.filter((c) => c.status === "generated").length,
+		});
 	}),
 
 	// Download filing

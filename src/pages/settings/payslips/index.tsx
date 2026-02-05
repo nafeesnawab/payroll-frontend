@@ -87,42 +87,66 @@ export default function PayslipConfigPage() {
 							<CardDescription>Control what appears on employee payslips</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
-							<FormField control={form.control} name="showLogo" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Show Company Logo</FormLabel>
-										<FormDescription>Display logo at the top of payslips</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="showEmployerAddress" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Show Employer Address</FormLabel>
-										<FormDescription>Include company address on payslips</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="showLeaveBalances" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Show Leave Balances</FormLabel>
-										<FormDescription>Display leave balances on payslips</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
-							<FormField control={form.control} name="showYtdTotals" render={({ field }) => (
-								<FormItem className="flex items-center justify-between rounded-lg border p-3">
-									<div>
-										<FormLabel>Show Year-to-Date Totals</FormLabel>
-										<FormDescription>Include YTD figures on payslips</FormDescription>
-									</div>
-									<FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="showLogo"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Show Company Logo</FormLabel>
+											<FormDescription>Display logo at the top of payslips</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="showEmployerAddress"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Show Employer Address</FormLabel>
+											<FormDescription>Include company address on payslips</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="showLeaveBalances"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Show Leave Balances</FormLabel>
+											<FormDescription>Display leave balances on payslips</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="showYtdTotals"
+								render={({ field }) => (
+									<FormItem className="flex items-center justify-between rounded-lg border p-3">
+										<div>
+											<FormLabel>Show Year-to-Date Totals</FormLabel>
+											<FormDescription>Include YTD figures on payslips</FormDescription>
+										</div>
+										<FormControl>
+											<Switch checked={field.value} onCheckedChange={field.onChange} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
@@ -131,19 +155,29 @@ export default function PayslipConfigPage() {
 							<CardTitle>Custom Footer</CardTitle>
 						</CardHeader>
 						<CardContent>
-							<FormField control={form.control} name="customFooterText" render={({ field }) => (
-								<FormItem>
-									<FormLabel>Footer Text</FormLabel>
-									<FormControl><Textarea placeholder="Enter custom footer text..." {...field} /></FormControl>
-									<FormDescription>This text will appear at the bottom of all payslips</FormDescription>
-								</FormItem>
-							)} />
+							<FormField
+								control={form.control}
+								name="customFooterText"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Footer Text</FormLabel>
+										<FormControl>
+											<Textarea placeholder="Enter custom footer text..." {...field} />
+										</FormControl>
+										<FormDescription>This text will appear at the bottom of all payslips</FormDescription>
+									</FormItem>
+								)}
+							/>
 						</CardContent>
 					</Card>
 
 					<div className="flex justify-end">
 						<Button type="submit" disabled={updateMutation.isPending}>
-							{updateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
+							{updateMutation.isPending ? (
+								<Loader2 className="h-4 w-4 animate-spin mr-2" />
+							) : (
+								<CheckCircle2 className="h-4 w-4 mr-2" />
+							)}
 							Save Changes
 						</Button>
 					</div>

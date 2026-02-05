@@ -11,7 +11,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const MONTHS = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];
 
 function getDaysInMonth(year: number, month: number) {
 	return new Date(year, month + 1, 0).getDate();
@@ -71,9 +84,11 @@ export default function LeaveCalendarPage() {
 
 	const getEventsForDay = (day: number) => {
 		const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-		return filteredEvents?.filter((e) => {
-			return dateStr >= e.startDate && dateStr <= e.endDate;
-		}) || [];
+		return (
+			filteredEvents?.filter((e) => {
+				return dateStr >= e.startDate && dateStr <= e.endDate;
+			}) || []
+		);
 	};
 
 	const calendarDays = [];
@@ -104,7 +119,9 @@ export default function LeaveCalendarPage() {
 					<SelectContent>
 						<SelectItem value="all">All Types</SelectItem>
 						{leaveTypes?.map((lt) => (
-							<SelectItem key={lt.id} value={lt.id}>{lt.name}</SelectItem>
+							<SelectItem key={lt.id} value={lt.id}>
+								{lt.name}
+							</SelectItem>
 						))}
 					</SelectContent>
 				</Select>
@@ -116,7 +133,9 @@ export default function LeaveCalendarPage() {
 						<Button variant="outline" size="icon" onClick={prevMonth}>
 							<ChevronLeft className="h-4 w-4" />
 						</Button>
-						<CardTitle>{MONTHS[currentMonth]} {currentYear}</CardTitle>
+						<CardTitle>
+							{MONTHS[currentMonth]} {currentYear}
+						</CardTitle>
 						<Button variant="outline" size="icon" onClick={nextMonth}>
 							<ChevronRight className="h-4 w-4" />
 						</Button>
@@ -134,7 +153,8 @@ export default function LeaveCalendarPage() {
 							))}
 							{calendarDays.map((day, index) => {
 								const dayEvents = day ? getEventsForDay(day) : [];
-								const isToday = day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
+								const isToday =
+									day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
 								return (
 									<div
 										key={`day-${index}`}
@@ -181,7 +201,9 @@ export default function LeaveCalendarPage() {
 										<div className="w-3 h-3 rounded-full" style={{ backgroundColor: event.color }} />
 										<div>
 											<p className="font-medium">{event.employeeName}</p>
-											<p className="text-sm text-muted-foreground">{event.startDate} - {event.endDate}</p>
+											<p className="text-sm text-muted-foreground">
+												{event.startDate} - {event.endDate}
+											</p>
 										</div>
 									</div>
 									<Badge variant="outline">{event.leaveTypeName}</Badge>

@@ -306,9 +306,7 @@ export const accessHandlers = [
 		const invitedUsers = users.filter((u) => u.status === "invited").length;
 		const suspendedUsers = users.filter((u) => u.status === "suspended").length;
 		const adminRoles = ["role-1", "role-2", "role-3"];
-		const usersWithAdminAccess = users.filter((u) =>
-			u.roles.some((r) => adminRoles.includes(r))
-		).length;
+		const usersWithAdminAccess = users.filter((u) => u.roles.some((r) => adminRoles.includes(r))).length;
 
 		const recentHighRisk = auditLogs
 			.filter((l) => l.isHighRisk)
@@ -388,16 +386,10 @@ export const accessHandlers = [
 		}
 		const role = roles[roleIndex];
 		if (role.isSystemRole) {
-			return HttpResponse.json(
-				{ status: "error", message: "Cannot delete system role" },
-				{ status: 400 }
-			);
+			return HttpResponse.json({ status: "error", message: "Cannot delete system role" }, { status: 400 });
 		}
 		if (role.userCount > 0) {
-			return HttpResponse.json(
-				{ status: "error", message: "Cannot delete role with assigned users" },
-				{ status: 400 }
-			);
+			return HttpResponse.json({ status: "error", message: "Cannot delete role with assigned users" }, { status: 400 });
 		}
 		roles.splice(roleIndex, 1);
 		return HttpResponse.json({ status: "success" });
@@ -427,9 +419,7 @@ export const accessHandlers = [
 			roleIds: string[];
 			companyAccess: "all" | "specific";
 		};
-		const roleNames = body.roleIds
-			.map((id) => roles.find((r) => r.id === id)?.name)
-			.filter(Boolean) as string[];
+		const roleNames = body.roleIds.map((id) => roles.find((r) => r.id === id)?.name).filter(Boolean) as string[];
 
 		const newUser: SystemUser = {
 			id: `user-${users.length + 1}`,
@@ -456,9 +446,7 @@ export const accessHandlers = [
 		}
 
 		if (body.roleIds) {
-			const roleNames = body.roleIds
-				.map((id) => roles.find((r) => r.id === id)?.name)
-				.filter(Boolean) as string[];
+			const roleNames = body.roleIds.map((id) => roles.find((r) => r.id === id)?.name).filter(Boolean) as string[];
 			users[userIndex].roles = body.roleIds;
 			users[userIndex].roleNames = roleNames;
 		}

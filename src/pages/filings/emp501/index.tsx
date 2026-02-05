@@ -88,11 +88,14 @@ export default function EMP501Page() {
 						<DialogHeader>
 							<DialogTitle>Generate EMP501</DialogTitle>
 							<DialogDescription>
-								Generate a new EMP501 reconciliation for the current tax period. This will compile all payroll and EMP201 data.
+								Generate a new EMP501 reconciliation for the current tax period. This will compile all payroll and
+								EMP201 data.
 							</DialogDescription>
 						</DialogHeader>
 						<div className="flex justify-end gap-2 mt-4">
-							<Button variant="outline" onClick={() => setGenerateDialogOpen(false)}>Cancel</Button>
+							<Button variant="outline" onClick={() => setGenerateDialogOpen(false)}>
+								Cancel
+							</Button>
 							<Button onClick={() => generateMutation.mutate()} disabled={generateMutation.isPending}>
 								{generateMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
 								Generate
@@ -119,13 +122,17 @@ export default function EMP501Page() {
 
 			{listLoading ? (
 				<div className="grid gap-4 md:grid-cols-3">
-					{[1, 2, 3].map((i) => <Skeleton key={i} className="h-32" />)}
+					{[1, 2, 3].map((i) => (
+						<Skeleton key={i} className="h-32" />
+					))}
 				</div>
 			) : currentEmp501 && !selectedId ? (
 				<Card className="cursor-pointer hover:border-primary" onClick={() => setSelectedId(currentEmp501.id)}>
 					<CardHeader>
 						<div className="flex items-center justify-between">
-							<CardTitle>{currentEmp501.taxYear} - {currentEmp501.type === "interim" ? "Interim" : "Final"}</CardTitle>
+							<CardTitle>
+								{currentEmp501.taxYear} - {currentEmp501.type === "interim" ? "Interim" : "Final"}
+							</CardTitle>
 							<Badge variant={statusConfig[currentEmp501.status].variant}>
 								{statusConfig[currentEmp501.status].label}
 							</Badge>
@@ -143,7 +150,9 @@ export default function EMP501Page() {
 							</div>
 							<div>
 								<p className="text-sm text-muted-foreground">Variance</p>
-								<p className={`text-xl font-bold ${currentEmp501.variance !== 0 ? "text-destructive" : "text-green-600"}`}>
+								<p
+									className={`text-xl font-bold ${currentEmp501.variance !== 0 ? "text-destructive" : "text-green-600"}`}
+								>
 									{formatCurrency(currentEmp501.variance)}
 								</p>
 							</div>
@@ -169,7 +178,8 @@ export default function EMP501Page() {
 							<AlertTriangle className="h-4 w-4" />
 							<AlertTitle>Variances Detected</AlertTitle>
 							<AlertDescription>
-								Some employees have PAYE variances between payroll and EMP201 submissions. Review and resolve before submitting.
+								Some employees have PAYE variances between payroll and EMP201 submissions. Review and resolve before
+								submitting.
 							</AlertDescription>
 						</Alert>
 					)}
@@ -231,7 +241,9 @@ export default function EMP501Page() {
 											<TableCell className="font-mono">{emp.taxNumber}</TableCell>
 											<TableCell className="text-right font-mono">{formatCurrency(emp.payrollPaye)}</TableCell>
 											<TableCell className="text-right font-mono">{formatCurrency(emp.emp201Paye)}</TableCell>
-											<TableCell className={`text-right font-mono ${emp.hasMismatch ? "text-destructive font-bold" : ""}`}>
+											<TableCell
+												className={`text-right font-mono ${emp.hasMismatch ? "text-destructive font-bold" : ""}`}
+											>
 												{formatCurrency(emp.variance)}
 											</TableCell>
 										</TableRow>

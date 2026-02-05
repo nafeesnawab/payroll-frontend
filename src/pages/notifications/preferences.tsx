@@ -53,7 +53,7 @@ export default function NotificationPreferencesPage() {
 					emailEnabled: channel === "email" ? !p.emailEnabled : p.emailEnabled,
 					inAppEnabled: channel === "inApp" ? !p.inAppEnabled : p.inAppEnabled,
 				};
-			})
+			}),
 		);
 		setHasChanges(true);
 	};
@@ -79,9 +79,7 @@ export default function NotificationPreferencesPage() {
 						<Bell className="h-6 w-6" />
 						My Notification Preferences
 					</h1>
-					<p className="text-muted-foreground">
-						Control how you receive notifications
-					</p>
+					<p className="text-muted-foreground">Control how you receive notifications</p>
 				</div>
 				<Button onClick={handleSave} disabled={!hasChanges || updatePreferences.isPending}>
 					<Save className="h-4 w-4 mr-2" />
@@ -92,17 +90,14 @@ export default function NotificationPreferencesPage() {
 			<Alert>
 				<Shield className="h-4 w-4" />
 				<AlertDescription>
-					System-critical notifications (compliance alerts, security) cannot be disabled and will
-					always be delivered.
+					System-critical notifications (compliance alerts, security) cannot be disabled and will always be delivered.
 				</AlertDescription>
 			</Alert>
 
 			<Card>
 				<CardHeader>
 					<CardTitle>Notification Channels</CardTitle>
-					<CardDescription>
-						Choose how you want to receive notifications for each category
-					</CardDescription>
+					<CardDescription>Choose how you want to receive notifications for each category</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-1">
@@ -119,10 +114,7 @@ export default function NotificationPreferencesPage() {
 
 						{/* Preferences */}
 						{preferences.map((pref) => (
-							<div
-								key={pref.category}
-								className="grid grid-cols-3 gap-4 py-4 border-b last:border-0 items-center"
-							>
+							<div key={pref.category} className="grid grid-cols-3 gap-4 py-4 border-b last:border-0 items-center">
 								<div className="font-medium">{pref.categoryLabel}</div>
 								<div className="flex justify-center">
 									<Switch
@@ -149,21 +141,15 @@ export default function NotificationPreferencesPage() {
 				<CardContent className="space-y-3 text-sm">
 					<div>
 						<p className="font-medium">Payroll</p>
-						<p className="text-muted-foreground">
-							Payslip releases, payroll finalization notices
-						</p>
+						<p className="text-muted-foreground">Payslip releases, payroll finalization notices</p>
 					</div>
 					<div>
 						<p className="font-medium">Leave</p>
-						<p className="text-muted-foreground">
-							Leave request updates, approval/rejection notices
-						</p>
+						<p className="text-muted-foreground">Leave request updates, approval/rejection notices</p>
 					</div>
 					<div>
 						<p className="font-medium">General</p>
-						<p className="text-muted-foreground">
-							Profile updates, system announcements, reminders
-						</p>
+						<p className="text-muted-foreground">Profile updates, system announcements, reminders</p>
 					</div>
 				</CardContent>
 			</Card>

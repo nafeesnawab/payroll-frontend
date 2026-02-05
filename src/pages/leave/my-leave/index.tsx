@@ -73,27 +73,25 @@ export default function MyLeavePage() {
 			</div>
 
 			<div className="grid gap-4 md:grid-cols-4">
-				{balancesLoading ? (
-					[1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-32" />)
-				) : (
-					balances?.map((bal) => (
-						<Card key={bal.id}>
-							<CardHeader className="pb-2">
-								<CardDescription>{bal.leaveTypeName}</CardDescription>
-								<CardTitle className={`text-3xl ${bal.isNegative ? "text-destructive" : ""}`}>
-									{bal.available}
-								</CardTitle>
-							</CardHeader>
-							<CardContent>
-								<p className="text-sm text-muted-foreground">days available</p>
-								<div className="flex gap-4 mt-2 text-xs text-muted-foreground">
-									<span>Accrued: {bal.accrued}</span>
-									<span>Taken: {bal.taken}</span>
-								</div>
-							</CardContent>
-						</Card>
-					))
-				)}
+				{balancesLoading
+					? [1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-32" />)
+					: balances?.map((bal) => (
+							<Card key={bal.id}>
+								<CardHeader className="pb-2">
+									<CardDescription>{bal.leaveTypeName}</CardDescription>
+									<CardTitle className={`text-3xl ${bal.isNegative ? "text-destructive" : ""}`}>
+										{bal.available}
+									</CardTitle>
+								</CardHeader>
+								<CardContent>
+									<p className="text-sm text-muted-foreground">days available</p>
+									<div className="flex gap-4 mt-2 text-xs text-muted-foreground">
+										<span>Accrued: {bal.accrued}</span>
+										<span>Taken: {bal.taken}</span>
+									</div>
+								</CardContent>
+							</Card>
+						))}
 			</div>
 
 			<Card>
@@ -104,7 +102,9 @@ export default function MyLeavePage() {
 				<CardContent>
 					{requestsLoading ? (
 						<div className="space-y-3">
-							{[1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full" />)}
+							{[1, 2, 3].map((i) => (
+								<Skeleton key={i} className="h-16 w-full" />
+							))}
 						</div>
 					) : (
 						<Table>
@@ -136,18 +136,34 @@ export default function MyLeavePage() {
 											</TableCell>
 											<TableCell className="text-right">
 												{req.status === "pending" && (
-													<Dialog open={cancelDialogOpen && selectedRequest?.id === req.id} onOpenChange={(open) => { setCancelDialogOpen(open); if (open) setSelectedRequest(req); }}>
+													<Dialog
+														open={cancelDialogOpen && selectedRequest?.id === req.id}
+														onOpenChange={(open) => {
+															setCancelDialogOpen(open);
+															if (open) setSelectedRequest(req);
+														}}
+													>
 														<DialogTrigger asChild>
-															<Button size="sm" variant="ghost"><X className="h-4 w-4" /></Button>
+															<Button size="sm" variant="ghost">
+																<X className="h-4 w-4" />
+															</Button>
 														</DialogTrigger>
 														<DialogContent>
 															<DialogHeader>
 																<DialogTitle>Cancel Request</DialogTitle>
-																<DialogDescription>Are you sure you want to cancel this leave request?</DialogDescription>
+																<DialogDescription>
+																	Are you sure you want to cancel this leave request?
+																</DialogDescription>
 															</DialogHeader>
 															<div className="flex justify-end gap-2 mt-4">
-																<Button variant="outline" onClick={() => setCancelDialogOpen(false)}>No, Keep It</Button>
-																<Button variant="destructive" onClick={() => cancelMutation.mutate(req.id)} disabled={cancelMutation.isPending}>
+																<Button variant="outline" onClick={() => setCancelDialogOpen(false)}>
+																	No, Keep It
+																</Button>
+																<Button
+																	variant="destructive"
+																	onClick={() => cancelMutation.mutate(req.id)}
+																	disabled={cancelMutation.isPending}
+																>
 																	{cancelMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
 																	Yes, Cancel
 																</Button>

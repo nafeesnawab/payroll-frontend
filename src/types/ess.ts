@@ -22,7 +22,12 @@ export interface ESSOverview {
 
 export interface ESSNotification {
 	id: string;
-	type: "payslip_released" | "leave_approved" | "leave_rejected" | "profile_change_approved" | "profile_change_rejected";
+	type:
+		| "payslip_released"
+		| "leave_approved"
+		| "leave_rejected"
+		| "profile_change_approved"
+		| "profile_change_rejected";
 	title: string;
 	message: string;
 	isRead: boolean;

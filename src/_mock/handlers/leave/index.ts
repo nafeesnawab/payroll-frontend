@@ -3,18 +3,83 @@ import { http, HttpResponse, delay } from "msw";
 import type { LeaveType, LeaveBalance, LeaveRequest, LeaveOverview, LeaveCalendarEvent } from "@/types/leave";
 
 const leaveTypes: LeaveType[] = [
-	{ id: "lt-1", name: "Annual Leave", code: "ANNUAL", accrualMethod: "monthly", accrualRate: 1.25, cycleStartMonth: 1, carryOverLimit: 5, carryOverExpireMonths: 6, allowNegativeBalance: false, requiresAttachment: false, isPaid: true, isActive: true },
-	{ id: "lt-2", name: "Sick Leave", code: "SICK", accrualMethod: "annual", accrualRate: 30, cycleStartMonth: 1, carryOverLimit: null, carryOverExpireMonths: null, allowNegativeBalance: false, requiresAttachment: true, isPaid: true, isActive: true },
-	{ id: "lt-3", name: "Family Responsibility", code: "FAMILY", accrualMethod: "annual", accrualRate: 3, cycleStartMonth: 1, carryOverLimit: 0, carryOverExpireMonths: null, allowNegativeBalance: false, requiresAttachment: false, isPaid: true, isActive: true },
-	{ id: "lt-4", name: "Unpaid Leave", code: "UNPAID", accrualMethod: "none", accrualRate: 0, cycleStartMonth: 1, carryOverLimit: null, carryOverExpireMonths: null, allowNegativeBalance: true, requiresAttachment: false, isPaid: false, isActive: true },
-	{ id: "lt-5", name: "Study Leave", code: "STUDY", accrualMethod: "annual", accrualRate: 5, cycleStartMonth: 1, carryOverLimit: 0, carryOverExpireMonths: null, allowNegativeBalance: false, requiresAttachment: true, isPaid: true, isActive: true },
+	{
+		id: "lt-1",
+		name: "Annual Leave",
+		code: "ANNUAL",
+		accrualMethod: "monthly",
+		accrualRate: 1.25,
+		cycleStartMonth: 1,
+		carryOverLimit: 5,
+		carryOverExpireMonths: 6,
+		allowNegativeBalance: false,
+		requiresAttachment: false,
+		isPaid: true,
+		isActive: true,
+	},
+	{
+		id: "lt-2",
+		name: "Sick Leave",
+		code: "SICK",
+		accrualMethod: "annual",
+		accrualRate: 30,
+		cycleStartMonth: 1,
+		carryOverLimit: null,
+		carryOverExpireMonths: null,
+		allowNegativeBalance: false,
+		requiresAttachment: true,
+		isPaid: true,
+		isActive: true,
+	},
+	{
+		id: "lt-3",
+		name: "Family Responsibility",
+		code: "FAMILY",
+		accrualMethod: "annual",
+		accrualRate: 3,
+		cycleStartMonth: 1,
+		carryOverLimit: 0,
+		carryOverExpireMonths: null,
+		allowNegativeBalance: false,
+		requiresAttachment: false,
+		isPaid: true,
+		isActive: true,
+	},
+	{
+		id: "lt-4",
+		name: "Unpaid Leave",
+		code: "UNPAID",
+		accrualMethod: "none",
+		accrualRate: 0,
+		cycleStartMonth: 1,
+		carryOverLimit: null,
+		carryOverExpireMonths: null,
+		allowNegativeBalance: true,
+		requiresAttachment: false,
+		isPaid: false,
+		isActive: true,
+	},
+	{
+		id: "lt-5",
+		name: "Study Leave",
+		code: "STUDY",
+		accrualMethod: "annual",
+		accrualRate: 5,
+		cycleStartMonth: 1,
+		carryOverLimit: 0,
+		carryOverExpireMonths: null,
+		allowNegativeBalance: false,
+		requiresAttachment: true,
+		isPaid: true,
+		isActive: true,
+	},
 ];
 
 const generateBalances = (): LeaveBalance[] => {
 	const balances: LeaveBalance[] = [];
 	for (let i = 1; i <= 25; i++) {
 		const name = faker.person.fullName();
-		for (const lt of leaveTypes.filter(l => l.accrualMethod !== "none")) {
+		for (const lt of leaveTypes.filter((l) => l.accrualMethod !== "none")) {
 			const accrued = lt.accrualMethod === "monthly" ? lt.accrualRate * 12 : lt.accrualRate;
 			const taken = faker.number.int({ min: 0, max: Math.floor(accrued * 0.7) });
 			const pending = faker.number.int({ min: 0, max: 2 });
@@ -38,7 +103,13 @@ const generateBalances = (): LeaveBalance[] => {
 };
 
 const generateRequests = (): LeaveRequest[] => {
-	const statuses: Array<"pending" | "approved" | "rejected" | "cancelled"> = ["pending", "approved", "approved", "approved", "rejected"];
+	const statuses: Array<"pending" | "approved" | "rejected" | "cancelled"> = [
+		"pending",
+		"approved",
+		"approved",
+		"approved",
+		"rejected",
+	];
 	return Array.from({ length: 30 }, (_, i) => {
 		const status = statuses[i % statuses.length];
 		const lt = leaveTypes[i % leaveTypes.length];
@@ -75,16 +146,16 @@ let mockRequests = generateRequests();
 export const leaveHandlers = [
 	http.get("/api/leave/overview", async () => {
 		await delay(300);
-		const pendingRequests = mockRequests.filter(r => r.status === "pending");
+		const pendingRequests = mockRequests.filter((r) => r.status === "pending");
 		const approvedUpcoming = mockRequests
-			.filter(r => r.status === "approved" && new Date(r.startDate) >= new Date())
+			.filter((r) => r.status === "approved" && new Date(r.startDate) >= new Date())
 			.slice(0, 5);
 		const overview: LeaveOverview = {
 			employeesOnLeave: 3,
 			pendingApprovals: pendingRequests.length,
-			negativeBalances: mockBalances.filter(b => b.isNegative).length,
+			negativeBalances: mockBalances.filter((b) => b.isNegative).length,
 			expiringBalances: 5,
-			upcomingLeave: approvedUpcoming.map(r => ({
+			upcomingLeave: approvedUpcoming.map((r) => ({
 				id: r.id,
 				employeeName: r.employeeName,
 				leaveTypeName: r.leaveTypeName,
@@ -103,7 +174,7 @@ export const leaveHandlers = [
 
 	http.post("/api/leave/types", async ({ request }) => {
 		await delay(300);
-		const body = await request.json() as Partial<LeaveType>;
+		const body = (await request.json()) as Partial<LeaveType>;
 		const newType: LeaveType = {
 			id: `lt-${leaveTypes.length + 1}`,
 			name: body.name || "New Leave Type",
@@ -124,8 +195,8 @@ export const leaveHandlers = [
 
 	http.put("/api/leave/types/:id", async ({ params, request }) => {
 		await delay(300);
-		const body = await request.json() as Partial<LeaveType>;
-		const index = leaveTypes.findIndex(t => t.id === params.id);
+		const body = (await request.json()) as Partial<LeaveType>;
+		const index = leaveTypes.findIndex((t) => t.id === params.id);
 		if (index !== -1) {
 			leaveTypes[index] = { ...leaveTypes[index], ...body };
 			return HttpResponse.json({ status: "success", data: leaveTypes[index] });
@@ -141,17 +212,17 @@ export const leaveHandlers = [
 		const negativeOnly = url.searchParams.get("negativeOnly") === "true";
 
 		let filtered = [...mockBalances];
-		if (employeeId) filtered = filtered.filter(b => b.employeeId === employeeId);
-		if (leaveTypeId) filtered = filtered.filter(b => b.leaveTypeId === leaveTypeId);
-		if (negativeOnly) filtered = filtered.filter(b => b.isNegative);
+		if (employeeId) filtered = filtered.filter((b) => b.employeeId === employeeId);
+		if (leaveTypeId) filtered = filtered.filter((b) => b.leaveTypeId === leaveTypeId);
+		if (negativeOnly) filtered = filtered.filter((b) => b.isNegative);
 
 		return HttpResponse.json({ status: "success", data: filtered });
 	}),
 
 	http.put("/api/leave/balances/:employeeId", async ({ params, request }) => {
 		await delay(300);
-		const body = await request.json() as { leaveTypeId: string; amount: number; reason: string };
-		const balance = mockBalances.find(b => b.employeeId === params.employeeId && b.leaveTypeId === body.leaveTypeId);
+		const body = (await request.json()) as { leaveTypeId: string; amount: number; reason: string };
+		const balance = mockBalances.find((b) => b.employeeId === params.employeeId && b.leaveTypeId === body.leaveTypeId);
 		if (balance) {
 			balance.accrued += body.amount;
 			balance.available += body.amount;
@@ -168,15 +239,15 @@ export const leaveHandlers = [
 		const leaveTypeId = url.searchParams.get("leaveTypeId");
 
 		let filtered = [...mockRequests];
-		if (status && status !== "all") filtered = filtered.filter(r => r.status === status);
-		if (leaveTypeId) filtered = filtered.filter(r => r.leaveTypeId === leaveTypeId);
+		if (status && status !== "all") filtered = filtered.filter((r) => r.status === status);
+		if (leaveTypeId) filtered = filtered.filter((r) => r.leaveTypeId === leaveTypeId);
 
 		return HttpResponse.json({ status: "success", data: filtered });
 	}),
 
 	http.get("/api/leave/requests/:id", async ({ params }) => {
 		await delay(200);
-		const request = mockRequests.find(r => r.id === params.id);
+		const request = mockRequests.find((r) => r.id === params.id);
 		if (!request) {
 			return HttpResponse.json({ status: "error", message: "Request not found" }, { status: 404 });
 		}
@@ -185,8 +256,8 @@ export const leaveHandlers = [
 
 	http.post("/api/leave/requests", async ({ request }) => {
 		await delay(400);
-		const body = await request.json() as Record<string, unknown>;
-		const lt = leaveTypes.find(t => t.id === body.leaveTypeId);
+		const body = (await request.json()) as Record<string, unknown>;
+		const lt = leaveTypes.find((t) => t.id === body.leaveTypeId);
 		const newRequest: LeaveRequest = {
 			id: `req-${mockRequests.length + 1}`,
 			employeeId: "emp-1",
@@ -196,8 +267,8 @@ export const leaveHandlers = [
 			leaveTypeName: lt?.name || "Leave",
 			startDate: body.startDate as string,
 			endDate: body.endDate as string,
-			days: body.days as number || 1,
-			isPartialDay: body.isPartialDay as boolean || false,
+			days: (body.days as number) || 1,
+			isPartialDay: (body.isPartialDay as boolean) || false,
 			partialHours: body.partialHours as number,
 			status: "pending",
 			reason: body.reason as string,
@@ -209,7 +280,7 @@ export const leaveHandlers = [
 
 	http.put("/api/leave/requests/:id/approve", async ({ params }) => {
 		await delay(300);
-		const request = mockRequests.find(r => r.id === params.id);
+		const request = mockRequests.find((r) => r.id === params.id);
 		if (!request) {
 			return HttpResponse.json({ status: "error", message: "Request not found" }, { status: 404 });
 		}
@@ -221,8 +292,8 @@ export const leaveHandlers = [
 
 	http.put("/api/leave/requests/:id/reject", async ({ params, request }) => {
 		await delay(300);
-		const body = await request.json() as { reason: string };
-		const req = mockRequests.find(r => r.id === params.id);
+		const body = (await request.json()) as { reason: string };
+		const req = mockRequests.find((r) => r.id === params.id);
 		if (!req) {
 			return HttpResponse.json({ status: "error", message: "Request not found" }, { status: 404 });
 		}
@@ -235,7 +306,7 @@ export const leaveHandlers = [
 
 	http.put("/api/leave/requests/:id/cancel", async ({ params }) => {
 		await delay(300);
-		const request = mockRequests.find(r => r.id === params.id);
+		const request = mockRequests.find((r) => r.id === params.id);
 		if (!request) {
 			return HttpResponse.json({ status: "error", message: "Request not found" }, { status: 404 });
 		}
@@ -250,7 +321,7 @@ export const leaveHandlers = [
 
 		const colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 		const events: LeaveCalendarEvent[] = mockRequests
-			.filter(r => r.status === "approved" && r.startDate.startsWith(month.slice(0, 7)))
+			.filter((r) => r.status === "approved" && r.startDate.startsWith(month.slice(0, 7)))
 			.map((r, i) => ({
 				id: r.id,
 				employeeId: r.employeeId,
@@ -268,13 +339,13 @@ export const leaveHandlers = [
 
 	http.get("/api/leave/my/balances", async () => {
 		await delay(200);
-		const myBalances = mockBalances.filter(b => b.employeeId === "emp-1");
+		const myBalances = mockBalances.filter((b) => b.employeeId === "emp-1");
 		return HttpResponse.json({ status: "success", data: myBalances });
 	}),
 
 	http.get("/api/leave/my/requests", async () => {
 		await delay(200);
-		const myRequests = mockRequests.filter(r => r.employeeId === "emp-1");
+		const myRequests = mockRequests.filter((r) => r.employeeId === "emp-1");
 		return HttpResponse.json({ status: "success", data: myRequests });
 	}),
 ];

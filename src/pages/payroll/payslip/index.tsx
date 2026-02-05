@@ -50,15 +50,11 @@ export default function PayslipDetailPage() {
 	});
 
 	const updateEarning = (earningId: string, field: string, value: number | string) => {
-		setEarnings((prev) =>
-			prev.map((e) => (e.id === earningId ? { ...e, [field]: value } : e))
-		);
+		setEarnings((prev) => prev.map((e) => (e.id === earningId ? { ...e, [field]: value } : e)));
 	};
 
 	const updateDeduction = (deductionId: string, field: string, value: number | string | boolean) => {
-		setDeductions((prev) =>
-			prev.map((d) => (d.id === deductionId ? { ...d, [field]: value } : d))
-		);
+		setDeductions((prev) => prev.map((d) => (d.id === deductionId ? { ...d, [field]: value } : d)));
 	};
 
 	const grossPay = earnings.reduce((sum, e) => sum + e.amount, 0);
@@ -105,7 +101,11 @@ export default function PayslipDetailPage() {
 						Preview PDF
 					</Button>
 					<Button onClick={() => saveMutation.mutate()} disabled={saveMutation.isPending || isNegative}>
-						{saveMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Save className="h-4 w-4 mr-2" />}
+						{saveMutation.isPending ? (
+							<Loader2 className="h-4 w-4 animate-spin mr-2" />
+						) : (
+							<Save className="h-4 w-4 mr-2" />
+						)}
 						Save Changes
 					</Button>
 				</div>
@@ -203,7 +203,10 @@ export default function PayslipDetailPage() {
 						</CardHeader>
 						<CardContent className="space-y-4">
 							{deductions.map((deduction) => (
-								<div key={deduction.id} className={`flex items-start gap-4 p-4 border rounded-lg ${deduction.isSkipped ? "opacity-50" : ""}`}>
+								<div
+									key={deduction.id}
+									className={`flex items-start gap-4 p-4 border rounded-lg ${deduction.isSkipped ? "opacity-50" : ""}`}
+								>
 									<div className="flex-1">
 										<div className="flex items-center gap-2 mb-2">
 											<p className="font-medium">{deduction.name}</p>
@@ -240,7 +243,9 @@ export default function PayslipDetailPage() {
 										</div>
 									</div>
 									<div className="text-right min-w-24">
-										<p className={`text-lg font-bold ${deduction.isSkipped ? "line-through text-muted-foreground" : "text-red-600"}`}>
+										<p
+											className={`text-lg font-bold ${deduction.isSkipped ? "line-through text-muted-foreground" : "text-red-600"}`}
+										>
 											-{formatCurrency(deduction.amount)}
 										</p>
 									</div>
